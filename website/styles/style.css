@@ -1,0 +1,55 @@
+p,
+ul,
+td {
+  font-family: 'Courier New', Courier, monospace;
+  color: whitesmoke;
+  size: medium;
+  text-align: center;
+  text-shadow: 3px 3px 1px black;
+}
+
+a {
+  font-family: 'Courier New', Courier, monospace;
+  color: whitesmoke;
+  size: medium;
+  text-align: center;
+  text-decoration: underline;
+  text-shadow: 3px 3px 1px black;
+}
+
+body {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+h1 {
+  font-family: 'Manufacturing Consent', system-ui;
+  color: whitesmoke;
+  font-size: 50px;
+  margin: 0;
+  padding: 20px 0;
+  text-shadow: 3px 3px 1px black;
+  text-align: center;
+}
+
+.manufacturing-consent-regular {
+  font-family: 'Manufacturing Consent', system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  background-image: url('https://wallpapercave.com/wp/wp11603105.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
