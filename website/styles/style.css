@@ -53,3 +53,9 @@ html {
   background-size: cover;
   height: 100%;
 }
+
+button {
+  background-color: dimgray;
+  color: whitesmoke;
+  font-family: 'Courier New', Courier, monospace;
+}
