@@ -1,0 +1,53 @@
+p {
+  width: 500px;
+  color: whitesmoke;
+  margin: 0 auto;
+  padding: 0 10px 10px 10px;
+}
+
+a {
+  width: 100px;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+}
+
+h3 {
+  color: whitesmoke;
+  width: 250px;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+  text-shadow: 1px 2px 2px rgb(138, 121, 121);
+}
+
+h2 {
+  color: whitesmoke;
+  width: 200px;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+  text-shadow: 1px 2px 2px rgb(138, 121, 121);
+}
+
+body {
+  width: 600px;
+  margin: 0 auto;
+  background-color: black;
+  padding: 0 20px 20px 20px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 0 20px 20px 20px;
+}
+
+html {
+  font-size: 20px;
+  font-family: 'Courier Prime', monospace;
+  background-color: gray;
+}
+
+.done {
+  color: darkseagreen;
+  text-decoration: line-through solid black 2px;
+}
