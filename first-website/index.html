@@ -10,8 +10,14 @@
   <body>
     <input type="date" id="start" name="trip-start" value="2026-09-16" />
     <button>Change user</button>
-    <h2>//SLOWDIVE//</h2>
+
+    <h2 id="one">//SLOWDIVE//</h2>
+
+    <label for="file">Hype Meter:</label>
+    <progress id="file" max="100" value="70">70%</progress>
+
     <h3>//SLOWDIVE//</h3>
+
     <img src="images/slowdive.png" alt="Neil and Rachel in 1992" />
     <p>
       Slowdive is a dream pop/shoegaze band that formed in 1989 in Reading,
@@ -21,15 +27,20 @@
     </p>
 
     <p>
-      The band consists of Rachel Goswell (vocals/guitar), Neil Halstead
-      (vocals/guitar), Nick Chaplin (bass), Christian Savill (guitar), and Simon
-      Scott (drums, 1990-1994, 2014-present); additionally, Ian McCutcheon
-      replaced Scott from 1994-1995. Goswell and Halstead had known each other
-      since early childhood in Reading, Berkshire.
+      The band consists of <em>Rachel Goswell</em> (vocals/guitar),
+      <em>Neil Halstead</em> (vocals/guitar), <em>Nick Chaplin</em> (bass),
+      <em>Christian Savill</em> (guitar), and <em>Simon Scott</em> (drums,
+      1990-1994, 2014-present); additionally,
+      <span class="italics"> Ian McCutcheon replaced Scott from 1994-1995</span
+      >. Goswell and Halstead had known each other since early childhood in
+      Reading, Berkshire.
     </p>
-    <label for="file">Hype Meter:</label>
+    <p>
+      Source:
+      <a href="https://www.last.fm/music/Slowdive/+wiki"> Last.fm biography </a>
+    </p>
 
-    <progress id="file" max="100" value="70">70%</progress>
+    <h4>blank space</h4>
     <label for="pet-select">Favorite Album?</label>
 
     <select name="pets" id="pet-select">
@@ -41,43 +52,48 @@
       <option value="spider">everything is alive</option>
       <option value="goldfish">i saw the sun ;)</option>
     </select>
-
+    <h4>blank space</h4>
     <table>
       <caption>
         Crowd Favorite Albums
       </caption>
       <thead>
         <tr>
-          <th scope="col">User</th>
-          <th scope="col">Favorite Album</th>
-          <th scope="col">Age</th>
+          <th scope="col"><strong>User</strong></th>
+          <th scope="col"><strong>Age</strong></th>
+          <th scope="col"><strong>Favorite Album</strong></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">Mandy</th>
+        <tr class="highlight">
+          <th scope="row">Mandz</th>
+          <td>20</td>
           <td>i saw the sun</td>
-          <td>20</td>
         </tr>
-        <tr>
-          <th scope="row">Kelsey</th>
-          <td>Souvlaki</td>
+        <tr class="dark">
+          <th scope="row">Kelseyyy</th>
           <td>19</td>
-        </tr>
-        <tr>
-          <th scope="row">Ryan</th>
-          <td>Just For A Day</td>
-          <td>21</td>
-        </tr>
-        <tr>
-          <th scope="row">Elizabeth</th>
           <td>Souvlaki</td>
-          <td>18</td>
         </tr>
-        <tr>
-          <th scope="row">Charlotte</th>
-          <td>Pygmalion</td>
+        <tr class="highlight">
+          <th scope="row">RyGal</th>
+          <td>21</td>
+          <td>Just For A Day</td>
+        </tr>
+        <tr class="dark">
+          <th scope="row">E1iz4b3th</th>
+          <td>18</td>
+          <td>Souvlaki</td>
+        </tr>
+        <tr class="highlight">
+          <th scope="row">CTig</th>
           <td>20</td>
+          <td>Pygmalion</td>
+        </tr>
+        <tr class="dark">
+          <th scope="row">Firefly</th>
+          <td>20</td>
+          <td>Self Titled</td>
         </tr>
       </tbody>
       <tfoot>
@@ -87,7 +103,7 @@
         </tr>
       </tfoot>
     </table>
-
+    <h4>blank space</h4>
     <label> Secret Nickname? </label>
     <input
       type="text"
@@ -98,10 +114,5 @@
       maxlength="8"
       size="10"
     />
-
-    <p>
-      Source:
-      <a href="https://www.last.fm/music/Slowdive/+wiki"> Last.fm biography </a>
-    </p>
   </body>
 </html>
