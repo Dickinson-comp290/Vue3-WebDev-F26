@@ -1,7 +1,6 @@
 <!-- First website -->
 <!doctype html>
 <html lang="en-US">
-  <input />
   <head>
     <link href="styles/style.css" rel="stylesheet" />
 
@@ -16,9 +15,33 @@
     />
     <script async src="scripts/main.js"></script>
   </head>
+
   <body>
     <h1>Welcome to Tomato Talk</h1>
+    <label for="start">Enter date:</label>
+
+    <input
+      type="date"
+      id="start"
+      name="trip-start"
+      value="2018-07-22"
+      min="2018-01-01"
+      max="2018-12-31"
+    />
     <h2>bring all of your tomato knowledge and questions</h2>
+
+    <label for="name">Name (5 to 10 characters):</label>
+
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      minlength="5"
+      maxlength="10"
+      size="12"
+    />
+
     <p>
       Welcome to Tomato Talks: a safe space to answer all of your tomato
       questions :) As a tomato lover myself. I have seen many questions over the
