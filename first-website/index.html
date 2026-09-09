@@ -6,9 +6,10 @@
     <title>Slowdive Fanpage</title>
     <link href="styles/style.css" rel="stylesheet" />
     <script async src="scripts/main.js"></script>
-    <button>Change user</button>
   </head>
   <body>
+    <input type="date" id="start" name="trip-start" value="2026-09-16" />
+    <button>Change user</button>
     <h2>//SLOWDIVE//</h2>
     <h3>//SLOWDIVE//</h3>
     <img src="images/slowdive.png" alt="Neil and Rachel in 1992" />
@@ -26,6 +27,31 @@
       replaced Scott from 1994-1995. Goswell and Halstead had known each other
       since early childhood in Reading, Berkshire.
     </p>
+    <label for="file">Hype Meter:</label>
+
+    <progress id="file" max="100" value="70">70%</progress>
+    <label for="pet-select">Favorite Album?</label>
+
+    <select name="pets" id="pet-select">
+      <option value="">--Please choose an option--</option>
+      <option value="dog">Just For A Day</option>
+      <option value="cat">Souvlaki</option>
+      <option value="hamster">Pygmalion</option>
+      <option value="parrot">Self Titled</option>
+      <option value="spider">everything is alive</option>
+      <option value="goldfish">i saw the sun ;)</option>
+    </select>
+
+    <label> Secret Nickname? </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      minlength="4"
+      maxlength="8"
+      size="10"
+    />
 
     <p>
       Source:
