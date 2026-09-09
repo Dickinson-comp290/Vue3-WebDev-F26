@@ -38,3 +38,4 @@ function setUserName() {
     myHeading.textContent = `welcome to dice roller, ${myName}`;
   }
 }
+
