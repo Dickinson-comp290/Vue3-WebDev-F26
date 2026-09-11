@@ -1,11 +1,20 @@
-const myHeading = document.querySelector('h1');
-myHeading.textContent = 'It works!';
+const myImage = document.querySelector('img');
+//myHeading.textContent = 'It works!';
 
-myHeading.addEventListener('click', () => {
+myImage.addEventListener('click', () => {
   const mySrc = myImage.getAttribute('src');
-  if (mySrc === 'images/samoyed.png') {
-    myImage.setAttribute('src', '');
+  if (
+    mySrc ===
+    '/workspaces/Vue3-WebDev-F26/web-projects/first-website/images/samyed.png'
+  ) {
+    myImage.setAttribute(
+      'src',
+      '/workspaces/Vue3-WebDev-F26/web-projects/first-website/images/samoyed2.png'
+    );
   } else {
-    myImage.setAttribute('src', 'samoyed.png');
+    myImage.setAttribute(
+      'src',
+      '/workspaces/Vue3-WebDev-F26/web-projects/first-website/images/samyed.png'
+    );
   }
 });
