@@ -36,3 +36,14 @@ img {
   color: rgb(43, 87, 43);
   text-decoration: line-through solid black 2px;
 }
+label {
+  display: block;
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
