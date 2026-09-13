@@ -18,7 +18,7 @@ function setUserName() {
     setUserName();
   } else {
     localStorage.setItem('name', myName);
-    myHeading.textContent = `Look at my cool website, ${myName}`;
+    myHeading.textContent = `Look at the shrine, ${myName}`;
   }
 }
 
@@ -26,7 +26,7 @@ if (!localStorage.getItem('name')) {
   setUserName();
 } else {
   const storedName = localStorage.getItem('name');
-  myHeading.textContent = `Look at my cool website, ${storedName}`;
+  myHeading.textContent = `Look at shrine, ${storedName}`;
 }
 
 myButton.addEventListener('click', () => {
