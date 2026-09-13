@@ -49,7 +49,10 @@
       <div v-if="showFeedback">
         <p v-if="correct" class="correct">You got it!</p>
         <p v-else class="incorrect">Try again</p>
+
+        <button v-on:click="reset()">Reset</button>
       </div>
+
     </div>
   </body>
 </html>

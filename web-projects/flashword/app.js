@@ -10,11 +10,15 @@ const FlashWord = {
     };
   },
   methods: {
- checkAnswer() {
-    this.correct = this.answer == this.wordB; 
-    this.showFeedback = true;
-  }
-}
-}
+    checkAnswer() {
+      this.correct = this.answer == this.wordB;
+      this.showFeedback = true;
+    },
+    reset() {
+      this.answer = '';
+      this.showFeedback = false;
+    },
+  },
+};
 // Create a new Vue instance using our options
 const app = Vue.createApp(FlashWord).mount('#app');
