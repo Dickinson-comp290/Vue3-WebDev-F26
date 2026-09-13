@@ -87,3 +87,12 @@ label {
   display: block;
   margin-bottom: 10px;
 }
+
+table {
+  border: 2px solid rgb(140 140 140);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+}
