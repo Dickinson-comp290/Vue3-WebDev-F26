@@ -39,7 +39,7 @@ img {
 label {
   display: block;
   font:
-    1rem 'Fira Sans',
+    1rem 'Oswald',
     sans-serif;
 }
 
@@ -50,10 +50,20 @@ label {
 label {
   display: block;
   font:
-    1rem 'Fira Sans',
+    1rem 'Oswald',
     sans-serif;
 }
 input,
 label {
   margin: 0.4rem 0;
+}
+label {
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding-right: 10px;
+}
+
+select {
+  font-size: 0.9rem;
+  padding: 2px 5px;
 }
