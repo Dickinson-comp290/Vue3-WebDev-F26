@@ -27,6 +27,13 @@ body {
   padding: 0 20px 20px 20px;
   border: 5px solid rgb(184, 19, 19);
 }
+table {
+  border: 4px solid rgb(13, 10, 10);
+}
+th,
+td {
+  border: 2px solid rgb(30, 255, 0);
+}
 img {
   display: block;
   margin: 0 auto;
@@ -86,12 +93,4 @@ textarea {
 label {
   display: block;
   margin-bottom: 10px;
-}
-
-table {
-  border: 4px solid rgb(13, 10, 10);
-}
-th,
-td {
-  border: 2px solid rgb(30, 255, 0);
 }
