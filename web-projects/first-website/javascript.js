@@ -1,5 +1,4 @@
 const myImage = document.querySelector('img');
-//myHeading.textContent = 'It works!';
 
 myImage.addEventListener('click', () => {
   const mySrc = myImage.getAttribute('src');
