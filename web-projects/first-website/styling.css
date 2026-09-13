@@ -8,6 +8,11 @@ p {
   justify-content: center;
 }
 
+.done {
+  color: darkseagreen;
+  text-decoration: line-through solid black 2px;
+}
+
 ul {
   text-align: center;
   padding-left: 30px;
