@@ -46,11 +46,20 @@
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 
-      <div v-if="showFeedback">
-        <p v-if="correct">You got it!</p>
-        <p v-else>Sorry, that is incorrect - try again.</p>
+      <template v-if="showFeedback">
+        <p v-if="correct" class="correct">You got it!</p>
+        <p v-else class="incorrect">Sorry, that is incorrect - try again.</p>
+      </template>
+
+      <p v-if="false">Example A</p>
+
+      <p v-show="false">Example B</p>
+
+      <!-- <div v-if="showFeedback">
+        <p v-if="correct" class=""correct">You got it!</p>
+        <p v-else class=""incorrect">Sorry, that is incorrect - try again.</p>
         <button v-on:click="reset()">Reset</button>
-      </div>
+      </div> -->
       <!-- <button v-on:click="checkAnswer()">Check Answer</button> -->
       <!-- <button v-on:click="reset()">Reset</button> -->
     </div>
