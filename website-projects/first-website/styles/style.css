@@ -1,6 +1,7 @@
 p,
 ul,
-td {
+td,
+label {
   font-family: 'Courier New', Courier, monospace;
   color: whitesmoke;
   size: medium;
@@ -58,4 +59,11 @@ button {
   background-color: dimgray;
   color: whitesmoke;
   font-family: 'Courier New', Courier, monospace;
+}
+
+table,
+th,
+td {
+  border: 1px solid white;
+  border-collapse: collapse;
 }

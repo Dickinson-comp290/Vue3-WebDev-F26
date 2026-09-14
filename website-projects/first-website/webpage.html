@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>dice roller</title>
+    <link href="styles/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manufacturing+Consent&display=swap"
+      rel="stylesheet"
+    />
+    <script async src="scripts/main.js"></script>
+  </head>
+  <body>
+    <h1>dice roller</h1>
+    <p>
+      uses the <a href="https://dnd5e.wikidot.com/">dnd5e</a> standard dice set.
+    </p>
+
+    <ul>
+      <li>click one of the dice to roll it</li>
+      <li>view your result at the bottom</li>
+    </ul>
+
+    <table>
+      <tr>
+        <th><img src="images/d4.png" alt="d4" /></th>
+        <th><img src="images/d6.png" alt="d6" /></th>
+        <th><img src="images/d8.png" alt="d8" /></th>
+        <th><img src="images/d10.png" alt="d10" /></th>
+        <th><img src="images/d12.png" alt="d12" /></th>
+        <th><img src="images/d20.png" alt="d20" /></th>
+      </tr>
+      <tr>
+        <td>d4</td>
+        <td>d6</td>
+        <td>d8</td>
+        <td>d10</td>
+        <td>d12</td>
+        <td>d20</td>
+      </tr>
+    </table>
+
+    <p>you rolled...</p>
+    <h1>0</h1>
+
+    <button>change user</button>
+
+    <label for="nickname">Nickname (5 to 10 characters):</label>
+
+    <input
+      type="text"
+      id="nickname"
+      name="name"
+      minlength="5"
+      maxlength="10"
+      size="10"
+    />
+    </body>
+
+    <label for="start">Start date:</label>
+
+    <label for="assingment">assignment due date:</label>
+
+<input
+  type="date"
+  id="assignment"
+  name="assignment-date"
+  value="2026-09-13"
+  min="2026-09-01"
+  max="2026-09-30" />
+
+  <label for="class-select">what class is this for?</label>
+
+<select name="" id="class-select">
+  <option value="">--Please choose an option--</option>
+  <option value="256">COMP256</option>
+  <option value="130">COMP130</option>
+  <option value="132">COMP132</option>
+  <option value="290">COMP290</option>
+  <option value="190">COMP190</option>
+  <option value="401">COMP401</option>
+</select>
+
+  </body>
+</html>
