@@ -1,7 +1,7 @@
 p,
 ul,
-td,
-label {
+label,
+li {
   font-family: 'Courier New', Courier, monospace;
   color: whitesmoke;
   size: medium;
@@ -62,8 +62,37 @@ button {
 }
 
 table,
+td,
+tr {
+  border: 2px solid #ffff;
+}
+
+td,
 th,
-td {
-  border: 1px solid white;
-  border-collapse: collapse;
+tr {
+  font-family: 'Courier New', Courier, monospace;
+  color: black;
+  size: large;
+  text-align: center;
+  font-style: italic;
+}
+
+.nameRow {
+  background: whitesmoke;
+  opacity: 0.5;
+}
+
+.diceRow {
+  background: whitesmoke;
+  opacity: 0.5;
+}
+
+#d20 {
+  color: whitesmoke;
+  background: black;
+}
+
+span {
+  background-color: darkslateblue;
+  color: white;
 }
