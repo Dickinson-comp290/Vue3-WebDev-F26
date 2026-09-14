@@ -94,3 +94,9 @@ label {
   display: block;
   margin-bottom: 10px;
 }
+.highlight {
+  background-color: rgb(122, 222, 137);
+}
+.clash {
+  color: rgb(255, 77, 77);
+}
