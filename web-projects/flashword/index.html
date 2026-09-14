@@ -37,17 +37,22 @@
 
     <div id="app" v-cloak>
       <label for="answer"
-        >What is the English translation of <strong>{{ wordA }}</strong>?</label
-      >
+        >What is the English translation of <strong>{{ wordA }}</strong>?
+      </label>
 
       <input type="text" id="answer" v-model="answer" />
+
+      <p v-if='answer != ""'>Your answer: {{ answer }}</p>
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 
       <div v-if="showFeedback">
         <p v-if="correct">You got it!</p>
         <p v-else>Sorry, that is incorrect - try again.</p>
+        <button v-on:click="reset()">Reset</button>
       </div>
+      <!-- <button v-on:click="checkAnswer()">Check Answer</button> -->
+      <!-- <button v-on:click="reset()">Reset</button> -->
     </div>
   </body>
 </html>

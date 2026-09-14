@@ -14,6 +14,10 @@ const FlashWord = {
       this.correct = this.answer == this.wordB;
       this.showFeedback = true;
     },
+    reset() {
+      this.answer = '';
+      this.showFeedback = false;
+    },
   },
 };
 
