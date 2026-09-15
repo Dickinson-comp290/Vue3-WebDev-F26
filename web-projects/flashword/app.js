@@ -13,6 +13,9 @@ const FlashWord = {
       this.correct = this.wordB == this.answer;
       this.showFeedback = true;
     },
+    reset() {
+      ((this.answer = ''), (this.showFeedback = false));
+    },
   },
 };
 
