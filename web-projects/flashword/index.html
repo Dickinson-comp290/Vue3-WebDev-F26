@@ -43,8 +43,8 @@
       </button>
 
       <div v-if="showFeedback">
-        <p v-if="correct">You got it!!</p>
-        <p v-else>Sorry, please try again</p>
+        <p v-if="correct" class="correct">You got it!!</p>
+        <p v-else class="incorrect">Sorry, please try again</p>
       </div>
     </div>
   </body>
