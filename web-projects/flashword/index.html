@@ -25,22 +25,23 @@
       .incorrect {
         color: red;
       }
+      [v-cloak] {
+        display: none;
+      }
     </style>
   </head>
 
   <body>
     <h1>FlashWord</h1>
 
-    <div id="app">
+    <div id="app" v-cloak>
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
       <input type="text" v-model="answer" />
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
 
-      <button v-on:click="correct = wordB == answer; showFeedback = true">
-        Check answer
-      </button>
+      <button v-on:click="checkAnswer">Check answer</button>
 
       <div v-if="showFeedback">
         <p v-if="correct" class="correct">You got it!!</p>

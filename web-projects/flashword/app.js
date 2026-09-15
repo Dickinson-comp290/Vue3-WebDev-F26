@@ -8,6 +8,12 @@ const FlashWord = {
       showFeedback: false,
     };
   },
+  methods: {
+    checkAnswer() {
+      this.correct = this.wordB == this.answer;
+      this.showFeedback = true;
+    },
+  },
 };
 
 // Create a new Vue instance using our options
