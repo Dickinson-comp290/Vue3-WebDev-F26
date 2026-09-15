@@ -5,6 +5,7 @@ const FlashWord = {
       wordA: 'hola',
       wordB: 'hello',
       answer: '',
+      showFeedback: false,
     };
   },
 };
