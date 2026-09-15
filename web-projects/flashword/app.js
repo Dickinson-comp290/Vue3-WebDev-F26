@@ -4,6 +4,7 @@ const FlashWord = {
     return {
       wordA: 'hola',
       wordB: 'hello',
+      answer: '',
     };
   },
 };
