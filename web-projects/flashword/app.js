@@ -2,6 +2,7 @@
 const FlashWord = {
   data() {
     return {
+      // [...existing data properties...]
       wordA: 'hola',
       wordB: 'hello',
       answer: '',
