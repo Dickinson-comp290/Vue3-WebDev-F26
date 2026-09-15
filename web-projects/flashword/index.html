@@ -43,11 +43,19 @@
 
       <button v-on:click="checkAnswer">Check answer</button>
 
-      <div v-if="showFeedback">
+      <template v-if="showFeedback">
         <p v-if="correct" class="correct">You got it!!</p>
         <p v-else class="incorrect">Sorry, please try again</p>
         <button v-on:click="reset">Reset</button>
-      </div>
+      </template>
+
+      <ul>
+        <li v-for="spanishWord in spanishWords">{{ spanishWord }}</li>
+      </ul>
+
+      <p v-if='answer != ""'>Example A</p>
+
+      <p v-show='answer != ""'>Example B</p>
     </div>
   </body>
 </html>
