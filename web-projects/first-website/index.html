@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    
     <button>Change user</button>
 
     <h1 class="caacupe-one-regular">All About Samoyeds</h1>
@@ -31,6 +30,89 @@
       <li>They always smile</li>
       <li>They were bred initially to be sled dogs</li>
     </ul>
+
+    <h1>Meet Our Samoyeds!</h1>
+    <table>
+      <tr>
+        <th scope="col">Samoyed</th>
+        <th scope="col">Age</th>
+        <th scope="col">Fav Color</th>
+      </tr>
+      <tr>
+        <td scope="row">Casper</td>
+        <td>13</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <td scope="row">Merlin</td>
+        <td>0</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <td scope="row">Cinderella</td>
+        <td>4</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <td scope="row">Harry</td>
+        <td>3</td>
+        <td>Blue</td>
+      </tr>
+    </table>
+
+    <br />
+
+    <p>Is this for a class?</p>
+
+    <form>
+      <block>
+        <label for="name"> NICKNAME: </label>
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="5"
+          maxlength="10"
+          size="10"
+        />
+      </block>
+
+      <block>
+        <label for="date"> DUE DATE: </label>
+
+        <input
+          type="date"
+          value="2026-16-09"
+          id="date"
+          name="due-date"
+          required
+          min="2026-09-01"
+          max="2026-09-30"
+        />
+      </block>
+
+      <block>
+        <label for="year"> GRADE LEVEL: </label>
+
+        <select name="year" id="year">
+          <option value="">--Please choose an option--</option>
+          <option value="dog">Freshman</option>
+          <option value="cat">Sophomore</option>
+          <option value="hamster">Junior</option>
+          <option value="parrot">Senior</option>
+        </select>
+      </block>
+
+      <block>
+        <label for="help">Explain how we can help you:</label>
+
+        <textarea id="help" name="help" rows="5" cols="33">
+I would like you to tell me more about...
+</textarea>
+      </block>
+    </form>
 
     <a href="https://www.akc.org/dog-breeds/samoyed/"> More About Samoyeds </a>
   </body>
