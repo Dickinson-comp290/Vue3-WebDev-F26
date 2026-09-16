@@ -20,4 +20,3 @@ const FlashWord = {
 const app = Vue.createApp(FlashWord).mount('#app');
 
 // Create a new Vue instance using our options
-
