@@ -41,10 +41,15 @@
 
       <button v-on:click="checkAnswer">Check Answer</button>
 
-      <div v-if="showFeedback">
+      <template v-if="showFeedback">
         <p v-if="correct" class="correct">you got it!</p>
         <p v-else-if="correct!=null" class="incorrect">Sorry try again</p>
-      </div>
+        <button v-on:click="reset()">Reset</button>
+      </template>
+
+      <p v-if="answer != ''">Example A</p>
+      <p v-show="answer != ''">Example</p>
+      
     </div>
   </body>
 </html>
