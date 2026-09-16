@@ -49,8 +49,41 @@
         <button v-if="correct" v-on:click="resetAnswer">Reset Answer</button>
       </template>
 
+      <h2>Array Example</h2>
+      <p v-for="spanishWord, index in spanishWords">
+        <template v-if="spanishWord.length > 3">{{ index }} {{ spanishWord }}</template>
+      </p>
+
+      <h2>Object Example</h2>
+      <ul>
+        <li v-for="thisWord, index, key in word">
+          {{index}}} {{key}}: {{ thisWord}}
+        </li>
+      </ul>
+
+      <h2>Array of objects example</h2>
+
+      <ul>
+        <li v-for="wordObject, index in words">
+          {{index}} The english translation of {{wordObject.wordA}} is
+          {{wordObject.wordB}}.
+        </li>
+      </ul>
+
+      <h2>Number example</h2>
+      <ul>
+        <li v-for="number in 10">{{number}}</li>
+      </ul>
+
+      <h2>String example</h2>
+      <ul>
+        <li v-for="character in 'Hello World'">{{character}}</li>
+      </ul>
+
+      <!--
       <p v-if='answer != ""'>Example A</p>
       <p v-show='answer != ""'>Example B</p>
+      -->
     </div>
   </body>
 </html>
