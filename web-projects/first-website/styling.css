@@ -86,12 +86,36 @@ form {
 }
 
 table {
-  display: flex;
-  justify-content: center;
-  border: 2px solid rgb(140 140 140);
+  height: 100%;
+  text-align: center;
+  border: solid pink 5px;
 }
 
 th,
 td {
   border: 1px solid rgb(160 160 160);
+}
+
+.h {
+  text-transform: uppercase;
+  text-shadow: #4b2e83;
+  text-align: center;
+  text-decoration: wavy;
+  color: hotpink;
+}
+
+.h1 {
+  color: powderblue;
+  text-shadow: #b45f35;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+span {
+  background-color: yellow;
+  color: black;
+}
+
+#b {
+  text-transform: uppercase;
 }

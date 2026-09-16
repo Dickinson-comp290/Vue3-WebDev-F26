@@ -26,43 +26,59 @@
     <p>Here are some facts about Samoyeds</p>
 
     <ul>
-      <li>They have two coats of fur</li>
+      <li>They have <span>two coats</span> of fur</li>
       <li>They always smile</li>
       <li>They were bred initially to be sled dogs</li>
     </ul>
 
     <h1>Meet Our Samoyeds!</h1>
     <table>
-      <tr>
-        <th scope="col">Samoyed</th>
-        <th scope="col">Age</th>
-        <th scope="col">Fav Color</th>
-      </tr>
+      <thead>
+        <tr>
+          <th class="h1" scope="col" rowspan="2">Name</th>
+          <th class="h" scope="col" rowspan="2">Age</th>
+          <th class="h1" scope="col" rowspan="2">Fav Color</th>
+          <th class="h" scope="col" colspan="2">Status</th>
+        </tr>
+        <tr>
+          <th class="h1" scope="col">Awake</th>
+          <th class="h" scope="col">Asleep</th>
+        </tr>
+      </thead>
       <tr>
         <td scope="row">Casper</td>
         <td>13</td>
-        <td>Blue</td>
+        <td id="b">Blue</td>
+        <td>X</td>
+        <td></td>
       </tr>
       <tr>
         <td scope="row">Merlin</td>
         <td>0</td>
         <td>Purple</td>
+        <td>X</td>
+        <td></td>
       </tr>
       <tr>
         <td scope="row">Cinderella</td>
         <td>4</td>
         <td>Green</td>
+        <td></td>
+        <td>X</td>
       </tr>
       <tr>
         <td scope="row">Harry</td>
         <td>3</td>
         <td>Blue</td>
+        <td>X</td>
+        <td></td>
       </tr>
     </table>
 
     <br />
 
     <p>Is this for a class?</p>
+    <br />
 
     <form>
       <block>
@@ -79,6 +95,8 @@
         />
       </block>
 
+      <br />
+
       <block>
         <label for="date"> DUE DATE: </label>
 
@@ -93,6 +111,8 @@
         />
       </block>
 
+      <br />
+
       <block>
         <label for="year"> GRADE LEVEL: </label>
 
@@ -105,14 +125,18 @@
         </select>
       </block>
 
+      <br />
       <block>
         <label for="help">Explain how we can help you:</label>
 
         <textarea id="help" name="help" rows="5" cols="33">
+
+       
 I would like you to tell me more about...
 </textarea>
       </block>
     </form>
+    <br />
 
     <a href="https://www.akc.org/dog-breeds/samoyed/"> More About Samoyeds </a>
   </body>
