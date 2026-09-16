@@ -37,5 +37,8 @@
       "markdown-link-check -c .markdown-link-check.json"
     ],
     "*": "cspell --no-must-find-files"
+  },
+  "dependencies": {
+    "vue": "^3.5.42"
   }
 }

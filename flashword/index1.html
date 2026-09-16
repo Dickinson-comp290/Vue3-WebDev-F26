@@ -4,7 +4,8 @@
     <title>FlashWord</title>
     <meta charset="utf-8" />
 
-    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <script src="app.js" defer></script>
 
     <style>
@@ -33,6 +34,17 @@
 
     <div id="app">
       What is the English translation of the word <strong>{{ wordA }}</strong>?
+
+      <input type="text" v-model="answer" />
+
+      <p v-if="answer != ''">you answered: {{ answer }}</p>
+
+      <button v-on:click="checkAnswer">Check Answer</button>
+
+      <div v-if="showFeedback">
+        <p v-if="correct" class="correct">you got it!</p>
+        <p v-else-if="correct!=null" class="incorrect">Sorry try again</p>
+      </div>
     </div>
   </body>
 </html>
