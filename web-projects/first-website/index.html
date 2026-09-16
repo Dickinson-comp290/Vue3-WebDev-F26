@@ -16,9 +16,9 @@
   <body>
     <!-- 4 heading levels: -->
     <h1>Guten Tag!</h1>
-    <h2>Hallo mein Freund.</h2>
-    <h3>Berlin ist sehr schon.</h3>
-    <h4>Paris ist nicht schon.</h4>
+    <h2>Hallo mein <span>Freund</span>.</h2>
+    <h3><span class="backwhite">Berlin</span> ist sehr schon.</h3>
+    <h4>Paris ist <span class="backgrey">nicht</span> schon.</h4>
     <a href="https://www.tripadvisor.com/Tourism-g187323-Berlin-Vacations.html">
       Besuche Berlin noch Heute!
     </a>
@@ -33,9 +33,9 @@
 
     <p>Berlin hat sehr gutes Essen:</p>
     <ul>
-      <li>Currywurst</li>
+      <li><span class="backwhite">Currywurst</span></li>
       <li>Doner</li>
-      <li>Berliners</li>
+      <li><span class="backgrey">Berliners</span></li>
     </ul>
     <p>mmmm.....Currywurst......</p>
     <img
@@ -45,5 +45,94 @@
       width="300"
     />
     <button>Change user</button>
+  </body>
+  <br />
+  <label for="name">Nickname (5 to 10 characters):</label>
+
+  <input
+    type="text"
+    id="Nickname"
+    name="Nickname"
+    required
+    minlength="5"
+    maxlength="10"
+    size="12"
+  />
+
+  <br />
+  <label for="due_date">Due date:</label>
+
+  <!-- Since I don't know what day you're gonna grade this I'm setting this to the day the assignment is due-->>
+
+  <input
+    type="date"
+    id="due_date"
+    name="assignment-due-date"
+    value="2026-09-16"
+    min="2026-09-1"
+    max="2026-09-30"
+  />
+
+  <br />
+
+  <label for="staat-select">What part of Germany are you from?:</label>
+
+  <select name="regions" id="region-select">
+    <option value="">--Please select an option--</option>
+    <option value="rhineland">Rhineland</option>
+    <option value="bavaria">Bavaria</option>
+    <option value="baden-wurttemberg">Baden-Wurttemberg</option>
+    <option value="bremen">Bremen</option>
+    <option value="brandenburg">Brandenburg</option>
+    <option value="saxony">Saxony</option>
+    <option value="other">Other</option>
+    <option value="none">I'm not from Germany</option>
+  </select>
+
+  <br />
+
+  <label for="review">Please enter your review of this webpage below:</label>
+  <br />
+  <textarea id="review" name="review" rows="10" cols="50">
+    This is the most AMAZING website I have ever seen. It is so good that I will never need to go to another website ever again. I've spent the last 17 hours staring at your website without a break. 5 Stars.
+  </textarea>
+
+  <br />
+  <br />
+  <br />
+
+  <body>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Area</th>
+        <th>Population</th>
+      </tr>
+      <tr class="backwhite">
+        <th class="capital_city">Berlin</th>
+        <td>891.3 km</td>
+        <td>3,677,472</td>
+      </tr>
+      <tr class="backgrey">
+        <th>Hamburg</th>
+        <td>755.2 km</td>
+        <td>1,906,411</td>
+      </tr>
+      <tr class="backwhite">
+        <th>Munchen</th>
+        <td>310.7 km</td>
+        <td>1,487,708</td>
+      </tr>
+      <tr class="backgrey">
+        <th>Koln</th>
+        <td>405.15 km</td>
+        <td>1,073,096</td>
+      </tr>
+      <tr class="backwhite">
+        <th>Frankfort am Main</th>
+        <td>248.31 km</td>
+        <td>759,224</td>
+      </tr>
+    </table>
   </body>
 </html>

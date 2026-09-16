@@ -21,6 +21,38 @@ body {
   border: 5px solid black;
 }
 
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+}
+
+.backwhite {
+  background-color: #ffff;
+}
+
+.backgrey {
+  background-color: lab(38.75% 0.4 0.14);
+  color: white;
+}
+
+.capital_city {
+  background-color: gold;
+  color: grey;
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+span {
+  background-color: lightseagreen;
+}
+
 .courier-prime-regular {
   font-family: 'Courier Prime', monospace;
   font-weight: 400;
