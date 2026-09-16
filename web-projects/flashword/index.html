@@ -45,7 +45,7 @@
 
       <div v-show="showFeedback">
         <p v-show="correct" class="correct">You got it!!</p>
-        <p class="incorrect">Sorry, please try again</p>
+        <p v-if class="incorrect">Sorry, please try again</p>
       </div>
       <button v-on:click="reset">Reset</button>
       <!-- <h2>Array Example</h2>
