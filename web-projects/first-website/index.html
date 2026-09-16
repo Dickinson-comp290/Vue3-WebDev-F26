@@ -15,10 +15,57 @@
   </head>
   <body>
     <h1>Rem Deadlock my beloved</h1>
+    <label for="name">Nickname (5 to 10 characters):</label>
+
+    <input
+      type="text"
+      id="Nickname"
+      name="Nickname"
+      required
+      minlength="5"
+      maxlength="10"
+      size="10"
+    />
+
+    <label for="start">Due date:</label>
+
+    <input
+      type="date"
+      id="due"
+      name="Due-date"
+      value="2026-09-14"
+      min="2026-09-01"
+      max="2026-09-30"
+    />
+
+    <label for="dropdown"> Make a choice!</label>
+
+    <select name="choice" id="dropdown">
+      <option value="">--Please choose an option--</option>
+      <option value="ice cream">ice cream</option>
+      <option value="frogs">frogs</option>
+      <option value="yesterday's stale bread">Yesterday's Stale Bread</option>
+      <option value="blanket">Blanket</option>
+      <option value="mold">Mold</option>
+      <option value="chlorine">Pool Chlorine</option>
+    </select>
     <img
       src="images/yippee_rem.gif"
       alt="Rem from Deadlock jumping for joy, waving his arms in the air"
     />
+    <label for="meter">Approximate anger level after I queue ranked:</label>
+
+    <meter
+      id="meter"
+      min="0"
+      max="100"
+      low="33"
+      high="66"
+      optimum="0"
+      value="90"
+    >
+      at 99/100
+    </meter>
     <p>They do lots of things🤩</p>
     <img src="images/rem_helper.png" alt="Rem little helper" />
     <ul>
@@ -35,6 +82,33 @@
         alt="Deadlock Rem and a Little Helper on Infernus in the Hideout"
       />
     </ul>
+    <table>
+      <p>Days Between Major Patches</p>
+      <tr>
+        <th>Patch Name</th>
+        <th>Release Date</th>
+      </tr>
+      <tr>
+        <td class="title">3 Lane Rework</td>
+        <td class="yellowbg">First Major Patch</td>
+        <td class="yellowbg">Feb 25, 2025</td>
+      </tr>
+      <tr>
+        <td class="title">Shop Rework</td>
+        <td class="bluebg">72</td>
+        <td class="bluebg">May 8, 2025</td>
+      </tr>
+      <tr>
+        <td class="title">6 New Heroes</td>
+        <td class="yellowbg">102</td>
+        <td class="yellowbg">Aug 18, 2025</td>
+      </tr>
+      <tr>
+        <td class="title">Old Gods New Blood</td>
+        <td class="bluebgbg">158</td>
+        <td class="bluebgbg">Jan 22, 2025</td>
+      </tr>
+    </table>
     <a href="https://www.playdeadlock.com/oldgods"> We await a new patch </a>
     <button>Change user</button>
   </body>
