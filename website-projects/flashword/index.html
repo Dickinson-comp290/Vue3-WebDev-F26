@@ -44,11 +44,14 @@
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 
-      <template v-if="showFeedback">
-        <p v-if="correct">You got it!</p>
-        <p v-else>Sorry, that is incorrect - try again.</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
+      <div v-show="showFeedback">
+        <template v-if="showFeedback">
+          <p v-if="correct">You got it!</p>
+          <p v-else>Sorry, that is incorrect - try again.</p>
+        </template>
+      </div>
+
+      <button v-on:click="reset()">Reset</button>
     </div>
   </body>
 </html>
