@@ -43,11 +43,11 @@
 
       <button v-on:click="checkAnswer">Check answer</button>
 
-      <template v-if="showFeedback">
-        <p v-if="correct" class="correct">You got it!!</p>
-        <p v-else class="incorrect">Sorry, please try again</p>
-        <button v-on:click="reset">Reset</button>
-      </template>
+      <div v-show="showFeedback">
+        <p v-show="correct" class="correct">You got it!!</p>
+        <p class="incorrect">Sorry, please try again</p>
+      </div>
+      <button v-on:click="reset">Reset</button>
       <!-- <h2>Array Example</h2>
       <ul>
         <li v-for="value, index in spanishWords">{{ index }}. {{ value }}</li>
