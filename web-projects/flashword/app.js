@@ -7,6 +7,7 @@ const FlashWord = {
       wordB: 'hello',
       answer: '',
       showFeedback: false,
+      correct: false,
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
 
@@ -28,7 +29,8 @@ const FlashWord = {
       this.showFeedback = true;
     },
     reset() {
-      ((this.answer = ''), (this.showFeedback = false));
+      this.answer = '';
+      this.showFeedback = false;
     },
   },
 };
