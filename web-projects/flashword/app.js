@@ -1,4 +1,5 @@
-const Flashword = {
+// Define the options of our application
+const FlashWord = {
   data() {
     return {
       wordA: 'hola',
@@ -7,7 +8,6 @@ const Flashword = {
       correct: null,
       showFeedback: false,
 
-      // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
 
       // Object example
@@ -20,19 +20,36 @@ const Flashword = {
         { wordA: 'uno', wordB: 'one' },
         { wordA: 'dos', wordB: 'two' },
       ],
-    }
+    };
   },
+
+  created() {
+    this.reset();
+  },
+
   methods: {
     checkAnswer() {
-      this.correct = this.wordB == this.answer
-      this.showFeedback = true
+      this.correct = this.answer == this.wordB;
+      this.showFeedback = true;
     },
     reset() {
-      this.answer = ''
-      this.showFeedback = false
+      const randomWord =
+        this.words[Math.floor(Math.random() * this.words.length)];
+      this.wordA = randomWord.wordA;
+      this.wordB = randomWord.wordB;
+      this.answer = '';
+      this.correct = null;
+      this.showFeedback = false;
+      this.spanishWords = ['hola', 'adios', 'uno', 'dos'];
+      this.word = { a: 'hola', b: 'hello' };
+      this.words = [
+        { wordA: 'hola', wordB: 'hello' },
+        { wordA: 'adios', wordB: 'goodbye' },
+        { wordA: 'uno', wordB: 'one' },
+        { wordA: 'dos', wordB: 'two' },
+      ];
     },
   },
-}
-
-// eslint-disable-next-line no-unused-vars, no-undef
-const app = Vue.createApp(Flashword).mount('#app')
+};
+// Create a new Vue instance using our options
+const app = Vue.createApp(FlashWord).mount('#app');

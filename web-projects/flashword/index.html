@@ -34,21 +34,33 @@
 
   <body>
     <h1>FlashWord</h1>
+    <p>
+      FlashWord is a simple vocabulary practice app that helps you learn common
+      Spanish words by testing your translation skills one word at a time.
+    </p>
 
     <div id="app" v-cloak>
-      What is the English translation of the word <strong>{{ wordA }}</strong>?
+      <label for="answer"
+        >Enter the English translation for the Spanish word
+        <strong>{{ wordA }}</strong>:</label
+      >
 
-      <input type="text" v-model="answer" />
+      <input
+        type="text"
+        id="answer"
+        v-model="answer"
+        placeholder="Enter the English translation"
+      />
 
-      <p v-if="answer != ''">You answered: {{ answer }}</p>
+      <button v-on:click="checkAnswer()">Check Answer</button>
 
-      <button v-on:click="checkAnswer()">Check answer</button>
+      <p v-show='answer != ""'>Your answer: {{ answer }}</p>
 
-      <template v-if="showFeedback">
-        <p v-if="correct" class="correct">You got it!</p>
-        <p v-else class="incorrect">Sorry, please try again.</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
+      <div v-show="showFeedback">
+        <p v-show="correct" class="correct">You got it!</p>
+        <p v-show="!correct" class="incorrect">Try again</p>
+      </div>
+      <button v-on:click="reset()">Reset</button>
     </div>
   </body>
 </html>
