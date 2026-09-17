@@ -18,14 +18,18 @@ let myHead = document.querySelector('h1');
 
 function setUserName() {
   const myName = prompt('Please enter your name.');
-  localStorage.setItem('name', myName);
-  myHead.textContent = `Fiber is Cool, ${myName}`;
+  if (!myName) {
+    setUserName();
+  } else {
+    localStorage.setItem('name', myName);
+    myHead.textContent = `Fiber is cool, ${myName}`;
+  }
 }
 if (!localStorage.getItem('name')) {
   setUserName();
 } else {
   const storedName = localStorage.getItem('name');
-  myHead.textContent = `Mozilla is cool, ${storedName}`;
+  myHead.textContent = `Fiber is cool, ${storedName}`;
 }
 myButton.addEventListener('click', () => {
   setUserName();
