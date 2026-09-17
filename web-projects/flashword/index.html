@@ -41,10 +41,16 @@
 
     <div id="app" v-cloak>
       <label for="answer"
-        >What is the English translation of <strong>hola</strong>?</label
+        >Enter the English translation for the Spanish word
+        <strong>{{ wordA }}</strong>:</label
       >
 
-      <input type="text" id="answer" v-model="answer" />
+      <input
+        type="text"
+        id="answer"
+        v-model="answer"
+        placeholder="Enter the English translation"
+      />
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 

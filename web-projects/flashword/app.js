@@ -23,14 +23,20 @@ const FlashWord = {
     };
   },
 
+  created() {
+    this.reset();
+  },
+
   methods: {
     checkAnswer() {
       this.correct = this.answer == this.wordB;
       this.showFeedback = true;
     },
     reset() {
-      this.wordA = 'hola';
-      this.wordB = 'hello';
+      const randomWord =
+        this.words[Math.floor(Math.random() * this.words.length)];
+      this.wordA = randomWord.wordA;
+      this.wordB = randomWord.wordB;
       this.answer = '';
       this.correct = null;
       this.showFeedback = false;
