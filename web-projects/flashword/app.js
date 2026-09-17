@@ -29,8 +29,19 @@ const FlashWord = {
       this.showFeedback = true;
     },
     reset() {
+      this.wordA = 'hola';
+      this.wordB = 'hello';
       this.answer = '';
+      this.correct = null;
       this.showFeedback = false;
+      this.spanishWords = ['hola', 'adios', 'uno', 'dos'];
+      this.word = { a: 'hola', b: 'hello' };
+      this.words = [
+        { wordA: 'hola', wordB: 'hello' },
+        { wordA: 'adios', wordB: 'goodbye' },
+        { wordA: 'uno', wordB: 'one' },
+        { wordA: 'dos', wordB: 'two' },
+      ];
     },
   },
 };
