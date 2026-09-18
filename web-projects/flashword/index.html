@@ -36,8 +36,7 @@
     <h1>FlashWord</h1>
 
     <div id="app" v-cloak>
-      <label for="answer"
-        >What is the English translation of <strong>{{ wordA }}</strong>?
+      <label for="answer">What is the English translation of <strong>{{ wordA }}</strong>?
       </label>
 
       <input type="text" id="answer" v-model="answer" />
@@ -46,10 +45,12 @@
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 
-      <template v-if="showFeedback">
+      <div v-show="showFeedback">
         <p v-if="correct" class="correct">You got it!</p>
         <p v-else class="incorrect">Sorry, that is incorrect - try again.</p>
-      </template>
+      </div>
+
+      <button v-on:click="reset()">Reset</button>
 
       <p v-if="false">Example A</p>
 
