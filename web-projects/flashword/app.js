@@ -1,3 +1,4 @@
+/* cspell:disable */
 const FlashWord = {
   data() {
     return {
@@ -17,6 +18,20 @@ const FlashWord = {
     reset() {
       this.answer = '';
       this.showFeedback = false;
+      // Reset all internal state variables
+      this.correct = null;
+      //Select a random word for the next round
+      const words = [
+        { wordA: 'hola', wordB: 'hello' },
+        { wordA: 'adiós', wordB: 'goodbye' },
+        { wordA: 'gracias', wordB: 'thank you' },
+        { wordA: 'por favor', wordB: 'please' },
+        { wordA: 'sí', wordB: 'yes' },
+        { wordA: 'no', wordB: 'no' },
+      ];
+      const randomIndex = Math.floor(Math.random() * words.length);
+      this.wordA = words[randomIndex].wordA;
+      this.wordB = words[randomIndex].wordB;
     },
   },
 };
