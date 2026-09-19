@@ -20,19 +20,20 @@ const Flashword = {
         { wordA: 'uno', wordB: 'one' },
         { wordA: 'dos', wordB: 'two' },
       ],
-    }
+    };
   },
   methods: {
-    checkAnswer() {
-      this.correct = this.wordB == this.answer
-      this.showFeedback = true
+    checkAnswer(event) {
+      console.log(event);
+      this.correct = this.wordB == this.answer;
+      this.showFeedback = true;
     },
     reset() {
-      this.answer = ''
-      this.showFeedback = false
+      this.answer = '';
+      this.showFeedback = false;
     },
   },
-}
+};
 
 // eslint-disable-next-line no-unused-vars, no-undef
-const app = Vue.createApp(Flashword).mount('#app')
+const app = Vue.createApp(Flashword).mount('#app');
