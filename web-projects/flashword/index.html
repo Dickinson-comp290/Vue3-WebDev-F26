@@ -14,7 +14,6 @@
 
       input,
       button {
-        display: block;
         margin: 10px 0px;
       }
 
@@ -41,7 +40,13 @@
     <div id="app" v-cloak>
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
-      <input type="text" v-model="answer" />
+      <label for="answer-input">Enter your answer:</label>
+      <input
+        id="answer-input"
+        type="text"
+        v-model="answer"
+        placeholder="Enter the translated word here"
+      />
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
 
