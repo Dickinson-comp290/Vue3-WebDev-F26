@@ -42,11 +42,11 @@
 
       <p v-if="answer != ''">Your answer: {{ answer }}</p>
       <button v-on:click="checkAnswer()">Check Answer</button>
-      <div v-if="showFeedback">
+      <template v-if="showFeedback">
         <p v-if="correct" class="correct">You got it!</p>
         <p v-else class="incorrect">Nope that's wrong. Please try again.</p>
         <button v-on:click="reset()">Reset</button>
-      </div>
+      </template>
     </div>
   </body>
 </html>
