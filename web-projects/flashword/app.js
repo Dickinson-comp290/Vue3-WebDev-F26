@@ -3,8 +3,8 @@ const FlashWord = {
   data() {
     return {
       // [...existing data properties...]
-      wordA: 'hola',
-      wordB: 'hello',
+      wordA: '',
+      wordB: '',
       answer: '',
       showFeedback: false,
       correct: false,
@@ -23,12 +23,21 @@ const FlashWord = {
       ],
     };
   },
+  created() {
+    this.chooseWord();
+  },
   methods: {
+    chooseWord() {
+      const wordIndex = Math.floor(Math.random() * this.words.length);
+      this.wordA = this.words[wordIndex].wordA;
+      this.wordB = this.words[wordIndex].wordB;
+    },
     checkAnswer() {
       this.correct = this.wordB == this.answer;
       this.showFeedback = true;
     },
     reset() {
+      this.chooseWord();
       this.answer = '';
       this.showFeedback = false;
       this.correct = false;
