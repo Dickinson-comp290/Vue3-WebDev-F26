@@ -1,4 +1,5 @@
-const Flashword = {
+// Define the options of our application
+const FlashWord = {
   data() {
     return {
       wordA: 'hola',
@@ -6,6 +7,19 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
+    };
+  },
+  methods: {
+    checkAnswer() {
+      this.correct = this.wordB == this.answer;
+      this.showFeedback = true;
+    },
+  },
+};
+
+// Create a new Vue instance using our options
+// eslint-disable-next-line no-unused-vars, no-undef
+const app = Vue.createApp(FlashWord).mount('#app');
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],

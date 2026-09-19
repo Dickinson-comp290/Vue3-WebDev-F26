@@ -25,10 +25,6 @@
       .incorrect {
         color: red;
       }
-
-      [v-cloak] {
-        display: none;
-      }
     </style>
   </head>
 
@@ -40,15 +36,9 @@
 
       <input type="text" v-model="answer" />
 
-      <p v-if="answer != ''">You answered: {{ answer }}</p>
+      <p v-if="answer != ''">You answered: {{ answer}}</p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
-
-      <template v-if="showFeedback">
-        <p v-if="correct" class="correct">You got it!</p>
-        <p v-else class="incorrect">Sorry, please try again.</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
     </div>
   </body>
 </html>

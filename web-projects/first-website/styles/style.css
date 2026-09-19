@@ -1,18 +1,17 @@
+/* p {
+    border: 1px solid black;
+    color: black;
+    background-color: #75c8ff;
+} */
+ul {
+  border: 1px solid black;
+  color: whitesmoke;
+  background-color: #6134eb;
+}
 html {
   /* px means "pixels". The base font size is now 10 pixels high */
   font-size: 10px;
   /* Replace PLACEHOLDER with the font-family property value you got from Google Fonts */
-  font-family: 'Roboto', sans-serif;
-  background-color: #b8fdb1;
-}
-
-h1 {
-  font-size: 60px;
-  text-align: center;
-  margin: 0;
-  padding: 20px 0;
-  color: #12601b;
-  text-shadow: 3px 3px 1px #b8fdb1;
 }
 
 p,
@@ -20,14 +19,40 @@ li {
   font-size: 16px;
   line-height: 2;
   letter-spacing: 1px;
+  color: white;
+}
+
+html {
+  background-color: #00539f;
+}
+
+title {
+  background-color: aliceblue;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: skyblue;
+}
+
+tbody tr:nth-child(even) {
+  background-color: lightpink;
 }
 
 body {
   width: 600px;
   margin: 0 auto;
-  background-color: #ff9500;
+  background-color: #151d4a;
   padding: 0 20px 20px 20px;
   border: 5px solid black;
+}
+
+h1 {
+  margin: 0;
+  padding: 20px 0;
+  color: #00539f;
+  text-shadow: 3px 3px 1px black;
+  font-size: 60px;
+  text-align: center;
 }
 
 img {
