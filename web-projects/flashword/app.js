@@ -14,23 +14,43 @@ const Flashword = {
       categories: ['greetings', 'colors', 'verbs'],
       level: 'easy',
       sentence: 'abc',
-
-      // Array example
+      firstName: '',
+      lastName: '',
+      firstNameAndLastName: '',
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
 
       // Object example
       word: { a: 'hola', b: 'hello' },
 
       // Array of objects example
-      words: [
-        { wordA: 'hola', wordB: 'hello' },
-        { wordA: 'adios', wordB: 'goodbye' },
-        { wordA: 'uno', wordB: 'one' },
-        { wordA: 'dos', wordB: 'two' },
-      ],
+      // words: [
+      //   { wordA: 'hola', wordB: 'hello' },
+      //   { wordA: 'adios', wordB: 'goodbye' },
+      //   { wordA: 'uno', wordB: 'one' },
+      //   { wordA: 'dos', wordB: 'two' },
+      // ],
     };
   },
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    shortSpanishWords() {
+      return this.spanishWords.filter((word) => word.length <= 3);
+    },
+  },
+  watch: {
+    firstName() {
+      this.firstNameAndLastName = this.firstName + ' ' + this.lastName;
+    },
+    lastName() {
+      this.firstNameAndLastName = this.firstName + ' ' + this.lastName;
+    },
+  },
   methods: {
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
     checkAnswer() {
       if (this.answer == '') {
         this.hasError = true;

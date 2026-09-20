@@ -66,6 +66,18 @@
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
       </template>
+      First name: <input type="text" v-model="firstName" /> Last name:
+      <input type="text" v-model="lastName" />
+
+      <p>Hello {{ fullName }}</p>
+      <p>Hello {{ getFullName() }}</p>
+      <p>Hello {{ firstNameAndLastName }}</p>
+
+      <h2>Short Spanish words:</h2>
+      <ul>
+        <li v-for="thisWord in shortSpanishWords">{{ thisWord }}</li>
+      </ul>
+
       <h2>Difficulty level radios:</h2>
 
       <input type="radio" id="easy" value="easy" name="level" v-model="level" />
