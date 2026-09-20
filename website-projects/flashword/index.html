@@ -34,15 +34,25 @@
 
   <body>
     <h1>FlashWord</h1>
-    <!-- display a quick introduction to what the app is -->
-     
+    <p>
+      This is a simple flashcard app that will test your knowledge of English
+      words. You will be given a word in another language and you will need to
+      type in the English translation of that word.
+    </p>
 
     <div id="app" v-cloak>
-      What is the English translation of the word <strong>{{ wordA }}</strong>?
+      What is the English translation of the word
+      <strong>{{ getRandomWord() }}</strong>?
 
-      <input type="text" id="answer" v-model="answer" />
+      <label for="answer">Your Answer:</label>
+      <input
+        type="text"
+        id="answer"
+        v-model="answer"
+        placeholder="Type your answer here..."
+      />
 
-      <p v-if='answer != ""'>Your answer: {{ answer }}</p>
+      <p v-if='answer != ""'>Your answer: {{ wordA }}</p>
 
       <button v-on:click="checkAnswer()">Check Answer</button>
 
