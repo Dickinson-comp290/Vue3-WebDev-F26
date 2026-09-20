@@ -6,6 +6,10 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
+      image: null,
+      imageAlt: null,
+      hasError: false,
+      inputBackgroundColor: 'white',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -24,12 +28,29 @@ const Flashword = {
   },
   methods: {
     checkAnswer(event) {
+      if (this.answer == '') {
+        this.hasError = true;
+        this.inputBackgroundColor = 'lightpink';
+        return;
+      }
+
+      this.hasError = false;
+      this.inputBackgroundColor = 'white';
       console.log(event);
       this.correct = this.wordB == this.answer;
+      if (this.correct) {
+        this.image = 'correct';
+        this.imageAlt = 'Green check mark';
+      } else {
+        this.image = 'incorrect';
+        this.imageAlt = 'Red x';
+      }
       this.showFeedback = true;
     },
     reset() {
       this.answer = '';
+      this.hasError = false;
+      this.inputBackgroundColor = 'white';
       this.showFeedback = false;
     },
   },

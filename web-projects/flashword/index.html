@@ -40,13 +40,22 @@
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
 
-      <input type="text" v-model="answer" v-on:keyup.enter="checkAnswer()" />
+      <input
+        type="text"
+        v-model="answer"
+        v-on:keyup.enter="checkAnswer()"
+        v-bind:style="{ 'background-color': inputBackgroundColor }"
+      />
 
-      <button v-on:click="correct = wordB == answer; showFeedback = true">
-        Check answer
-      </button>
+      <p v-if="hasError">You must enter an answer</p>
+
+      <button v-on:click="checkAnswer()">Check answer</button>
 
       <template v-if="showFeedback">
+        <img
+          v-bind:alt="imageAlt"
+          v-bind:src='"https://s3.amazonaws.com/codewithsusan/circle-" + image + "@2x.png"'
+        />
         <p v-if="correct" class="correct">You got it!</p>
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
