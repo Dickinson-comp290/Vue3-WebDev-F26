@@ -103,6 +103,23 @@
         <option value="moderate">Moderate</option>
         <option value="difficult">Difficult</option>
       </select>
+
+      <h2>Use the word in a sentence:</h2>
+      <textarea v-model="sentence">
+
+        {{ sentence }}
+      </textarea>
+      <h2>Getting name:</h2>
+      First name: <input type="text" v-model="firstName" /> Last name:
+      <input type="text" v-model="lastName" />
+
+      <p>Hello {{ fullName }}</p>
+      <p>Hello {{ getFullName() }}</p>
+
+      <h2>Short Spanish words:</h2>
+      <ul>
+        <li v-for="thisWord in shortSpanishWords">{{ thisWord }}</li>
+      </ul>
     </div>
   </body>
 </html>

@@ -11,6 +11,9 @@ const Flashword = {
       hasError: false,
       showHint: false,
       level: 'easy',
+      sentence: '',
+      firstName: '',
+      lastName: '',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -27,7 +30,18 @@ const Flashword = {
       ],
     };
   },
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    shortSpanishWords() {
+      return this.spanishWords.filter((word) => word.length <= 3);
+    },
+  },
   methods: {
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
     checkAnswer() {
       this.correct = this.wordB == this.answer;
       this.showFeedback = true;
