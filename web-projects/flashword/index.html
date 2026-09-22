@@ -47,6 +47,15 @@
         v-bind:style="{ 'background-color': inputBackgroundColor }"
       />
 
+      <input type="checkbox" id="showHint" v-model="showHint" />
+      <label for="showHint">Show hint?</label>
+
+      <div v-if="showHint">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
+
+      />
+
       <p v-if="hasError">You must enter an answer</p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
@@ -60,6 +69,40 @@
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
       </template>
+
+      <h2>Difficulty level radios:</h2>
+      <input type="radio" id="easy" value="easy" name="level" v-model="level" />
+      <label for="easy">Easy</label>
+
+      <label for="moderate">Moderate</label>
+
+      <h2>Difficulty level dropdown:</h2>
+      <label for="difficult">Difficult</label>
+      <select v-model="level">
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="difficult">Difficult</option>
+      </select>
+
+      <h2>Use the word in a sentence</h2>
+      <textarea v-model="textContent"></textarea>
+
+      {{ sentence }}
+
+      <div>
+        First name: <input type="text" v-model="firstName" /> Last name:<input
+          type="text"
+          v-model="lastName"
+        />
+
+        <p>Hello {{ fullName }}</p>
+        <p>Hello {{ getFullName }}</p>
+
+        <h2>Short Spanish words:</h2>
+        <ul>
+          <li v-for="thisWord in shortSpanishWords">{{ thisWord }}</li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
