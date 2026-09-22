@@ -35,7 +35,18 @@
     </a>
     <script async src="scripts/main.js"></script>
 
-    <text> Welcome Baker! What is your name? </text>
+    <br />
+
+    <label for="nickname">Nickname:</label>
+    <input
+      type="text"
+      id="nickname"
+      name="nickname"
+      minlength="5"
+      maxlength="10"
+    />
+
+    <br />
 
     <label for="potato select">
       For the base of this recipe, would you prefer to use:</label>
@@ -48,11 +59,15 @@
       Potatoes Japanese Sweet Potato Purple Sweet Potato
     </select>
 
-    <button>Change user</button>
+    <br />
+
     <label for="story">Let us know what you think! Leave a recipe review!</label>
 
     <textarea id="review" name="review" rows="5" cols="33">
     Recipe adaptations, modifications, and taste preferences!
     </textarea>
+    <br />
+
+    <button>Change user</button>
   </body>
 </html>
