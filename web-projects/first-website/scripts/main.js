@@ -1,7 +1,7 @@
 // Store a reference to the <h1> in a variable
-const myHeading = document.querySelector('h1');
+const myHead = document.querySelector('h1');
 // Update the text content of the <h1>
-myHeading.textContent = 'Hello world!';
+myHead.textContent = 'GOOD ROOTS!';
 
 const myImage = document.querySelector('img');
 
@@ -14,7 +14,7 @@ myImage.addEventListener('click', () => {
   }
 });
 let myButton = document.querySelector('button');
-let myHead = document.querySelector('h1');
+let myHeader = document.querySelector('h1');
 
 function setUserName() {
   const myName = prompt('Please enter your name.');
@@ -29,7 +29,7 @@ if (!localStorage.getItem('name')) {
   setUserName();
 } else {
   const storedName = localStorage.getItem('name');
-  myHead.textContent = `Fiber is cool, ${storedName}`;
+  myHeader.textContent = `Fiber is cool, ${storedName}`;
 }
 myButton.addEventListener('click', () => {
   setUserName();
