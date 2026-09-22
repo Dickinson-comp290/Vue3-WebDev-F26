@@ -47,6 +47,12 @@
         v-on:keyup.enter="checkAnswer()"
         v-bind:class="{ error: hasError }"
       />
+      <input type="checkbox" id="showHint" v-model="showHint" />
+      <label for="showHint">Show hint?</label>
+
+      <div v-if="showHint">
+        This is an example of a hint. You can add more hints here.
+      </div>
 
       <p v-if="hasError">You must enter an answer</p>
       <p v-if="answer != ''">You answered: {{ answer }}</p>
@@ -62,6 +68,41 @@
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
       </template>
+      <input
+        type="checkbox"
+        id="greetings"
+        value="greetings"
+        v-model="categories"
+      />
+      <label for="greetings">Greetings</label>
+      <h2>Difficulty level radios:</h2>
+      <input type="radio" id="easy" value="easy" name="level" v-model="level" />
+      <label for="easy">Easy</label>
+
+      <input
+        type="radio"
+        id="moderate"
+        value="moderate"
+        name="level"
+        v-model="level"
+      />
+      <label for="moderate">Moderate</label>
+
+      <input
+        type="radio"
+        id="difficult"
+        value="difficult"
+        name="level"
+        v-model="level"
+      />
+
+      <label for="difficult">Difficult</label>
+      <h2>Difficulty Level select dropdown:</h2>
+      <select v-model="level">
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="difficult">Difficult</option>
+      </select>
     </div>
   </body>
 </html>

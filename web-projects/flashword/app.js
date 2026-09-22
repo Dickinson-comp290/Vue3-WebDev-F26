@@ -9,6 +9,8 @@ const Flashword = {
       image: null,
       imageAlt: null,
       hasError: false,
+      showHint: false,
+      level: 'easy',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
