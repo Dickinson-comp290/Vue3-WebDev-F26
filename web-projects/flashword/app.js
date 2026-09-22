@@ -6,6 +6,13 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
+      image: null,
+      hasError: false,
+      inputBackgroundColor: 'white',
+      showHint: false,
+      categories: ['greetings', 'colors', 'verbs'],
+      level: 'easy',
+      sentence: '',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -20,19 +27,32 @@ const Flashword = {
         { wordA: 'uno', wordB: 'one' },
         { wordA: 'dos', wordB: 'two' },
       ],
-    }
+    };
   },
   methods: {
     checkAnswer() {
-      this.correct = this.wordB == this.answer
-      this.showFeedback = true
+      if (this.answer == '') {
+        this.hasError = true;
+        this.inputBackgroundColor = 'lightPink';
+        return;
+      }
+
+      this.hasError = false;
+      this.inputBackgroundColor = 'white';
+      this.correct = this.wordB == this.answer;
+      if (this.correct) {
+        this.image = 'correct';
+      } else {
+        this.image = 'correct';
+      }
+      this.showFeedback = true;
     },
     reset() {
-      this.answer = ''
-      this.showFeedback = false
+      this.answer = '';
+      this.showFeedback = false;
     },
   },
-}
+};
 
 // eslint-disable-next-line no-unused-vars, no-undef
-const app = Vue.createApp(Flashword).mount('#app')
+const app = Vue.createApp(Flashword).mount('#app');

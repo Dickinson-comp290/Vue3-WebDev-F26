@@ -29,6 +29,10 @@
       [v-cloak] {
         display: none;
       }
+
+      .error {
+        background-color: lightPink;
+      }
     </style>
   </head>
 
@@ -38,17 +42,70 @@
     <div id="app" v-cloak>
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
-      <input type="text" v-model="answer" v-on:keyup.enter="checkAnswer" />
+      <input
+        type="text"
+        v-model="answer"
+        v-on:keyup.enter="checkAnswer"
+        v-bind:style="{'backgroundColor':inputBackgroundColor}"
+      />
+      <input type="checkbox" id="showHint" v-model="showHint" />
+      <label for="showHint">Show hint?</label>
+
+      <div v-if="showHint">Hint is here.</div>
+
+      <p v-if="hasError">You must enter an answer</p>
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
 
       <template v-if="showFeedback">
+        <img
+          v-bold:src="'https://s3.amazonaws.com/codewithsusan/circle-' + image + '@2x.png'"
+        />
         <p v-if="correct" class="correct">You got it!</p>
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
       </template>
+
+      <!-- <input type='checkbox' id='greetings' value='greetings' v-model='categories'>
+      <label for='greetings'>Greetings</label>
+
+      <input type='checkbox' id='colors' value='colors' v-model='categories'>
+      <label for='colors'>Colors</label>
+
+      <input type='checkbox' id='verbs' value='verbs' v-model='categories'>
+      <label for='verbs'>Verbs</label> -->
+      <h2>Radio button</h2>
+      <input type="radio" id="easy" value="easy" name="level" v-model="level" />
+      <label for="easy">Easy</label>
+
+      <input
+        type="radio"
+        id="moderate"
+        value="moderate"
+        name="level"
+        v-model="level"
+      />
+      <label for="moderate">Moderate</label>
+
+      <input
+        type="radio"
+        id="difficult"
+        value="difficult"
+        name="level"
+        v-model="level"
+      />
+      <label for="difficult">Difficult</label>
+      <h2>Dropdown</h2>
+      <select v-model="level">
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="difficult">Difficult</option>
+      </select>
+      <h2>Use the word in a sentence</h2>
+      <textarea v-model="sentence"></textarea>
+      {{sentence}}
     </div>
   </body>
 </html>
