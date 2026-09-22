@@ -9,7 +9,6 @@ const Flashword = {
       image: null,
       imageAlt: null,
       hasError: false,
-      inputBackgroundColor: 'white',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -32,11 +31,9 @@ const Flashword = {
       this.showFeedback = true;
       if (this.answer == '') {
         this.hasError = true;
-        this.inputBackgroundColor = 'light-pink';
         return;
       }
       this.hasError = false;
-      this.inputBackgroundColor = 'white';
 
       if (this.correct) {
         this.image = 'correct';
