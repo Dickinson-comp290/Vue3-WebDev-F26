@@ -31,6 +31,7 @@ const Flashword = {
       this.showFeedback = true;
       if (this.answer == '') {
         this.hasError = true;
+        this.image = 'incorrect';
         return;
       }
       this.hasError = false;
