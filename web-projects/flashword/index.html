@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <title>FlashWord</title>
+    <p>
+      "Welcome to FlashWord! Flashword is a simple vocabulary learning app. You
+      can use this app to practice your vocabulary skills. 9 out of 10 dentists
+      recommend Flashword!"
+    </p>
     <meta charset="utf-8" />
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
@@ -38,17 +43,23 @@
     <div id="app" v-cloak>
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
-      <input type="text" v-model="answer" />
+      <input
+        type="text"
+        placeholder="Enter your answer..."
+        label="Enter your answer..."
+        v-model="answer"
+      />
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
+      <div v-show="showFeedback">
+        <p v-show="correct" class="correct">You got it!</p>
+        <p v-show="!correct" class="incorrect">Sorry, please try again.</p>
+      </div>
 
-      <template v-if="showFeedback">
-        <p v-if="correct" class="correct">You got it!</p>
-        <p v-else class="incorrect">Sorry, please try again.</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
+      <button v-on:click="reset()">Reset</button>
+      <button v-on:click="newWord()">New Word</button>
     </div>
   </body>
 </html>
