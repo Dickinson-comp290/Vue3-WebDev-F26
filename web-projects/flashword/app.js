@@ -14,9 +14,9 @@ const Flashword = {
       categories: ['greetings', 'colors', 'verbs'],
       level: 'easy',
       sentence: 'abc',
-      firstname: '',
-      lastname: '',
-      firstNameandLastName: '',
+      firstName: '',
+      lastName: '',
+      firstNameAndLastName: '',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -34,12 +34,6 @@ const Flashword = {
     };
   },
 
-  data() {
-    return {
-      firstName: '',
-      lastName: '',
-    };
-  },
   computed: {
     fullName() {
       return this.firstName + ' ' + this.lastName;
