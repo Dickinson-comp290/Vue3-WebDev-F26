@@ -48,6 +48,13 @@
         v-bind:style="{ backgroundColor : inputBackgroundColor }"
       />
 
+      <input type="checkbox" id="showHint" v-model="showHint" />
+      <label for="showHint">Show hint?</label>
+
+      <div v-if="showHint">
+        Man, if computer is so smart, how come it can't read latin?
+      </div>
+
       <p v-if="hasError">You must enter an answer.</p>
 
       <p v-if="answer != ''">You answered: {{ answer }}</p>
@@ -63,6 +70,13 @@
         <p v-else class="incorrect">Sorry, please try again.</p>
         <button v-on:click="reset()">Reset</button>
       </template>
+
+      <input
+        type="checkbox"
+        id="greetings"
+        value="greetings"
+        v-model="categories"
+      />
     </div>
   </body>
 </html>
