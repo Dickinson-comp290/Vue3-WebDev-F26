@@ -71,6 +71,18 @@
         <button v-on:click="reset()">Reset</button>
       </template>
 
+      First name: <input type="text" v-model="firstName" /> Last name:
+      <input type="text" v-model="lastName" />
+
+      <p>Hello {{ firstAndLastName }}</p>
+      <p>Hello {{ getFullName() }}</p>
+
+
+      <ul>
+        <li v-for="word in shortSpanishWords">{{word}}</li>
+        </li>
+      </ul>
+
       <h2>difficulty levels</h2>
       <input
         type="checkbox"
