@@ -18,6 +18,7 @@ const FlashWord = {
     reset() {
       this.answer = '';
       this.showFeedback = false;
+      this.correct = null;
     },
   },
 };

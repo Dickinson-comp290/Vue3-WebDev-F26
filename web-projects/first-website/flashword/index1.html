@@ -32,11 +32,23 @@
   <body>
     <h1>FlashWord</h1>
 
+    <p>
+      Welcome to FlashWord! This is a simple flashcard app is aimed to help you
+      learn new words. You will be given a word in one language, and you will
+      have to type the translation in another language.
+    </p>
+
     <div id="app">
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
-      <input type="text" v-model="answer" />
-
+      <label for="answer">
+        Your answer:
+        <input
+          type="text"
+          v-model="answer"
+          placeholder="Type your answer here"
+        />
+      </label>
       <p v-show="answer">you answered: {{ answer }}</p>
 
       <button v-on:click="checkAnswer">Check Answer</button>
