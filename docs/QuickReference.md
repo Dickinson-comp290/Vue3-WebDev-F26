@@ -13,7 +13,7 @@ The following are the main activities that you will need to do when working on t
   - [Starting an Extension](../CONTRIBUTING.md#starting-an-extension)
   - [Working on Extension Tasks](../CONTRIBUTING.md#working-on-extension-tasks)
     - [Including AI Attributions](./AttributionTrailers.md)
-    - [Logging Copilot Chats](../CONTRIBUTING.md#log-copilot-chat)
+    <!-- - [Logging Copilot Chats](../CONTRIBUTING.md#log-copilot-chat) -->
   - [Completing an Extension](../CONTRIBUTING.md#completing-an-extension)
 - Stopping and Restarting
   - [Pausing your Work](../CONTRIBUTING.md#pausing-your-work)
