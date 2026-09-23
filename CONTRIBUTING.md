@@ -510,10 +510,6 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
 
    </details>
 
-<p/>
-
-### Completing an Extension
-
 1. <a id="check-pull-request-changes"></a>
    <details>
    <summary>Verify that your pull request contains the desired changes.</summary>
