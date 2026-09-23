@@ -8,6 +8,10 @@ const Flashword = {
       showFeedback: false,
       image: null,
       hasError: false,
+      showHint: false,
+      categories: ['greetings', 'colors', 'verbs'],
+      level: 'easy',
+      sentence: '',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
