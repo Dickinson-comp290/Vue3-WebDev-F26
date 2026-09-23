@@ -35,74 +35,33 @@
   <body>
     <h1>FlashWord</h1>
 
+    <p>
+      This is a simple flashcard app that will show you a word in Spanish and
+      ask you to enter the translation in English.
+    </p>
+
     <div id="app" v-cloak>
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
-      <p v-if="answer != ''">You answered: {{ answer }}</p>
-
+      <label for="translation-input">Translation:</label>
       <input
         type="text"
+        id="translation-input"
         v-model="answer"
-        v-on:keyup.enter="checkAnswer()"
-        v-bind:style="{ 'background-color': inputBackgroundColor }"
+        placeholder="Enter translation"
+        v-bind:style="{'background-color' : inputBackgroundColor}"
       />
 
-      <input type="checkbox" id="showHint" v-model="showHint" />
-      <label for="showHint">Show hint?</label>
-
-      <div v-if="showHint">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </div>
-
-      />
-
-      <p v-if="hasError">You must enter an answer</p>
+      <p v-show="answer != ''">You answered: {{ answer }}</p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
 
-      <template v-if="showFeedback">
-        <img
-          v-bind:alt="imageAlt"
-          v-bind:src='"https://s3.amazonaws.com/codewithsusan/circle-" + image + "@2x.png"'
-        />
-        <p v-if="correct" class="correct">You got it!</p>
-        <p v-else class="incorrect">Sorry, please try again.</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
+      <p v-show="showFeedback && correct" class="correct">You got it!</p>
+      <p v-show="showFeedback && !correct" class="incorrect">
+        Sorry, please try again.
+      </p>
 
-      <h2>Difficulty level radios:</h2>
-      <input type="radio" id="easy" value="easy" name="level" v-model="level" />
-      <label for="easy">Easy</label>
-
-      <label for="moderate">Moderate</label>
-
-      <h2>Difficulty level dropdown:</h2>
-      <label for="difficult">Difficult</label>
-      <select v-model="level">
-        <option value="easy">Easy</option>
-        <option value="moderate">Moderate</option>
-        <option value="difficult">Difficult</option>
-      </select>
-
-      <h2>Use the word in a sentence</h2>
-      <textarea v-model="textContent"></textarea>
-
-      {{ sentence }}
-
-      <div>
-        First name: <input type="text" v-model="firstName" /> Last name:<input
-          type="text"
-          v-model="lastName"
-        />
-
-        <p>Hello {{ fullName }}</p>
-        <p>Hello {{ getFullName }}</p>
-
-        <h2>Short Spanish words:</h2>
-        <ul>
-          <li v-for="thisWord in shortSpanishWords">{{ thisWord }}</li>
-        </ul>
-      </div>
+      <button v-on:click="reset()">Reset</button>
     </div>
   </body>
 </html>
