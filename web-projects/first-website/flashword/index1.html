@@ -37,15 +37,15 @@
 
       <input type="text" v-model="answer" />
 
-      <p v-if="answer != ''">you answered: {{ answer }}</p>
+      <p v-show="answer">you answered: {{ answer }}</p>
 
       <button v-on:click="checkAnswer">Check Answer</button>
+      <button v-on:click="reset()">Reset</button>
 
-      <template v-if="showFeedback">
-        <p v-if="correct" class="correct">you got it!</p>
-        <p v-else-if="correct!=null" class="incorrect">Sorry try again</p>
-        <button v-on:click="reset()">Reset</button>
-      </template>
+      <span v-show="showFeedback">
+        <p v-show="correct" class="correct">you got it!</p>
+        <p v-show="correct === false" class="incorrect">Sorry try again</p>
+      </span>
     </div>
   </body>
 </html>
