@@ -10,13 +10,19 @@ const FlashWord = {
     };
   },
   methods: {
+    showReset() {
+      this.showButton = true;
+    },
+
     checkAnswer() {
       this.correct = this.wordB == this.answer;
-      this.showFeedback = true;
+      this.show = true;
+      this.showCorrect.value = true;
     },
+
     reset() {
       this.answer = '';
-      this.showFeedback = false;
+      this.show = false;
     },
   },
 };
