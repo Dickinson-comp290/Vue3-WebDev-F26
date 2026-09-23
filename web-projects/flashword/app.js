@@ -13,6 +13,10 @@ const Flashword = {
       showHint: false,
       categories: ['greetings', 'colors', 'verbs'],
       level: 'easy',
+      firstName: '',
+      lastName: '',
+
+      firstNameAndLastName: '',
 
       // Array example
       spanishWords: ['hola', 'adios', 'uno', 'dos'],
@@ -29,7 +33,28 @@ const Flashword = {
       ],
     };
   },
+
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    shortSpanishWords() {
+      return this.spanishWords.filter((word) => word.length <= 3);
+    },
+  },
+  watch: {
+    firstName() {
+      this.fullName = this.firstName + ' ' + this.lastName;
+    },
+    lastName() {
+      this.fullName = this.firstName + ' ' + this.lastName;
+    },
+  },
+
   methods: {
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
     checkAnswer() {
       if (this.answer == '') {
         this.hasError = true;

@@ -71,12 +71,15 @@
         <button v-on:click="reset()">Reset</button>
       </template>
 
-      <input
-        type="checkbox"
-        id="greetings"
-        value="greetings"
-        v-model="categories"
-      />
+      First name: <input type="text" v-model="firstName" /> Last name:
+      <input type="text" v-model="lastName" />
+
+      <p>Hello {{ firstNameAndLastName }}</p>
+      <p>Hello {{ getFullName() }}</p>
+      <p>Hello {{ fullName }}</p>
+      <ul>
+        <li v-for="word in shortSpanishWords">{{ word }}</li>
+      </ul>
     </div>
   </body>
 </html>
