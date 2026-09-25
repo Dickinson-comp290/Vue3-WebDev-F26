@@ -1,6 +1,6 @@
-# Commonly Used Cypress Commands, Assertions and Actions
+# Cypress Reference
 
-This page provides a short summary and examples of the main [commands](#cypress-commands), [assertions](#cypress-assertions) and [actions](#cypress-actions) that are used in Cypress.
+This page provides a short summary and examples of the main [commands](#cypress-commands), [assertions](#cypress-assertions) and [actions](#cypress-actions) that are used in Cypress tests.
 
 Complete documentation can be found in the [Assertions](https://docs.cypress.io/app/references/assertions) and [Actionability](https://docs.cypress.io/app/core-concepts/interacting-with-elements#Actionability) sections of the [official Cypress documentation](https://docs.cypress.io/).
 
