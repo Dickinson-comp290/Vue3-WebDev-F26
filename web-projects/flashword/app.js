@@ -32,7 +32,6 @@ const Flashword = {
       this.inputBackgroundColor = 'white';
 
       this.correct = this.wordB == this.answer;
-
       this.showFeedback = true;
     },
     reset() {
