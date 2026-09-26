@@ -53,15 +53,15 @@
       />
 
       <p v-show="answer != ''">You answered: {{ answer }}</p>
-
+      <p v-if="answer != ''">
+        <button v-on:click="reset()">Reset</button>
+      </p>
       <button v-on:click="checkAnswer()">Check answer</button>
 
       <p v-show="showFeedback && correct" class="correct">You got it!</p>
       <p v-show="showFeedback && !correct" class="incorrect">
         Sorry, please try again.
       </p>
-
-      <button v-on:click="reset()">Reset</button>
     </div>
   </body>
 </html>
