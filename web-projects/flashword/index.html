@@ -64,6 +64,7 @@
       <p v-show="showFeedback && !correct" class="incorrect">
         Sorry, please try again.
       </p>
+      <img v-if="badge" src="badge.png" alt="Badge" width="100" />
 
       <button v-on:click="reset()" :disabled="answer === ''">Reset</button>
     </div>
