@@ -6,12 +6,8 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
-
-      // Array example
-      spanishWords: ['hola', 'adios', 'uno', 'dos'],
-
-      // Object example
-      word: { a: 'hola', b: 'hello' },
+      hasError: false,
+      badge: null,
 
       // Array of objects example
       words: [
@@ -20,19 +16,51 @@ const Flashword = {
         { wordA: 'uno', wordB: 'one' },
         { wordA: 'dos', wordB: 'two' },
       ],
-    }
+    };
+  },
+  watch: {
+    answer(newVal) {
+      if (newVal !== '') {
+        this.hasError = false;
+      }
+    },
+  },
+  computed: {
+    inputClass() {
+      return this.hasError ? 'has-error' : '';
+    },
   },
   methods: {
     checkAnswer() {
-      this.correct = this.wordB == this.answer
-      this.showFeedback = true
+      if (this.answer == '') {
+        this.hasError = true;
+        return;
+      }
+
+      this.hasError = false;
+      this.correct = this.wordB == this.answer;
+      if (this.correct) {
+        this.awardBadge();
+      }
+      this.showFeedback = true;
     },
     reset() {
-      this.answer = ''
-      this.showFeedback = false
+      this.answer = '';
+      this.showFeedback = false;
+      this.correct = null;
+      this.hasError = false;
+      this.badge = null;
+
+      // Reset to a new random word
+      const randomIndex = Math.floor(Math.random() * this.words.length);
+      this.wordA = this.words[randomIndex].wordA;
+      this.wordB = this.words[randomIndex].wordB;
+    },
+    awardBadge() {
+      this.badge = 'Spanish Star';
     },
   },
-}
+};
 
 // eslint-disable-next-line no-unused-vars, no-undef
-const app = Vue.createApp(Flashword).mount('#app')
+const app = Vue.createApp(Flashword).mount('#app');
