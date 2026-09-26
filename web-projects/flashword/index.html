@@ -1,3 +1,5 @@
+Assisted-by: ChatGPT:GPT-5.6 Terra
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,6 +40,17 @@
         color: lightpink;
       }
 
+      .achievement-badge {
+        width: 200px;
+        margin: 18px 0;
+      }
+
+      .achievement-badge img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
       [v-cloak] {
         display: none;
       }
@@ -62,16 +75,28 @@
         v-model="answer"
         placeholder="Enter translation"
         v-bind:class="inputClass"
+        v-bind:disabled="showFeedback"
       />
 
       <p v-show="answer != ''">You answered: {{ answer }}</p>
 
-      <button v-on:click="checkAnswer()">Check answer</button>
+      <button v-on:click="checkAnswer()" v-bind:disabled="showFeedback">
+        Check answer
+      </button>
 
       <p v-show="showFeedback && correct" class="correct">You got it!</p>
       <p v-show="showFeedback && !correct" class="incorrect">
         Sorry, please try again.
       </p>
+
+      <div
+        v-if="hasEarnedBadge"
+        class="achievement-badge"
+        role="img"
+        aria-label="80% correct achievement badge"
+      >
+        <img src="images/80%20percent.png" alt="" />
+      </div>
 
       <button v-show="this.answer !=''" v-on:click="reset()">Reset</button>
     </div>

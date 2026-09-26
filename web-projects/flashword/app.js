@@ -7,6 +7,9 @@ const Flashword = {
       correct: null,
       showFeedback: false,
       hasError: false,
+      totalAnswers: 0,
+      correctAnswers: 0,
+      hasEarnedBadge: false,
 
       // Array of objects example
       words: [
@@ -17,7 +20,11 @@ const Flashword = {
       ],
     };
   },
-  watch: {},
+  watch: {
+    answer() {
+      this.hasError = false;
+    },
+  },
   computed: {
     inputClass() {
       return this.hasError ? 'input-error' : 'input-normal';
@@ -30,9 +37,19 @@ const Flashword = {
         this.hasError = true;
         return;
       }
+      if (this.showFeedback) {
+        return;
+      }
 
       this.hasError = false;
       this.correct = this.wordB == this.answer;
+      this.totalAnswers++;
+      if (this.correct) {
+        this.correctAnswers++;
+      }
+      if (this.correctAnswers / this.totalAnswers >= 0.8) {
+        this.hasEarnedBadge = true;
+      }
       this.showFeedback = true;
     },
     reset() {
