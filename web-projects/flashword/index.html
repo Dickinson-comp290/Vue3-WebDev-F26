@@ -19,7 +19,7 @@
       }
 
       .correct {
-        color: green;
+        color: rgb(79, 215, 79);
       }
 
       .incorrect {
@@ -28,6 +28,9 @@
 
       [v-cloak] {
         display: none;
+      }
+      .error {
+        background-color: rgb(255, 135, 169);
       }
     </style>
   </head>
@@ -44,12 +47,14 @@
       What is the English translation of the word <strong>{{ wordA }}</strong>?
 
       <label for="translation-input">Translation:</label>
+      <p v-if="hasError">You must enter an answer</p>
       <input
         type="text"
         id="translation-input"
         v-model="answer"
         placeholder="Enter translation"
-        v-bind:style="{'background-color' : inputBackgroundColor}"
+        v-on:keyup.enter="checkAnswer()"
+        v-bind:class="{ error : hasError }"
       />
 
       <p v-show="answer != ''">You answered: {{ answer }}</p>
