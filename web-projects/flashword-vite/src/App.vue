@@ -1,7 +1,8 @@
 <script>
-const Flashword = {
+export default {
   data() {
     return {
+      correctCount: 0,
       words: [
         {
           word_a: 'hola',
@@ -29,20 +30,18 @@ const Flashword = {
   },
   computed: {
     shuffledWords() {
-      return this.words.sort(() => 0.5 - Math.random());
+      return [...this.words].sort(() => 0.5 - Math.random());
     },
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
-    correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
   methods: {
     checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
+      word.correct = word.word_b === word.answer;
 
       if (word.correct) {
         this.correctCount++;
@@ -53,20 +52,21 @@ const Flashword = {
 </script>
 
 <template>
-  <div id="app" v-cloak>
+  <main class="flashword" v-cloak>
     <h1>FlashWord</h1>
 
-    <p v-if="completed" id="completed">
+    <p v-if="completed" class="completed">
       Good work, you completed all the words!
     </p>
-    <p v-else id="correctCount">
+    <p v-else class="correct-count">
       You have answered {{ correctCount }} out of {{ wordCount }}
     </p>
 
-    <div id="cards">
+    <div class="cards">
       <div
-        class="card"
         v-for="word in shuffledWords"
+        v-bind:key="word.word_a"
+        class="card"
         v-bind:class="{ correct: word.correct }"
       >
         <p class="word">{{ word.word_a }}</p>
@@ -80,51 +80,69 @@ const Flashword = {
         <p v-else class="correctAnswer">{{ word.answer }}</p>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
-<style>
+<style scoped>
 [v-cloak] {
   display: none;
 }
 
-#app {
+.flashword {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 548px;
+  margin: 0 auto;
+  padding: 28px 16px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
-  margin-top: 60px;
+  color: #16191d;
 }
 
-#cards {
-  justify-content: center;
+h1 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.cards {
   display: grid;
-  grid-template-columns: 300px 300px 300px;
-  grid-gap: 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .card {
   background-color: #e8f0ff;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 25px;
+  border-radius: 4px;
+  padding: 5px 8px;
+  min-width: 0;
+  font-size: 14px;
 }
 
 input[type='text'] {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 22px;
   border: 0;
-  font-size: 25px;
-  border-radius: 5px;
-  margin-top: 5px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  background: #fff;
+  color: #16191d;
+  font: inherit;
   text-align: center;
-  padding: 5px;
 }
 
 .word {
-  font-weight: bold;
+  margin: 0 0 3px;
+  font-weight: 600;
 }
 
 .correctAnswer {
+  min-height: 22px;
+  line-height: 22px;
   padding: 0;
   margin: 0;
 }
@@ -134,18 +152,16 @@ input[type='text'] {
   background-color: #d1e7dd;
 }
 
-#correctCount {
-  font-size: 20px;
-  margin: 10px;
-  font-weight: bold;
-  padding: 10px;
+.correct-count,
+.completed {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
-#completed {
-  font-size: 20px;
-  font-weight: bold;
+.completed {
   color: #0f5132;
-  padding: 10px;
-  margin: 10px;
 }
 </style>
