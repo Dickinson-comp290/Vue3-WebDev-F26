@@ -23,14 +23,6 @@ const Flashword = {
     }
   },
   methods: {
-    checkAnswer() {
-      this.correct = this.wordB == this.answer
-      this.showFeedback = true
-    },
-    reset() {
-      this.answer = ''
-      this.showFeedback = false
-    },
   },
 }
 
