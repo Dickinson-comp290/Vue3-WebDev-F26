@@ -32,7 +32,7 @@ export default {
   computed: {
     shuffledWords() {
       return null;
-      // return this.words.sort(() => Math.random());
+      // return this.words.sort(() => 0 - Math.random());
     },
     wordCount() {
       return this.words.length;
