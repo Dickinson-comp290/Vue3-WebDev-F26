@@ -61,12 +61,13 @@
       <p v-if="answer != ''" v-on:input="hasError = false">
         <button v-on:click="reset()">Reset</button>
       </p>
-
-      <img
-        v-if="correctAnswers >= badgeThreshold"
-        src="images/badge.png"
-        alt="Correct answer badge"
-      />
+      <p v-show="showFeedback && correct" class="correct">
+        <img
+          v-if="showFeedback && correctAnswers == 5"
+          src="images/badge.png"
+          alt="Correct answer badge"
+        />
+      </p>
 
       <button v-on:click="checkAnswer()">Check answer</button>
 

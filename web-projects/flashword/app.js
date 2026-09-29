@@ -8,8 +8,6 @@ const Flashword = {
       showFeedback: false,
       hasError: false,
       correctAnswers: 0,
-      streak: 0,
-      countedThisQuestion: false,
       badgeThreshold: 5,
       // Array of objects example
       words: [
@@ -37,12 +35,8 @@ const Flashword = {
 
       this.correct = this.wordB == this.answer;
 
-      if (this.correct && !this.countedThisQuestion) {
+      if (this.correct == true) {
         this.correctAnswers += 1;
-        this.streak += 1;
-        this.countedThisQuestion = true;
-      } else if (!this.correct && !this.countedThisQuestion) {
-        this.streak = 0;
       }
 
       this.showFeedback = true;
@@ -53,7 +47,6 @@ const Flashword = {
       this.correct = null;
       this.hasError = false;
       this.countedThisQuestion = false;
-      this.badgeThreshold = 5;
 
       // Reset to a new random word
       const randomIndex = Math.floor(Math.random() * this.words.length);
