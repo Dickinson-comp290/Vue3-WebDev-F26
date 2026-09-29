@@ -7,6 +7,9 @@ const Flashword = {
       correct: null,
       showFeedback: false,
       hasError: false,
+      answeredCount: 0,
+      correctCount: 0,
+      roundCounted: false,
 
       // Array of objects example
       words: [
@@ -17,7 +20,13 @@ const Flashword = {
       ],
     };
   },
-  watch: {},
+  watch: {
+    answer(newValue) {
+      if (newValue.trim() !== '') {
+        this.hasError = false;
+      }
+    },
+  },
   computed: {
     boxColor() {
       if (this.hasError) {
@@ -30,6 +39,8 @@ const Flashword = {
   methods: {
     checkAnswer() {
       if (this.answer == '') {
+        this.roundCounted = false;
+        this.showFeedback = false;
         this.hasError = true;
         return;
       }
@@ -42,6 +53,11 @@ const Flashword = {
         this.hasError = true;
       }
 
+      this.answeredCount++;
+      if (this.correct) {
+        this.correctCount++;
+      }
+      this.roundCounted = true;
       this.showFeedback = true;
     },
     reset() {
@@ -50,6 +66,7 @@ const Flashword = {
       this.correct = null;
       this.inputBackgroundColor = 'white';
       this.hasError = false;
+      this.roundCounted = false;
 
       // Reset to a new random word
       const randomIndex = Math.floor(Math.random() * this.words.length);

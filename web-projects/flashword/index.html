@@ -69,6 +69,10 @@
         Sorry, please try again.
       </p>
 
+      <p v-show="answeredCount > 0 && correctCount / answeredCount >= 0.8">
+        <img src="badge.png" alt="Badge for answering at least 80% correctly" />
+      </p>
+
       <button v-on:click="reset()" v-bind:disabled="answer == ''">Reset</button>
     </div>
   </body>
