@@ -63,7 +63,8 @@
       </p>
       <p v-show="showFeedback && correct" class="correct">
         <img
-          v-if="showFeedback && correctAnswers == 5"
+          v-if="totalAnswers >= minimumAnswersForBadge &&
+        correctPercentage >= badgeThresholdPercent"
           src="images/badge.png"
           alt="Correct answer badge"
         />

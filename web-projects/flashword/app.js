@@ -9,6 +9,9 @@ const Flashword = {
       hasError: false,
       correctAnswers: 0,
       badgeThreshold: 5,
+      totalAnswers: 0,
+      badgeThresholdPercent: 80,
+      minimumAnswersForBadge: 5,
       // Array of objects example
       words: [
         { wordA: 'hola', wordB: 'hello' },
@@ -23,7 +26,13 @@ const Flashword = {
       this.hasError = false;
     },
   },
-  computed: {},
+  computed: {
+    correctPercentage() {
+      return this.totalAnswers === 0
+        ? 0
+        : Math.round((this.correctAnswers / this.totalAnswers) * 100);
+    },
+  },
   methods: {
     checkAnswer() {
       if (this.answer == '') {
@@ -35,7 +44,8 @@ const Flashword = {
 
       this.correct = this.wordB == this.answer;
 
-      if (this.correct == true) {
+      this.totalAnswers += 1;
+      if (this.correct) {
         this.correctAnswers += 1;
       }
 
