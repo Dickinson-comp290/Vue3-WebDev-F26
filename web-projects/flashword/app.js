@@ -7,7 +7,6 @@ const Flashword = {
       correct: null,
       showFeedback: false,
       hasError: false,
-      inputBackgroundColor: 'white',
 
       // Array of objects example
       words: [
@@ -19,19 +18,29 @@ const Flashword = {
     };
   },
   watch: {},
-  computed: {},
+  computed: {
+    boxColor() {
+      if (this.hasError) {
+        return 'incorrectBox';
+      } else {
+        return 'correctBox';
+      }
+    },
+  },
   methods: {
     checkAnswer() {
       if (this.answer == '') {
         this.hasError = true;
-        this.inputBackgroundColor = 'lightPink';
         return;
       }
 
       this.hasError = false;
-      this.inputBackgroundColor = 'white';
 
       this.correct = this.wordB == this.answer;
+
+      if (!this.correct) {
+        this.hasError = true;
+      }
 
       this.showFeedback = true;
     },
