@@ -1,4 +1,5 @@
-const Flashword = {
+/* eslint-disable no-undef */
+const FlashWord = {
   data() {
     return {
       words: [
@@ -24,17 +25,33 @@ const Flashword = {
           correct: false,
         },
       ],
+      correctCount: 0,
+      completed: false,
     };
   },
   computed: {
     shuffledWords() {
       return this.words.sort(() => 0.5 - Math.random());
     },
+    wordCount() {
+      return this.words.length;
+    },
   },
+  watch: {
+    correctCount() {
+      this.completed = this.correctCount == this.wordCount;
+    },
+  },
+  methods: {
+    checkAnswer(word) {
+      word.correct = word.word_b == word.answer;
 
-  watch: {},
-  methods: {},
+      if (word.correct) {
+        this.correctCount++;
+      }
+    },
+  },
 };
 
-// eslint-disable-next-line no-unused-vars, no-undef
-const app = Vue.createApp(Flashword).mount('#app');
+// eslint-disable-next-line no-unused-vars
+const app = Vue.createApp(FlashWord).mount('#app');
