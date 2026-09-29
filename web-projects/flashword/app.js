@@ -30,7 +30,7 @@ const FlashWord = {
   },
   computed: {
     shuffledWords() {
-      return this.words.sort(() => 0.5 - Math.random());
+      return [...this.words].sort(() => 0.5 - Math.random());
     },
     wordCount() {
       return this.words.length;
