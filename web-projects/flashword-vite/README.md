@@ -1,3 +1,3 @@
 # FlashWord
 
-## Created by Susan Buck, version by Mandy Grawl
+## Created by Susan Buck, current version by Mandy Grawl
