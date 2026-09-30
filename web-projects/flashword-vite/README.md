@@ -1,3 +1,3 @@
 # FlashWord
 
-## From Susan Buck's Vue3.js Course
+## Created by Susan Buck, current version by Mandy Grawl
