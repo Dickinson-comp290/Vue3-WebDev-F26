@@ -1,5 +1,5 @@
 const Flashword = {
-  export default {
+  Export default {
   data() {
     return {
       words: [
