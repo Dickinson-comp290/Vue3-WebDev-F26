@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <title>FlashWord</title>
@@ -18,6 +19,9 @@
         margin: 10px 0px;
       }
 
+      .error {
+        background-color: blueviolet;
+      }
       .correct {
         color: green;
       }
@@ -49,7 +53,7 @@
         id="translation-input"
         v-model="answer"
         placeholder="Enter translation"
-        v-bind:style="{'background-color' : inputBackgroundColor}"
+        v-bind:class="answerInput"
       />
 
       <p v-show="answer != ''">You answered: {{ answer }}</p>
@@ -60,8 +64,7 @@
       <p v-show="showFeedback && !correct" class="incorrect">
         Sorry, please try again.
       </p>
-
-      <button v-on:click="reset()">Reset</button>
+      <button v-bind:disabled="answer == ''" v-on:click="reset()">Reset</button>
     </div>
   </body>
 </html>
