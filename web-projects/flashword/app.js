@@ -5,6 +5,8 @@ const Flashword = {
       wordB: 'hello',
       answer: '',
       correct: null,
+      correctCount: 0,
+      answeredCount: 0,
       showFeedback: false,
       hasError: false,
       inputBackgroundColor: 'white',
@@ -24,6 +26,14 @@ const Flashword = {
     inputClass() {
       return this.submitted && this.answer === '' ? 'isEmpty' : 'isFilled';
     },
+    correctPercentage() {
+      return this.answeredCount === 0
+        ? 0
+        : Math.round((this.correctCount / this.answeredCount) * 100);
+    },
+    hasBadge() {
+      return this.answeredCount > 0 && this.correctCount / this.answeredCount >= 0.8;
+    },
   },
   methods: {
     checkAnswer() {
@@ -38,6 +48,11 @@ const Flashword = {
       this.inputBackgroundColor = 'white';
 
       this.correct = this.wordB == this.answer;
+      this.answeredCount += 1;
+
+      if (this.correct) {
+        this.correctCount += 1;
+      }
 
       this.showFeedback = true;
     },
@@ -45,6 +60,8 @@ const Flashword = {
       this.answer = '';
       this.showFeedback = false;
       this.correct = null;
+      this.correctCount = 0;
+      this.answeredCount = 0;
       this.inputBackgroundColor = 'white';
       this.hasError = false;
       this.submitted = false;

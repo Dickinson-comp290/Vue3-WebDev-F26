@@ -34,6 +34,23 @@
         color: red;
       }
 
+      .badge {
+        align-items: center;
+        color: #72500a;
+        display: flex;
+        gap: 12px;
+        margin: 16px 0;
+      }
+
+      .badge svg {
+        height: 88px;
+        width: 88px;
+      }
+
+      .badge p {
+        font-weight: bold;
+      }
+
       [v-cloak] {
         display: none;
       }
@@ -68,6 +85,53 @@
       <p v-show="showFeedback && !correct" class="incorrect">
         Sorry, please try again.
       </p>
+
+      <p v-show="answeredCount > 0">
+        Accuracy: {{ correctPercentage }}% ({{ correctCount }}/{{ answeredCount
+        }})
+      </p>
+
+      <div
+        v-if="hasBadge"
+        class="badge"
+        role="img"
+        aria-label="FlashWord accuracy badge earned: at least 80 percent correct"
+      >
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M30 61 23 95l27-14 27 14-7-34" fill="#b23b35" />
+          <circle
+            cx="50"
+            cy="40"
+            r="31"
+            fill="#f2c14e"
+            stroke="#9c6c12"
+            stroke-width="4"
+          />
+          <circle
+            cx="50"
+            cy="40"
+            r="23"
+            fill="#fff3c4"
+            stroke="#d89b25"
+            stroke-width="2"
+          />
+          <path
+            d="m50 22 5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"
+            fill="#d89b25"
+          />
+          <text
+            x="50"
+            y="46"
+            fill="#72500a"
+            font-size="11"
+            font-weight="bold"
+            text-anchor="middle"
+          >
+            80%
+          </text>
+        </svg>
+        <p>Accuracy badge earned!</p>
+      </div>
 
       <button v-on:click="reset()" v-show="answer != ''">Reset</button>
     </div>
