@@ -1,4 +1,5 @@
 const Flashword = {
+  export default {
   data() {
     return {
       words: [
@@ -52,6 +53,6 @@ const Flashword = {
       }
     },
   },
-};
+}};
 // eslint-disable-next-line no-unused-vars, no-undef
 const app = Vue.createApp(Flashword).mount('#app');
