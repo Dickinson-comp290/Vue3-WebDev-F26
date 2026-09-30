@@ -22,6 +22,10 @@
         background-color: lightpink;
       }
 
+      .isFilled {
+        background-color: white;
+      }
+
       .correct {
         color: green;
       }
@@ -53,7 +57,7 @@
         id="translation-input"
         v-model="answer"
         placeholder="Enter translation"
-        v-bind:class="{isEmpty: hasError}"
+        v-bind:class="inputClass"
       />
 
       <p v-show="answer != ''">You answered: {{ answer }}</p>
