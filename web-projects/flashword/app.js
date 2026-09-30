@@ -15,6 +15,7 @@ const Flashword = {
         { wordA: 'uno', wordB: 'one' },
         { wordA: 'dos', wordB: 'two' },
       ],
+      correctWords: [],
     };
   },
   watch: {},
@@ -24,6 +25,10 @@ const Flashword = {
         return 'error';
       }
       return '';
+    },
+    badgeEarned() {
+      return this.correctWords.length / this.words.length > 0.8;
+      //To get 80% with current amount of words you need to get all 4, but this can change if we increase it in the future
     },
   },
   methods: {
@@ -37,6 +42,10 @@ const Flashword = {
       //this.inputBackgroundColor = 'white';
 
       this.correct = this.wordB == this.answer;
+
+      if (this.correct && !this.correctWords.includes(this.wordA)) {
+        this.correctWords.push(this.wordA);
+      }
 
       this.showFeedback = true;
     },

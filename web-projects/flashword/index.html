@@ -65,6 +65,12 @@
         Sorry, please try again.
       </p>
       <button v-bind:disabled="answer == ''" v-on:click="reset()">Reset</button>
+
+      <img
+        v-show="badgeEarned"
+        src="images/flash_Badge_80.png"
+        alt="80 percent completion badge"
+      />
     </div>
   </body>
 </html>
