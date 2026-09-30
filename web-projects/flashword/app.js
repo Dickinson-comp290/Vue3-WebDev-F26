@@ -32,8 +32,11 @@ const Flashword = {
       return this.words.sort(() => 0.5 - Math.random());
     },
   },
-  methods: {},
+  methods: {
+    checkAnswer(word) {
+      word.correct = word.word_b == word.answer;
+    },
+  },
 };
-
 // eslint-disable-next-line no-unused-vars, no-undef
 const app = Vue.createApp(Flashword).mount('#app');

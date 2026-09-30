@@ -15,6 +15,14 @@
 
       <div id="cards">
         <div class="card" v-for="word in shuffleWords">{{ word.word_a }}</div>
+
+        <input
+          v-if="!word.correct"
+          type="text"
+          v-model="word.answer"
+          v-on:keyup.enter="checkAnswer(word)"
+        />
+        <p v-else>{{ word.word_b }}</p>
       </div>
     </div>
   </body>
