@@ -6,23 +6,8 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
-      image: null,
-      imageAlt: null,
       hasError: false,
       inputBackgroundColor: 'white',
-      showHint: false,
-      categories: ['greetings', 'colors', 'verbs'],
-      level: 'easy',
-      firstName: '',
-      lastName: '',
-
-      firstNameAndLastName: '',
-
-      // Array example
-      spanishWords: ['hola', 'adios', 'uno', 'dos'],
-
-      // Object example
-      word: { a: 'hola', b: 'hello' },
 
       // Array of objects example
       words: [
@@ -33,49 +18,34 @@ const Flashword = {
       ],
     };
   },
-
-  computed: {
-    fullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
-    shortSpanishWords() {
-      return this.spanishWords.filter((word) => word.length <= 3);
-    },
-  },
-  watch: {
-    firstName() {
-      this.fullName = this.firstName + ' ' + this.lastName;
-    },
-    lastName() {
-      this.fullName = this.firstName + ' ' + this.lastName;
-    },
-  },
-
+  watch: {},
+  computed: {},
   methods: {
-    getFullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
     checkAnswer() {
       if (this.answer == '') {
         this.hasError = true;
-        this.inputBackgroundColor = 'pink'; //light pink was giving me trouble.
+        this.inputBackgroundColor = 'lightpink';
         return;
       }
+
       this.hasError = false;
-      ((this.inputBackgroundColor = 'white'),
-        (this.correct = this.wordB == this.answer));
-      if (this.correct) {
-        this.image = 'correct';
-        this.imageAlt = 'Green Check Mark';
-      } else {
-        this.image = 'incorrect';
-        this.imageAlt = 'Red X Mark';
-      }
+      this.inputBackgroundColor = 'white';
+
+      this.correct = this.wordB == this.answer;
+
       this.showFeedback = true;
     },
     reset() {
       this.answer = '';
       this.showFeedback = false;
+      this.correct = null;
+      this.inputBackgroundColor = 'white';
+      this.hasError = false;
+
+      // Reset to a new random word
+      const randomIndex = Math.floor(Math.random() * this.words.length);
+      this.wordA = this.words[randomIndex].wordA;
+      this.wordB = this.words[randomIndex].wordB;
     },
   },
 };
