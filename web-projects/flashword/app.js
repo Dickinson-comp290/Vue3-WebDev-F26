@@ -6,20 +6,8 @@ const Flashword = {
       answer: '',
       correct: null,
       showFeedback: false,
-      image: null,
       hasError: false,
-      showHint: false,
-      categories: ['greetings', 'colors', 'verbs'],
-      level: 'easy',
-      sentence: '',
-      firstName: '',
-      firstAndLastName: '',
-      lastName: '',
-
-      spanishWords: ['hola', 'adios', 'uno', 'dos'],
-
-      // Object example
-      word: { a: 'hola', b: 'hello' },
+      inputBackgroundColor: 'white',
 
       // Array of objects example
       words: [
@@ -30,54 +18,34 @@ const Flashword = {
       ],
     };
   },
-  computed: {
-    fullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
-
-    shortSpanishWords() {
-      return this.spanishWords.filter((word) => word.length <= 3);
-    },
-  },
-
-  watch: {
-    firstName() {
-      this.firstAndLastName = this.firstName + ' ' + this.lastName;
-    },
-
-    lastName() {
-      this.firstAndLastName = this.firstName + ' ' + this.lastName;
-    },
-  },
-
+  watch: {},
+  computed: {},
   methods: {
-    getFullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
-
     checkAnswer() {
       if (this.answer == '') {
         this.hasError = true;
+        this.inputBackgroundColor = 'lightpink';
         return;
       }
 
       this.hasError = false;
-
-      this.hasError = !this.answer.trim();
-      if (this.hasError) return;
+      this.inputBackgroundColor = 'white';
 
       this.correct = this.wordB == this.answer;
 
-      if (this.correct) {
-        this.image = 'correct';
-      } else {
-        this.image = 'incorrect';
-      }
       this.showFeedback = true;
     },
     reset() {
       this.answer = '';
       this.showFeedback = false;
+      this.correct = null;
+      this.inputBackgroundColor = 'white';
+      this.hasError = false;
+
+      // Reset to a new random word
+      const randomIndex = Math.floor(Math.random() * this.words.length);
+      this.wordA = this.words[randomIndex].wordA;
+      this.wordB = this.words[randomIndex].wordB;
     },
   },
 };
