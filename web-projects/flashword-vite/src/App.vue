@@ -1,6 +1,8 @@
-#comment
 <script>
+import WordCard from './components/WordCard.vue';
+
 export default {
+  components: { WordCard },
   data() {
     return {
       words: [
@@ -40,16 +42,12 @@ export default {
   },
   watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      this.completed = this.correctCount >= this.wordCount;
     },
   },
   methods: {
-    checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
+    handleAnswerSubmitted() {
+      this.correctCount += 1;
     },
   },
 };
@@ -67,20 +65,12 @@ export default {
     </p>
 
     <div id="cards">
-      <div
-        class="card"
+      <WordCard
         v-for="word in shuffledWords"
-        v-bind:class="{ correct: word.correct }"
-      >
-        <p class="word">{{ word.word_a }}</p>
-        <input
-          type="text"
-          v-if="!word.correct"
-          v-model="word.answer"
-          v-on:keyup.enter="checkAnswer(word)"
-        />
-        <p v-else class="correctAnswer">{{ word.answer }}</p>
-      </div>
+        v-bind:key="word.word_a"
+        v-bind:word="word"
+        v-on:answer-submitted="handleAnswerSubmitted"
+      />
     </div>
   </div>
 </template>
@@ -95,60 +85,29 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #111827;
   margin-top: 60px;
 }
 
 #cards {
-  justify-content: center;
   display: grid;
-  grid-template-columns: 300px 300px 300px;
-  grid-gap: 30px;
-}
-
-.card {
-  background-color: #e8f0ff;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 25px;
-}
-
-input[type='text'] {
-  border: 0;
-  font-size: 25px;
-  border-radius: 5px;
-  margin-top: 5px;
-  text-align: center;
-  padding: 5px;
-}
-
-.word {
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-}
-
-.correctAnswer {
-  padding: 0;
-  margin: 0;
-}
-
-.correct {
-  color: #0f5132;
-  background-color: #d1e7dd;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 30px auto 0;
 }
 
 #correctCount {
-  font-size: 20px;
+  font-size: 1.1rem;
   margin: 10px;
-  font-weight: bold;
+  font-weight: 700;
   padding: 10px;
 }
 
 #completed {
-  font-size: 20px;
-  font-weight: bold;
-  color: #0f5132;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #065f46;
   padding: 10px;
   margin: 10px;
 }
