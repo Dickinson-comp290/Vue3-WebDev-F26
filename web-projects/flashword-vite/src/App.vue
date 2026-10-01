@@ -1,5 +1,3 @@
-#comment
-
 <script>
 export default {
   data() {
@@ -10,6 +8,7 @@ export default {
           word_a: 'hola',
           word_b: 'hello',
           hint: 'greeting',
+          showHint: false,
           answer: '',
           correct: false,
         },
@@ -17,6 +16,7 @@ export default {
           word_a: 'uno',
           word_b: 'one',
           hint: 'number',
+          showHint: false,
           answer: '',
           correct: false,
         },
@@ -24,6 +24,7 @@ export default {
           word_a: 'gris',
           word_b: 'grey',
           hint: 'color',
+          showHint: false,
           answer: '',
           correct: false,
         },
@@ -72,14 +73,20 @@ export default {
         v-bind:class="{ correct: word.correct }"
       >
         <p class="word">{{ word.word_a }}</p>
-
         <input
           v-if="!word.correct"
           type="text"
           v-model="word.answer"
           v-on:keyup.enter="checkAnswer(word)"
         />
-        <p v-else class="correctAnswer">{{ word.answer }}</p>
+        <label v-if="!word.correct" class="hint-toggle">
+          <input type="checkbox" v-model="word.showHint" />
+          Show hint
+        </label>
+        <p v-if="!word.correct && word.showHint" class="hint">
+          {{ word.hint }}
+        </p>
+        <p v-if="word.correct" class="correctAnswer">{{ word.answer }}</p>
       </div>
     </div>
   </main>
