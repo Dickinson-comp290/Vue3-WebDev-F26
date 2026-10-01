@@ -2,7 +2,6 @@
 export default {
   data() {
     return {
-      correctCount: 0,
       words: [
         {
           word_a: 'hola',
@@ -38,6 +37,9 @@ export default {
     wordCount() {
       return this.words.length;
     },
+    correctCount() {
+      return this.words.filter((word) => word.correct).length;
+    },
     completed() {
       return this.correctCount === this.wordCount;
     },
@@ -45,10 +47,6 @@ export default {
   methods: {
     checkAnswer(word) {
       word.correct = word.word_b === word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
     },
   },
 };
