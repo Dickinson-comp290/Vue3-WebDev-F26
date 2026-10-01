@@ -1,3 +1,4 @@
+#comment
 <script>
 export default {
   data() {
