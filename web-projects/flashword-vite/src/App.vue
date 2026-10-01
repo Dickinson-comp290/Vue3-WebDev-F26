@@ -46,7 +46,7 @@ export default {
     },
   },
   methods: {
-    handleAnswerSubmitted() {
+    incrementCorrectCount() {
       this.correctCount += 1;
     },
   },
@@ -69,7 +69,7 @@ export default {
         v-for="word in shuffledWords"
         v-bind:key="word.word_a"
         v-bind:word="word"
-        v-on:answer-submitted="handleAnswerSubmitted"
+        v-on:incrementCorrectCount="incrementCorrectCount"
       />
     </div>
   </div>

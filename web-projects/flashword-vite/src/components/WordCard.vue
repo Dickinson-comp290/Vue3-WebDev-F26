@@ -7,30 +7,21 @@ export default {
       required: true,
     },
   },
-  emits: ['answer-submitted'],
+  emits: ['incrementCorrectCount'],
   data() {
     return {
-      localWord: { ...this.word },
+      correct: false,
+      answer: '',
     };
-  },
-  watch: {
-    word: {
-      immediate: true,
-      handler(newWord) {
-        this.localWord = { ...newWord };
-      },
-    },
   },
   methods: {
     checkAnswer() {
-      if (this.localWord.correct) return;
+      if (this.correct) return;
 
-      const trimmedAnswer = this.localWord.answer.trim().toLowerCase();
-      this.localWord.correct =
-        trimmedAnswer === this.localWord.word_b.toLowerCase();
+      this.correct = this.word.word_b == this.answer;
 
-      if (this.localWord.correct) {
-        this.$emit('answer-submitted', true);
+      if (this.correct) {
+        this.$emit('incrementCorrectCount');
       }
     },
   },
@@ -38,21 +29,21 @@ export default {
 </script>
 
 <template>
-  <div class="card" v-bind:class="{ correct: localWord.correct }">
-    <p class="word">{{ localWord.word_a }}</p>
+  <div class="card" v-bind:class="{ correct: correct }">
+    <p class="word">{{ word.word_a }}</p>
 
-    <template v-if="localWord.correct">
-      <p class="correctAnswer">{{ localWord.answer }}</p>
+    <template v-if="correct">
+      <p class="correctAnswer">{{ answer }}</p>
     </template>
 
     <template v-else>
       <input
-        v-model="localWord.answer"
         type="text"
+        v-model="answer"
         v-on:keyup.enter="checkAnswer()"
         placeholder="Type answer"
       />
-      <small class="hint">{{ localWord.hint }}</small>
+      <small class="hint">{{ word.hint }}</small>
     </template>
   </div>
 </template>
