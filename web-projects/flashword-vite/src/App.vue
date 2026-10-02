@@ -10,6 +10,7 @@ export default {
           answer: '',
           correct: false,
           showHint: false,
+          wrong: false,
         },
         {
           word_a: 'uno',
@@ -18,6 +19,7 @@ export default {
           answer: '',
           correct: false,
           showHint: false,
+          wrong: false,
         },
         {
           word_a: 'gris',
@@ -26,10 +28,9 @@ export default {
           answer: '',
           correct: false,
           showHint: false,
+          wrong: false,
         },
       ],
-      // correctCount: 0,
-      // completed: false,
     };
   },
   computed: {
@@ -46,22 +47,30 @@ export default {
     wordCount() {
       return this.words.length;
     },
-    completed() {
-      return this.correctCount == this.wordCount;
-    },
-  },
-  watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      return this.words.filter((word) => word.correct).length;
+    },
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
   methods: {
+    resetGame() {
+      // Reset all words to their initial state (task 1).
+      for (const word of this.words) {
+        word.answer = '';
+        word.correct = false;
+        word.wrong = false;
+        word.showHint = false;
+      }
+    },
     checkAnswer(word) {
-      // word.correct = word.word_b = word.answer;
-
+      // Mark correct if the answer matches, otherwise mark wrong on Enter.
       if (word.answer.trim().toLowerCase() === word.word_b.toLowerCase()) {
         word.correct = true;
-        this.correctCount++;
+        word.wrong = false;
+      } else {
+        word.wrong = true;
       }
     },
   },
@@ -76,12 +85,13 @@ export default {
   <p v-else id="correctCount">
     You have answered {{ correctCount }} out of {{ wordCount }}
   </p>
+  <button id="resetBtn" v-on:click="resetGame">Reset Game</button>
 
   <div id="cards">
     <div
       class="card"
       v-for="word in shuffledWords"
-      v-bind:class="{ correct: word.correct }"
+      v-bind:class="{ correct: word.correct, wrong: word.wrong }"
     >
       <p class="word">{{ word.word_a }}</p>
 
@@ -100,7 +110,9 @@ export default {
       <p v-if="word.showHint && !word.correct" class="hint">
         {{ word.hint }}
       </p>
-      <p v-else class="correctAnswer">{{ word.answer }}</p>
+      <p v-else class="correctAnswer" v-bind:class="{ wrong: word.wrong }">
+        {{ word.wrong ? word.word_b : word.answer }}
+      </p>
     </div>
   </div>
 </template>
@@ -131,6 +143,14 @@ export default {
   border-radius: 5px;
   padding: 10px 0;
   font-size: 25px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.wrong {
+  color: #842029;
+  background-color: #f8d7da;
 }
 
 input[type='text'] {
@@ -183,5 +203,20 @@ input[type='text'] {
   color: #0f5132;
   padding: 10px;
   margin: 10px;
+}
+
+#resetBtn {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #0f5132;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#resetBtn:hover {
+  background-color: #0a3d24;
 }
 </style>
