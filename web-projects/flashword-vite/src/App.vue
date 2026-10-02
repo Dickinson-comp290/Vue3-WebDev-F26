@@ -9,6 +9,7 @@ export default {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'uno',
@@ -16,6 +17,7 @@ export default {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'gris',
@@ -23,10 +25,11 @@ export default {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
         },
       ],
-      correctCount: 0,
-      completed: false,
+      // correctCount: 0,
+      // completed: false,
     };
   },
   computed: {
@@ -42,6 +45,9 @@ export default {
     },
     wordCount() {
       return this.words.length;
+    },
+    completed() {
+      return this.correctCount == this.wordCount;
     },
   },
   watch: {
@@ -85,6 +91,15 @@ export default {
         v-model="word.answer"
         v-on:keyup.enter="checkAnswer(word)"
       />
+
+      <label v-if="!word.correct" class="hintToggle">
+        <input type="checkbox" v-model="word.showHint" />
+        Show hint
+      </label>
+
+      <p v-if="word.showHint && !word.correct" class="hint">
+        {{ word.hint }}
+      </p>
       <p v-else class="correctAnswer">{{ word.answer }}</p>
     </div>
   </div>
@@ -125,6 +140,20 @@ input[type='text'] {
   margin-top: 5px;
   text-align: center;
   padding: 5px;
+}
+
+.hintToggle {
+  display: block;
+  font-size: 16px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.hint {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  font-style: italic;
+  color: #555;
 }
 
 .word {
