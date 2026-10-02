@@ -9,6 +9,8 @@ export default {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
+          wrong: false,
         },
         {
           word_a: 'uno',
@@ -16,6 +18,8 @@ export default {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
+          wrong: false,
         },
         {
           word_a: 'gris',
@@ -23,31 +27,50 @@ export default {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
+          wrong: false,
         },
       ],
-      correctCount: 0,
-      completed: false,
     };
   },
   computed: {
     shuffledWords() {
-      return [...this.words].sort(() => 0.5 - Math.random());
+      const words = [...this.words];
+
+      for (let i = words.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [words[i], words[j]] = [words[j], words[i]];
+      }
+
+      return words;
     },
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      return this.words.filter((word) => word.correct).length;
+    },
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
   methods: {
+    resetGame() {
+      // Reset all words to their initial state (task 1).
+      for (const word of this.words) {
+        word.answer = '';
+        word.correct = false;
+        word.wrong = false;
+        word.showHint = false;
+      }
+    },
     checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
+      // Mark correct if the answer matches, otherwise mark wrong on Enter.
+      if (word.answer.trim().toLowerCase() === word.word_b.toLowerCase()) {
+        word.correct = true;
+        word.wrong = false;
+      } else {
+        word.wrong = true;
       }
     },
   },
@@ -55,31 +78,41 @@ export default {
 </script>
 
 <template>
-  <div id="app" v-cloak>
-    <h1>FlashWord</h1>
+  <h1>FlashWord</h1>
+  <p v-if="completed" id="completed">
+    Great work, you completed all the words!
+  </p>
+  <p v-else id="correctCount">
+    You have answered {{ correctCount }} out of {{ wordCount }}
+  </p>
+  <button id="resetBtn" v-on:click="resetGame">Reset Game</button>
 
-    <p v-if="completed" id="completed">
-      Great work, you have completed all the words!
-    </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
-    </p>
+  <div id="cards">
+    <div
+      class="card"
+      v-for="word in shuffledWords"
+      v-bind:class="{ correct: word.correct, wrong: word.wrong }"
+    >
+      <p class="word">{{ word.word_a }}</p>
 
-    <div id="cards">
-      <div
-        class="card"
-        v-for="word in shuffledWords"
-        v-bind:class="{ correct: word.correct }"
-      >
-        <p class="word">{{ word.word_a }}</p>
-        <input
-          type="text"
-          v-if="!word.correct"
-          v-model="word.answer"
-          v-on:keyup.enter="checkAnswer(word)"
-        />
-        <p v-else class="correctAnswer">{{ word.answer }}</p>
-      </div>
+      <input
+        v-if="!word.correct"
+        type="text"
+        v-model="word.answer"
+        v-on:keyup.enter="checkAnswer(word)"
+      />
+
+      <label v-if="!word.correct" class="hintToggle">
+        <input type="checkbox" v-model="word.showHint" />
+        Show hint
+      </label>
+
+      <p v-if="word.showHint && !word.correct" class="hint">
+        {{ word.hint }}
+      </p>
+      <p v-else class="correctAnswer" v-bind:class="{ wrong: word.wrong }">
+        {{ word.wrong ? word.word_b : word.answer }}
+      </p>
     </div>
   </div>
 </template>
@@ -110,6 +143,14 @@ export default {
   border-radius: 5px;
   padding: 10px 0;
   font-size: 25px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.wrong {
+  color: #842029;
+  background-color: #f8d7da;
 }
 
 input[type='text'] {
@@ -121,10 +162,22 @@ input[type='text'] {
   padding: 5px;
 }
 
+.hintToggle {
+  display: block;
+  font-size: 16px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.hint {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  font-style: italic;
+  color: #555;
+}
+
 .word {
   font-weight: bold;
-  padding: 0;
-  margin: 0;
 }
 
 .correctAnswer {
@@ -150,5 +203,20 @@ input[type='text'] {
   color: #0f5132;
   padding: 10px;
   margin: 10px;
+}
+
+#resetBtn {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #0f5132;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#resetBtn:hover {
+  background-color: #0a3d24;
 }
 </style>

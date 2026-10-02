@@ -2,7 +2,10 @@
 import { ref } from 'vue';
 
 defineProps({
-  msg: String,
+  msg: {
+    type: String,
+    default: '',
+  },
 });
 
 const count = ref(0);
@@ -10,7 +13,7 @@ const count = ref(0);
 
 <template>
   <h1>{{ msg }}</h1>
-  ...
+  ....
 </template>
 
 <style scoped>
