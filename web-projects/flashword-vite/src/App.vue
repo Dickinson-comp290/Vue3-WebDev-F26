@@ -52,6 +52,7 @@ export default {
 
       if (word.correct) {
         this.correctCount++;
+        showHint: false;
       }
     },
     hint(word) {
@@ -98,16 +99,10 @@ export default {
       </div>
     </div>
     <div id="checkbox">
-      <div
-        v-for="word in shuffledWords"
-        v-bind:key="word.hint"
-        class="check"
-        v-bind:class="{ correct: word.correct }"
-      >
-        <input type="checkbox" id="showHint" v-model="showHint" />
-        <label for="showHint">Show hint?</label>
-        <button v-on:click="showHint = true">{{ word.hint }}</button>
-      </div>
+      <div class="check"></div>
+      <input type="checkbox" id="showHint" v-model="showHint" />
+      <label for="showHint">Show hint?</label>
+      <button v-if="showHint = true">{{ word.hint }}</button>
     </div>
     <!-- <div id="checkbox">
       <div class="check">
