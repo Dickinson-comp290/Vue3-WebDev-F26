@@ -28,8 +28,6 @@ export default {
           showHint: false,
         },
       ],
-      correctCount: 0,
-      completed: false,
     };
   },
   computed: {
@@ -39,18 +37,26 @@ export default {
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      return this.words.filter((word) => word.correct).length;
+    },
+    completed() {
+      return this.correctCount == this.wordCount;
+    },
+    restartGame() {
+      return this.words.forEach((word) => {
+        word.answer = '';
+        word.correct = false;
+        word.showHint = false;
+      });
     },
   },
+
   methods: {
     checkAnswer(word) {
       word.correct = word.word_b == word.answer;
 
       if (word.correct) {
-        this.correctCount++;
         word.showHint = false;
       }
     },
@@ -92,6 +98,9 @@ export default {
           {{ word.answer }}
         </p>
       </div>
+    </div>
+    <div id="restart">
+      <input type="button" value="restartGame" v-on:click="restartGame()" />
     </div>
   </div>
 </template>
