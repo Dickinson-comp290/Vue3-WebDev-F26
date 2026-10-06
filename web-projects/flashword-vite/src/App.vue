@@ -88,6 +88,7 @@ export default {
           v-if="!word.correct"
           type="text"
           v-model="word.answer"
+          showHint="true"
           v-on:keyup.enter="checkAnswer(word)"
         />
         <p v-else class="correctAnswer">
@@ -101,8 +102,7 @@ export default {
     <div id="checkbox">
       <div class="check"></div>
       <input type="checkbox" id="showHint" v-model="showHint" />
-      <label for="showHint">Show hint?</label>
-      <button v-if="showHint = true">{{ word.hint }}</button>
+      <button v-if="showHint">{{ word.hint }}</button>
     </div>
     <!-- <div id="checkbox">
       <div class="check">
