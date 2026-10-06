@@ -9,6 +9,7 @@ export default {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'uno',
@@ -16,6 +17,7 @@ export default {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'gris',
@@ -23,17 +25,14 @@ export default {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
         },
       ],
       correctCount: 0,
       completed: false,
-      showHint: false,
     };
   },
   computed: {
-    // shuffledWords() {
-    //   return this.words.sort(() => 0.5 - Math.random());
-    // },
     shuffledWords() {
       return [...this.words].sort(() => 0.5 - Math.random());
     },
@@ -52,11 +51,8 @@ export default {
 
       if (word.correct) {
         this.correctCount++;
-        showHint: false;
+        word.showHint = false;
       }
-    },
-    hint(word) {
-      word.hint;
     },
   },
 };
@@ -64,7 +60,7 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h1>FlashWord</h1>
+    <h1>Bubblegum</h1>
 
     <p v-if="completed" id="completed">
       Good work, you completed all the words!
@@ -83,7 +79,8 @@ export default {
         <p class="word">
           {{ word.word_a }}
         </p>
-
+        <input type="checkbox" id="showHint" v-model="word.showHint" />
+        <p v-if="word.showHint">{{ word.hint }}</p>
         <input
           v-if="!word.correct"
           type="text"
@@ -94,26 +91,8 @@ export default {
         <p v-else class="correctAnswer">
           {{ word.answer }}
         </p>
-
-        <!-- <p v-show="hint">{{ hint(word) }}</p>
-        <button v-on:click="hint(word)">Hint</button> -->
       </div>
     </div>
-    <div id="checkbox">
-      <div class="check"></div>
-      <input type="checkbox" id="showHint" v-model="showHint" />
-      <button v-if="showHint">{{ word.hint }}</button>
-    </div>
-    <!-- <div id="checkbox">
-      <div class="check">
-        <input type="checkbox" id="showHint" v-model="showHint" />
-        <label for="showHint">hint</label>
-
-        <div v-if="showHint">
-          <button v-on:click="checkbox">{{ hint(word) }}</button>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
