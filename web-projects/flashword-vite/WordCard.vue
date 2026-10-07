@@ -1,13 +1,24 @@
 <script>
 export default {
   name: 'WordCard',
-  props: ['word'],
+  emits: ['increment-correct-count'],
+  props: {
+    word: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      answer: this.word.answer,
+      isCorrect: false,
+    };
+  },
   methods: {
     checkAnswer() {
-      this.word.correct = this.word.word_b == this.word.answer;
+      this.isCorrect = this.word.word_b == this.answer;
 
-      if (this.correctCount == this.wordCount) {
-        // this.correctCount++;
+      if (this.isCorrect) {
         this.$emit('increment-correct-count');
       }
     },
@@ -16,22 +27,22 @@ export default {
 </script>
 
 <template>
-  <div class="card" v-bind:class="{ correct: word.correct }">
+  <div class="card" v-bind:class="{ correct: isCorrect }">
     <p class="word">{{ word.word_a }}</p>
 
     <input
-      v-if="!word.correct"
+      v-if="!isCorrect"
       type="text"
-      v-model="word.answer"
+      v-model="answer"
       v-on:keyup.enter="checkAnswer()"
     />
 
-    <div v-if="!word.correct" class="hintBox">
-      <label> <input type="checkbox" v-model="word.showHint" /> Hint </label>
-      <span v-if="word.showHint" class="hint">{{ word.hint }}</span>
+    <div v-if="!isCorrect" class="hintBox">
+      <label> <input type="checkbox" v-model="showHint" /> Hint </label>
+      <span v-if="showHint" class="hint">{{ word.hint }}</span>
     </div>
 
-    <p v-else class="correctAnswer">{{ word.answer }}</p>
+    <p v-else class="correctAnswer">{{ answer }}</p>
   </div>
 </template>
 
