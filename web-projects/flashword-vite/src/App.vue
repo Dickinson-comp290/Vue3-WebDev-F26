@@ -9,6 +9,7 @@ export default {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'uno',
@@ -16,6 +17,7 @@ export default {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'gris',
@@ -23,33 +25,29 @@ export default {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
         },
       ],
-      correctCount: 0,
-      completed: false,
     };
   },
   computed: {
     shuffledWords() {
-      return null;
-      // return this.words.sort(() => 0 - Math.random());
+      return [...this.words].sort(() => 0 - Math.random());
     },
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      return this.words.filter((word) => word.correct).length;
+    },
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
+  watch: {},
   methods: {
     checkAnswer(word) {
       word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
     },
   },
 };
@@ -77,7 +75,19 @@ export default {
         v-model="word.answer"
         v-on:keyup.enter="checkAnswer(word)"
       />
+
       <p v-else class="correctAnswer">{{ word.answer }}</p>
+
+      <input
+        type="checkbox"
+        v-on:change="
+          {
+            word.showHint = !word.showHint;
+          }
+        "
+        v-show="!word.correct || word.showHint"
+      />
+      <p v-if="word.showHint">{{ word.hint }}</p>
     </div>
   </div>
   <HelloWorld msg="Vite + Vue" />
