@@ -1,5 +1,7 @@
 <script>
+import WordCard from './components/WordCard.vue';
 export default {
+  components: { WordCard },
   data() {
     return {
       words: [
@@ -54,12 +56,8 @@ export default {
     },
   },
   methods: {
-    checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
+    incrementCorrectCount() {
+      this.correctCount++;
     },
   },
 };
@@ -75,28 +73,12 @@ export default {
   </p>
 
   <div id="cards">
-    <div
-      class="card"
+    <WordCard
       v-for="word in shuffledWords"
-      v-bind:class="{ correct: word.correct }"
-    >
-      <p class="word">{{ word.word_a }}</p>
-
-      <input
-        v-if="!word.correct"
-        type="text"
-        v-model="word.answer"
-        v-on:keyup.enter="checkAnswer(word)"
-      />
-      <p v-else class="correctAnswer">{{ word.answer }}</p>
-      <label v-if="!word.correct" class="hintSwitch">
-        <input type="checkbox" v-model="word.showHint" />
-        Show hint
-      </label>
-      <p v-if="word.showHint && !word.correct" class="hint">
-        Hint: {{ word.hint }}
-      </p>
-    </div>
+      v-bind:key="word.word_a"
+      v-bind:word="word"
+      v-on:incrementCorrectCount="correctCount++"
+    ></WordCard>
   </div>
 </template>
 
@@ -121,40 +103,6 @@ export default {
   grid-gap: 30px;
 }
 
-.card {
-  background-color: #e8f0ff;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 25px;
-}
-
-input[type='text'] {
-  border: 0;
-  width: 85%;
-  font-size: 25px;
-  border-radius: 5px;
-  margin-top: 5px;
-  text-align: center;
-  padding: 5px;
-}
-
-.word {
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-  color: black;
-}
-
-.correctAnswer {
-  padding: 0;
-  margin: 0;
-}
-
-.correct {
-  color: #0f5132;
-  background-color: #d1e7dd;
-}
-
 #correctCount {
   font-size: 20px;
   margin: 10px;
@@ -168,13 +116,6 @@ input[type='text'] {
   color: #0f5132;
   padding: 10px;
   margin: 10px;
-}
-
-.hintSwitch {
-  display: block;
-  color: black;
-  font-size: 16px;
-  margin-top: 8px;
 }
 
 .hint {
