@@ -9,6 +9,8 @@ const Flashword = {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
+          
         },
         {
           word_a: 'uno',
@@ -16,6 +18,7 @@ const Flashword = {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'gris',
@@ -23,6 +26,7 @@ const Flashword = {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
         },
       ],
 
@@ -54,5 +58,7 @@ const Flashword = {
     },
   },
 }};
+
+
 // eslint-disable-next-line no-unused-vars, no-undef
 const app = Vue.createApp(Flashword).mount('#app');
