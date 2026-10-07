@@ -1,5 +1,9 @@
 <script>
+import WordCard from './components/WordCard.vue';
 export default {
+  components: {
+    WordCard,
+  },
   data() {
     return {
       words: [
@@ -49,14 +53,13 @@ export default {
     },
   },
   methods: {
-    checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
+    incrementCorrectCount() {
+      this.correctCount++;
     },
   },
 };
 
 const app = Vue.createApp(Flashword).mount('#app');
-
 </script>
 
 <template>
@@ -75,41 +78,22 @@ const app = Vue.createApp(Flashword).mount('#app');
 
       <p v-if="completed" id="completed">Good work!</p>
       <p v-else id="correctCount">
-        You have answered {{correctCount}} out of {{ wordCount}}
+        You have answered {{ correctCount }} out of {{ wordCount }}
       </p>
 
       <div id="cards">
-        <div
-          class="card"
+        <WordCard
           v-for="word in shuffleWords"
-          v-bind:class="{ correct: word.correct }"
+          v-bind:word="word"
+          v-on:increment-correct-count="incrementCorrectCount"
         >
-          <p class="word">{{ word.word_a }}</p>
-
-          <input
-            v-if="!word.correct"
-            type="text"
-            v-model="word.answer"
-            v-on:keyup.enter="checkAnswer(word)"
-          />
-
-          <div v-if="!word.correct" class="hintBox">
-            <label>
-              <input type="checkbox" v-model="word.showHint" /> Hint
-            </label>
-            <span v-if="word.showHint" class="hint">{{ word.hint }}</span>
-          </div>
-
-          <p v-else class="correctAnswer">{{ word.answer }}</p>
-        </div>
+        </WordCard>
       </div>
     </div>
   </body>
-
 </template>
 
 <style>
-
 [v-cloak] {
   display: none;
 }
@@ -176,7 +160,4 @@ input[type='text'] {
   padding: 10px;
   margin: 10px;
 }
-
 </style>
-
-
