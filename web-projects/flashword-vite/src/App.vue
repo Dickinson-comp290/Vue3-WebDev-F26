@@ -1,5 +1,7 @@
 <script>
+import WordCard from './components/WordCard.vue';
 export default {
+  components: { WordCard },
   data() {
     return {
       words: [
@@ -31,8 +33,7 @@ export default {
   },
   computed: {
     shuffledWords() {
-      return null;
-      // return this.words.sort(() => 0 - Math.random());
+      return [...this.words].sort(() => 0 - Math.random());
     },
     wordCount() {
       return this.words.length;
@@ -44,12 +45,8 @@ export default {
     },
   },
   methods: {
-    checkAnswer(word) {
-      word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
+    incrementCorrectCount() {
+      this.correctCount++;
     },
   },
 };
@@ -64,35 +61,81 @@ export default {
   </p>
 
   <div id="cards">
-    <div
-      class="card"
+    <WordCard
       v-for="word in shuffledWords"
-      v-bind:class="{ correct: word.correct }"
-    >
-      <p class="word">{{ word.word_a }}</p>
-
-      <input
-        v-if="!word.correct"
-        type="text"
-        v-model="word.answer"
-        v-on:keyup.enter="checkAnswer(word)"
-      />
-      <p v-else class="correctAnswer">{{ word.answer }}</p>
-    </div>
+      v-bind:key="word.word_a"
+      v-bind:word="word"
+      v-on:incrementCorrectCount="incrementCorrectCount"
+    ></WordCard>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+[v-cloak] {
+  display: none;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+#app {
+  /* cspell:disable-next-line */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: black;
+  margin-top: 60px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+#cards {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-gap: 30px;
+}
+
+.card {
+  background-color: #e8f0ff;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 25px;
+}
+
+input[type='text'] {
+  border: 0;
+  font-size: 25px;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: center;
+  padding: 5px;
+}
+
+.word {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.correctAnswer {
+  padding: 0;
+  margin: 0;
+}
+
+.correct {
+  color: #0f5132;
+  background-color: #d1e7dd;
+}
+
+#correctCount {
+  font-size: 20px;
+  margin: 10px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+#completed {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0f5132;
+  padding: 10px;
+  margin: 10px;
 }
 </style>
