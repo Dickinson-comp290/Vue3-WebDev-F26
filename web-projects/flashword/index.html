@@ -33,6 +33,13 @@
             v-on:keyup.enter="checkAnswer(word)"
           />
 
+          <div v-if="!word.correct" class="hintBox">
+            <label>
+              <input type="checkbox" v-model="word.showHint" /> Hint
+            </label>
+            <span v-if="word.showHint" class="hint">{{ word.hint }}</span>
+          </div>
+
           <p v-else class="correctAnswer">{{ word.answer }}</p>
         </div>
       </div>

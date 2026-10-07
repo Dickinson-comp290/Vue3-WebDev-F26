@@ -1,5 +1,4 @@
 const Flashword = {
-  Export default {
   data() {
     return {
       words: [
@@ -10,7 +9,6 @@ const Flashword = {
           answer: '',
           correct: false,
           showHint: false,
-          
         },
         {
           word_a: 'uno',
@@ -29,8 +27,6 @@ const Flashword = {
           showHint: false,
         },
       ],
-
-      correctCount: 0,
       completed: false,
     };
   },
@@ -40,6 +36,9 @@ const Flashword = {
     },
   },
   computed: {
+    correctCount() {
+      return this.words.filter((word) => word.correct).length;
+    },
     shuffleWords() {
       return this.words.sort(() => 0.5 - Math.random());
     },
@@ -51,14 +50,8 @@ const Flashword = {
   methods: {
     checkAnswer(word) {
       word.correct = word.word_b == word.answer;
-
-      if (word.correct) {
-        this.correctCount++;
-      }
     },
   },
-}};
+};
 
-
-// eslint-disable-next-line no-unused-vars, no-undef
 const app = Vue.createApp(Flashword).mount('#app');
