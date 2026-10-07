@@ -9,6 +9,7 @@ export default {
           hint: 'greeting',
           answer: '',
           correct: false,
+          showHint: false,
         },
         {
           word_a: 'uno',
@@ -16,6 +17,8 @@ export default {
           hint: 'number',
           answer: '',
           correct: false,
+          showHint: false,
+          showHint: false,
         },
         {
           word_a: 'gris',
@@ -23,6 +26,7 @@ export default {
           hint: 'color',
           answer: '',
           correct: false,
+          showHint: false,
         },
       ],
       correctCount: 0,
@@ -85,6 +89,13 @@ export default {
         v-on:keyup.enter="checkAnswer(word)"
       />
       <p v-else class="correctAnswer">{{ word.answer }}</p>
+      <label v-if="!word.correct" class="hintSwitch">
+        <input type="checkbox" v-model="word.showHint" />
+        Show hint
+      </label>
+      <p v-if="word.showHint && !word.correct" class="hint">
+        Hint: {{ word.hint }}
+      </p>
     </div>
   </div>
 </template>
@@ -119,6 +130,7 @@ export default {
 
 input[type='text'] {
   border: 0;
+  width: 85%;
   font-size: 25px;
   border-radius: 5px;
   margin-top: 5px;
@@ -130,6 +142,7 @@ input[type='text'] {
   font-weight: bold;
   padding: 0;
   margin: 0;
+  color: black;
 }
 
 .correctAnswer {
@@ -155,5 +168,19 @@ input[type='text'] {
   color: #0f5132;
   padding: 10px;
   margin: 10px;
+}
+
+.hintSwitch {
+  display: block;
+  color: black;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.hint {
+  font-size: 16px;
+  font-style: italic;
+  margin: 4px 0 0;
+  color: #555;
 }
 </style>
