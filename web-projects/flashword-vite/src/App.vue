@@ -6,25 +6,19 @@ export default {
     return {
       words: [
         {
-          word_a: 'hola',
+          wordToTranslate: 'hola',
           word_b: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'uno',
+          wordToTranslate: 'uno',
           word_b: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'gris',
+          wordToTranslate: 'gris',
           word_b: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
         },
       ],
       correctCount: 0,
@@ -65,7 +59,7 @@ export default {
   <div id="cards">
     <WordCard
       v-for="word in words"
-      v-bind:key="word.word_a"
+      v-bind:key="word.wordToTranslate"
       v-bind:word="word"
       v-on:incrementCorrectCount="incrementCorrectCount"
     ></WordCard>
@@ -92,33 +86,6 @@ export default {
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
 }
-
-/* .card {
-  background-color: #e8f0ff;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 25px;
-}
-
-input[type='text'] {
-  border: 0;
-  font-size: 25px;
-  border-radius: 5px;
-  margin-top: 5px;
-  text-align: center;
-  padding: 5px;
-}
-
-.word {
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-}
-
-.correctAnswer {
-  padding: 0;
-  margin: 0;
-} */
 
 .correct {
   color: #0f5132;
