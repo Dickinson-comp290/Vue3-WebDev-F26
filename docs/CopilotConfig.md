@@ -21,7 +21,7 @@
 7. Choose "Keyboard Shortcuts."
 8. Search for "Trigger Inline Suggestion."
 9. Click the "+" to the left of the "Trigger Inline Suggestion."
-10. Type "Alt + \" (windows) or "Option + \" (mac) and then "Enter".
+10. Type "Alt + ." (windows) or "Option + ." (mac) and then "Enter".
 11. Search for "Open Completions Panel."
 12. Click the "+" to the left of the "GitHub Copilot: Open Completions Panel."
 13. Type "Alt + /" (windows) or "Option + /" (mac) and then "Enter".
