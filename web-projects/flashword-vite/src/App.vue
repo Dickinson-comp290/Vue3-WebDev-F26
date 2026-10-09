@@ -1,23 +1,24 @@
 <script>
+import ScoreLine from './components/ScoreLine.vue';
 import WordCard from './components/WordCard.vue';
 export default {
-  components: { WordCard },
+  components: { ScoreLine, WordCard },
   data() {
     return {
       words: [
         {
           spWord: 'hola',
-          word_b: 'hello',
+          enWord: 'hello',
           hint: 'greeting',
         },
         {
           spWord: 'uno',
-          word_b: 'one',
+          enWord: 'one',
           hint: 'number',
         },
         {
           spWord: 'gris',
-          word_b: 'grey',
+          enWord: 'grey',
           hint: 'color',
         },
       ],
@@ -49,10 +50,11 @@ export default {
 <template>
   <h1>FlashWord</h1>
 
-  <p v-if="completed" id="completed">Good work, you completed all the words!</p>
-  <p v-else id="correctCount">
-    You have answered {{ correctCount }} out of {{ wordCount }}
-  </p>
+  <ScoreLine
+    v-bind:completed="completed"
+    v-bind:correct-count="correctCount"
+    v-bind:word-count="wordCount"
+  />
 
   <div id="cards">
     <WordCard
