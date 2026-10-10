@@ -1,33 +1,25 @@
 <script>
 import WordCard from './components/WordCard.vue';
-
+import ScoreLine from './components/ScoreLine.vue';
 export default {
-  components: {
-    WordCard,
-  },
+  components: { WordCard, ScoreLine },
   data() {
     return {
       words: [
         {
-          word_a: 'hola',
-          word_b: 'hello',
+          wordToTranslate: 'hola',
+          translatedWord: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'uno',
-          word_b: 'one',
+          wordToTranslate: 'uno',
+          translatedWord: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'gris',
-          word_b: 'grey',
+          wordToTranslate: 'gris',
+          translatedWord: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
         },
       ],
       correctCount: 0,
@@ -56,29 +48,25 @@ export default {
 </script>
 
 <template>
-  <div id="app" v-cloak>
-    <h1>FlashWord</h1>
+  <h1>FlashWord</h1>
 
-    <p v-if="completed" id="completed">
-      Great work, you have completed all the words!
-    </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
-    </p>
+  <ScoreLine
+    v-bind:correct-count="correctCount"
+    v-bind:word-count="wordCount"
+    v-bind:completed="completed"
+  />
 
-    <div id="cards">
-      <WordCard
-        v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
-        v-bind:word="word"
-        v-on:incrementCorrectCount="incrementCorrectCount"
-      >
-      </WordCard>
-    </div>
+  <div id="cards">
+    <WordCard
+      v-for="word in words"
+      v-bind:key="word.wordToTranslate"
+      v-bind:word="word"
+      v-on:incrementCorrectCount="incrementCorrectCount"
+    ></WordCard>
   </div>
 </template>
 
-<style scoped>
+<style>
 [v-cloak] {
   display: none;
 }
@@ -99,18 +87,8 @@ export default {
   grid-gap: 30px;
 }
 
-#correctCount {
-  font-size: 20px;
-  margin: 10px;
-  font-weight: bold;
-  padding: 10px;
-}
-
-#completed {
-  font-size: 20px;
-  font-weight: bold;
+.correct {
   color: #0f5132;
-  padding: 10px;
-  margin: 10px;
+  background-color: #d1e7dd;
 }
 </style>

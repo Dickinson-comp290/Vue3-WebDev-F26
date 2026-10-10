@@ -10,15 +10,15 @@ export default {
   emits: ['incrementCorrectCount'],
   data() {
     return {
-      correct: false,
-      answer: '',
+      userAnswer: '',
+      isCorrect: false,
+      showHint: false,
     };
   },
   methods: {
     checkAnswer() {
-      this.correct = this.word.word_b === this.answer;
-
-      if (this.correct) {
+      this.isCorrect = this.word.translatedWord == this.userAnswer;
+      if (this.isCorrect) {
         this.$emit('incrementCorrectCount');
       }
     },
@@ -27,15 +27,20 @@ export default {
 </script>
 
 <template>
-  <div class="card" v-bind:class="{ correct: correct }">
-    <p class="word">{{ word.word_a }}</p>
+  <div class="card" v-bind:class="{ correct: isCorrect }">
+    <p class="word">{{ word.wordToTranslate }}</p>
     <input
       type="text"
-      v-if="!correct"
-      v-model="answer"
+      v-if="!isCorrect"
+      v-model="userAnswer"
       v-on:keyup.enter="checkAnswer()"
     />
-    <p v-else class="correctAnswer">{{ answer }}</p>
+    <label v-if="!isCorrect" class="hintToggle">
+      <input type="checkbox" v-model="showHint" />
+      Show hint
+    </label>
+    <p v-if="showHint && !isCorrect" class="hint">{{ word.hint }}</p>
+    <p v-if="isCorrect" class="correctAnswer">{{ userAnswer }}</p>
   </div>
 </template>
 
@@ -48,12 +53,21 @@ export default {
 }
 
 input[type='text'] {
-  border: 0;
+  border: 1px solid #64748b;
   font-size: 25px;
   border-radius: 5px;
   margin-top: 5px;
   text-align: center;
   padding: 5px;
+  background-color: #fff;
+  color: #111827;
+}
+
+.hintToggle {
+  display: block;
+  font-size: 16px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .word {
@@ -65,6 +79,13 @@ input[type='text'] {
 .correctAnswer {
   padding: 0;
   margin: 0;
+}
+
+.hint {
+  margin: 5px 0 0;
+  font-size: 18px;
+  font-style: italic;
+  color: #555;
 }
 
 .correct {
