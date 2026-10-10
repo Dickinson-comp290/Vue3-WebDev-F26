@@ -6,21 +6,21 @@ export default {
     return {
       words: [
         {
-          word_a: 'hola',
+          word_change: 'hola',
           word_b: 'hello',
           hint: 'greeting',
           answer: '',
           correct: false,
         },
         {
-          word_a: 'uno',
+          word_change: 'uno',
           word_b: 'one',
           hint: 'number',
           answer: '',
           correct: false,
         },
         {
-          word_a: 'gris',
+          word_change: 'gris',
           word_b: 'grey',
           hint: 'color',
           answer: '',
@@ -65,7 +65,7 @@ export default {
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_change"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       ></WordCard>

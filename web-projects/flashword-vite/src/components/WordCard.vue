@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
-    <p class="word">{{ word.word_a }}</p>
+    <p class="word">{{ word.word_change }}</p>
     <input
       v-if="!correct"
       type="text"
