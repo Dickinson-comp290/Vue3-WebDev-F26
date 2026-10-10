@@ -12,15 +12,17 @@ export default {
     return {
       correct: false,
       answer: '',
+      showHint: false,
     };
   },
   methods: {
     checkAnswer() {
       // When referencing props, prefix with the `this` keyword
-      this.correct = this.word.word_b === this.answer;
+      this.correct = this.word.word_b == this.answer;
       if (this.correct) {
         // Emit the custom event `incrementCorrectCount` to the parent component that is utilizing this component
         this.$emit('incrementCorrectCount');
+        this.showHint = false;
       }
     },
   },
@@ -30,12 +32,15 @@ export default {
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
     <p class="word">{{ word.word_change }}</p>
+
     <input
       v-if="!correct"
       type="text"
       v-model="answer"
       v-on:keyup.enter="checkAnswer()"
     />
+    <input type="checkbox" id="showHint" v-model="showHint" />
+    <p v-if="showHint">{{ word.hint }}</p>
 
     <p v-else class="correctAnswer">{{ word.answer }}</p>
   </div>
