@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     checkAnswer() {
-      this.isCorrect = this.word.word_b == this.userAnswer;
+      this.isCorrect = this.word.translatedWord == this.userAnswer;
       if (this.isCorrect) {
         this.$emit('incrementCorrectCount');
       }
