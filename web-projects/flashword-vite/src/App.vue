@@ -1,27 +1,29 @@
 <script>
 import WordCard from './components/WordCard.vue';
+import ScoreLine from './components/ScoreLine.vue';
+
 export default {
-  components: { WordCard },
+  components: { WordCard, ScoreLine },
   data() {
     return {
       words: [
         {
           word_change: 'hola',
-          word_b: 'hello',
+          word_fixed: 'hello',
           hint: 'greeting',
           answer: '',
           correct: false,
         },
         {
           word_change: 'uno',
-          word_b: 'one',
+          word_fixed: 'one',
           hint: 'number',
           answer: '',
           correct: false,
         },
         {
           word_change: 'gris',
-          word_b: 'grey',
+          word_fixed: 'grey',
           hint: 'color',
           answer: '',
           correct: false,
@@ -54,14 +56,16 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h1>Bubbles</h1>
+    <h1>Flashword</h1>
 
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
     </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
-    </p>
+    <ScoreLine
+      v-else
+      v-bind:correct-count="correctCount"
+      v-bind:word-count="wordCount"
+    />
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
@@ -92,45 +96,6 @@ export default {
   display: grid;
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
-}
-
-.card {
-  background-color: #e8f0ff;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-size: 25px;
-}
-
-input[type='text'] {
-  border: 0;
-  font-size: 25px;
-  border-radius: 5px;
-  margin-top: 5px;
-  text-align: center;
-  padding: 5px;
-}
-
-.word {
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-}
-
-.correctAnswer {
-  padding: 0;
-  margin: 0;
-}
-
-.correct {
-  color: #0f5132;
-  background-color: #d1e7dd;
-}
-
-#correctCount {
-  font-size: 20px;
-  margin: 10px;
-  font-weight: bold;
-  padding: 10px;
 }
 
 #completed {
