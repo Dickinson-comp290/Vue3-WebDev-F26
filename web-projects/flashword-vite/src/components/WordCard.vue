@@ -19,7 +19,7 @@ export default {
     checkAnswer() {
       if (this.correct) return;
 
-      this.correct = this.word.word_b == this.answer;
+      this.correct = this.word.translation == this.answer;
 
       if (this.correct) {
         this.$emit('incrementCorrectCount');
