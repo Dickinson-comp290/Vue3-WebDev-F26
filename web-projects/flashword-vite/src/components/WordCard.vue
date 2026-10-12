@@ -12,6 +12,7 @@ export default {
     return {
       correct: false,
       answer: '',
+      showHint: false,
     };
   },
   methods: {
@@ -30,7 +31,7 @@ export default {
 
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
-    <p class="word">{{ word.word_a }}</p>
+    <p class="word">{{ word.wordToTranslate }}</p>
 
     <template v-if="correct">
       <p class="correctAnswer">{{ answer }}</p>
@@ -43,7 +44,11 @@ export default {
         v-on:keyup.enter="checkAnswer()"
         placeholder="Type answer"
       />
-      <small class="hint">{{ word.hint }}</small>
+      <label class="hintToggle">
+        <input type="checkbox" v-model="showHint" />
+        Show hint
+      </label>
+      <small v-if="showHint" class="hint">{{ word.hint }}</small>
     </template>
   </div>
 </template>
@@ -81,10 +86,18 @@ input[type='text'] {
 
 .hint {
   display: block;
+  margin-top: 8px;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   opacity: 0.7;
+}
+
+.hintToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
 }
 
 .correctAnswer {
