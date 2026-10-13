@@ -1,9 +1,10 @@
 <script>
 import WordCard from './components/WordCard.vue';
-import ScoreLine from './components/ScoreLine.vue';
 
 export default {
-  components: { WordCard, ScoreLine },
+  components: {
+    WordCard,
+  },
   data() {
     return {
       words: [
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     incrementCorrectCount() {
-      this.correctCount += 1;
+      this.correctCount++;
     },
   },
 };
@@ -64,10 +65,11 @@ export default {
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.wordToTranslate"
+        v-bind:key="word.word_a"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
-      />
+      >
+      </WordCard>
     </div>
   </div>
 </template>
@@ -88,10 +90,15 @@ export default {
 
 #cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 24px;
-  max-width: 900px;
-  margin: 30px auto 0;
+  grid-template-columns: 300px 300px 300px;
+  grid-gap: 30px;
+}
+
+#correctCount {
+  font-size: 20px;
+  margin: 10px;
+  font-weight: bold;
+  padding: 10px;
 }
 
 #completed {
