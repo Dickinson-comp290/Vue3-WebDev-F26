@@ -11,4 +11,19 @@ describe('FlashWord Tests', () => {
       .should('be.visible')
       .and('contain', 'You have answered 0 out of 3');
   });
+
+  it('Check word cards', () => {
+    cy.visit('http://localhost:5173/');
+
+    // Check that each of the word cards is displayed.
+    cy.get('[data-cy="hola-card"]').should('be.visible');
+    // Check that hola-card does not have the correct class.
+    cy.get('[data-cy="hola-card"]').should('not.have.class', 'correct');
+
+    cy.get('[data-cy="uno-card"]').should('be.visible');
+    cy.get('[data-cy="uno-card"]').should('not.have.class', 'correct');
+
+    cy.get('[data-cy="gris-card"]').should('be.visible');
+    cy.get('[data-cy="gris-card"]').should('not.have.class', 'correct');
+  });
 });

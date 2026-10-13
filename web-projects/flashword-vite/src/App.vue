@@ -71,6 +71,7 @@ export default {
         v-for="word in shuffledWords"
         v-bind:key="word.word_a"
         v-bind:word="word"
+        v-bind:data-cy="word.word_a + '-card'"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
       </WordCard>
