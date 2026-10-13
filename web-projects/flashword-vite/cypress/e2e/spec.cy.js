@@ -19,11 +19,37 @@ describe('FlashWord Tests', () => {
     cy.get('[data-cy="hola-card"]').should('be.visible');
     // Check that hola-card does not have the correct class.
     cy.get('[data-cy="hola-card"]').should('not.have.class', 'correct');
+    // Check that the hola-card is displaying the correct word.
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="word"]')
+      .should('be.visible')
+      .should('contain', 'hola');
+    // Check that the hola-card input field is empty.
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .should('be.visible')
+      .should('have.value', '');
 
     cy.get('[data-cy="uno-card"]').should('be.visible');
     cy.get('[data-cy="uno-card"]').should('not.have.class', 'correct');
+    cy.get('[data-cy="uno-card"]')
+      .find('[data-cy="word"]')
+      .should('be.visible')
+      .should('contain', 'uno');
+    cy.get('[data-cy="uno-card"]')
+      .find('[data-cy="translation"]')
+      .should('be.visible')
+      .should('have.value', '');
 
     cy.get('[data-cy="gris-card"]').should('be.visible');
     cy.get('[data-cy="gris-card"]').should('not.have.class', 'correct');
+    cy.get('[data-cy="gris-card"]')
+      .find('[data-cy="word"]')
+      .should('be.visible')
+      .should('contain', 'gris');
+    cy.get('[data-cy="gris-card"]')
+      .find('[data-cy="translation"]')
+      .should('be.visible')
+      .should('have.value', '');
   });
 });
