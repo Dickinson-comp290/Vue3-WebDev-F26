@@ -9,25 +9,19 @@ export default {
     return {
       words: [
         {
-          word_a: 'hola',
-          word_b: 'hello',
+          wordToTranslate: 'hola',
+          translation: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'uno',
-          word_b: 'one',
+          wordToTranslate: 'uno',
+          translation: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
         },
         {
-          word_a: 'gris',
-          word_b: 'grey',
+          wordToTranslate: 'gris',
+          translation: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
         },
       ],
       correctCount: 0,
@@ -44,7 +38,7 @@ export default {
   },
   watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      this.completed = this.correctCount >= this.wordCount;
     },
   },
   methods: {
@@ -59,11 +53,13 @@ export default {
   <div id="app" v-cloak>
     <h1>FlashWord</h1>
 
+    <ScoreLine
+      v-bind:correct-count="correctCount"
+      v-bind:word-count="wordCount"
+    />
+
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
-    </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
     </p>
 
     <div id="cards">
@@ -88,12 +84,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #111827;
   margin-top: 60px;
 }
 
 #cards {
-  justify-content: center;
   display: grid;
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
@@ -107,9 +102,9 @@ export default {
 }
 
 #completed {
-  font-size: 20px;
-  font-weight: bold;
-  color: #0f5132;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #065f46;
   padding: 10px;
   margin: 10px;
 }
