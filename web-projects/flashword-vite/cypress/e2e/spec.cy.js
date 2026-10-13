@@ -4,9 +4,11 @@ describe('FlashWord Tests', () => {
     cy.visit('http://localhost:5173/');
 
     // Get the header and check its contents.
-    cy.get('h1').should('contain', 'FlashWord');
+    cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
 
     // Check the initial answer count.
-    cy.contains('You have answered 0 out of 3').should('be.visible');
+    cy.get('[data-cy="answer-count"]')
+      .should('be.visible')
+      .and('contain', 'You have answered 0 out of 3');
   });
 });
