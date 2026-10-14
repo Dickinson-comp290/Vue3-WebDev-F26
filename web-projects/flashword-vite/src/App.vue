@@ -72,6 +72,7 @@ export default {
         v-bind:key="word.word_a"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
+        v-bind:data-cy="word.word_a + '-card'"
       >
       </WordCard>
     </div>
