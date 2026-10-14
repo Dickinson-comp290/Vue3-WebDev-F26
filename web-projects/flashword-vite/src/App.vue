@@ -1,9 +1,11 @@
 <script>
 import WordCard from './components/WordCard.vue';
+import ScoreLine from './components/ScoreLine.vue';
 
 export default {
   components: {
     WordCard,
+    ScoreLine,
   },
   data() {
     return {
@@ -66,14 +68,15 @@ export default {
       Great work, you have completed all the words!
     </p>
 
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
-    </p>
+    <ScoreLine
+      v-bind:correct-count="correctCount"
+      v-bind:word-count="wordCount"
+    />
 
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_to_translate"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
