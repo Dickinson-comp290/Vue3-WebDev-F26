@@ -12,22 +12,22 @@ export default {
           word_a: 'hola',
           word_b: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
+          // answer: '',
+          // correct: false,
         },
         {
           word_a: 'uno',
           word_b: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
+          // answer: '',
+          // correct: false,
         },
         {
           word_a: 'gris',
           word_b: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
+          // answer: '',
+          // correct: false,
         },
       ],
       correctCount: 0,
@@ -62,6 +62,7 @@ export default {
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
     </p>
+
     <p v-else id="correctCount">
       You have answered {{ correctCount }} out of {{ wordCount }}
     </p>
