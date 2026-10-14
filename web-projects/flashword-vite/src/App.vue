@@ -1,34 +1,34 @@
 <script>
+import ScoreLine from './components/ScoreLine.vue';
 import WordCard from './components/WordCard.vue';
 export default {
-  components: { WordCard },
+  components: { ScoreLine, WordCard },
   data() {
     return {
       words: [
         {
-          word_a: 'hola',
-          word_b: 'hello',
+          foreign_word: 'hola',
+          english_word: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
-          showHint: false,
+          //answer: '',
+          //correct: false,
+          //showHint: false,
         },
         {
-          word_a: 'uno',
-          word_b: 'one',
+          foreign_word: 'uno',
+          english_word: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
-          showHint: false,
-          showHint: false,
+          //answer: '',
+          //correct: false,
+          //showHint: false,
         },
         {
-          word_a: 'gris',
-          word_b: 'grey',
+          foreign_word: 'gris',
+          english_word: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
-          showHint: false,
+          //answer: '',
+          //correct: false,
+          //showHint: false,
         },
       ],
       correctCount: 0,
@@ -65,17 +65,16 @@ export default {
 
 <template>
   <h1>FlashWord</h1>
-  <p v-if="completed" id="completed">
-    Great work, you completed all the words!
-  </p>
-  <p v-else id="correctCount">
-    You have answered {{ correctCount }} out of {{ wordCount }}
-  </p>
+  <ScoreLine
+    v-bind:correct-count="correctCount"
+    v-bind:word-count="wordCount"
+    v-bind:completed="completed"
+  />
 
   <div id="cards">
     <WordCard
       v-for="word in shuffledWords"
-      v-bind:key="word.word_a"
+      v-bind:key="word.foreign_word"
       v-bind:word="word"
       v-on:incrementCorrectCount="correctCount++"
     ></WordCard>
@@ -101,21 +100,6 @@ export default {
   display: grid;
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
-}
-
-#correctCount {
-  font-size: 20px;
-  margin: 10px;
-  font-weight: bold;
-  padding: 10px;
-}
-
-#completed {
-  font-size: 20px;
-  font-weight: bold;
-  color: #0f5132;
-  padding: 10px;
-  margin: 10px;
 }
 
 .hint {

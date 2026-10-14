@@ -18,7 +18,7 @@ export default {
 
   methods: {
     checkAnswer() {
-      this.correct = this.word.word_b === this.answer;
+      this.correct = this.word.english_word === this.answer;
 
       if (this.correct) {
         this.$emit('incrementCorrectCount');
@@ -30,7 +30,7 @@ export default {
 
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
-    <p class="word">{{ word.word_a }}</p>
+    <p class="word">{{ word.foreign_word }}</p>
 
     <input
       v-if="!correct"
