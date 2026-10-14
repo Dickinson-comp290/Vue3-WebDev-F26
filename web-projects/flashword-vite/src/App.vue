@@ -12,6 +12,7 @@ export default {
           word_to_translate: 'hola',
           word_b: 'hello',
           hint: 'greeting',
+          showHint: false,
           // answer: '',
           // correct: false,
         },
@@ -19,6 +20,7 @@ export default {
           word_to_translate: 'uno',
           word_b: 'one',
           hint: 'number',
+          showHint: false,
           // answer: '',
           // correct: false,
         },
@@ -26,6 +28,7 @@ export default {
           word_to_translate: 'gris',
           word_b: 'grey',
           hint: 'color',
+          showHint: false,
           // answer: '',
           // correct: false,
         },
@@ -74,6 +77,12 @@ export default {
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
+        <div v-if="!word.correct" class="hintBox">
+          <label>
+            <input type="checkbox" v-model="word.showHint" /> Hint
+          </label>
+          <span v-if="word.showHint" class="hint">{{ word.hint }}</span>
+        </div>
       </WordCard>
     </div>
   </div>

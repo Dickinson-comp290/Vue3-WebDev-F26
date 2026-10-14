@@ -36,6 +36,8 @@ export default {
       v-on:keyup.enter="checkAnswer()"
     />
     <p v-else class="correctAnswer">{{ answer }}</p>
+
+    <slot></slot>
   </div>
 </template>
 
