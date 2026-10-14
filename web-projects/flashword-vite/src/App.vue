@@ -1,33 +1,38 @@
 <script>
 import WordCard from './components/WordCard.vue';
+import ScoreLine from './components/ScoreLine.vue';
 
 export default {
   components: {
     WordCard,
+    ScoreLine,
   },
   data() {
     return {
       words: [
         {
-          word_a: 'hola',
+          word_to_translate: 'hola',
           word_b: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
+          showHint: false,
+          // answer: '',
+          // correct: false,
         },
         {
-          word_a: 'uno',
+          word_to_translate: 'uno',
           word_b: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
+          showHint: false,
+          // answer: '',
+          // correct: false,
         },
         {
-          word_a: 'gris',
+          word_to_translate: 'gris',
           word_b: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
+          showHint: false,
+          // answer: '',
+          // correct: false,
         },
       ],
       correctCount: 0,
@@ -62,17 +67,25 @@ export default {
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
     </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
-    </p>
+
+    <ScoreLine
+      v-bind:correct-count="correctCount"
+      v-bind:word-count="wordCount"
+    />
 
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_to_translate"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
+        <div v-if="!word.correct" class="hintBox">
+          <label>
+            <input type="checkbox" v-model="word.showHint" /> Hint
+          </label>
+          <span v-if="word.showHint" class="hint">{{ word.hint }}</span>
+        </div>
       </WordCard>
     </div>
   </div>
