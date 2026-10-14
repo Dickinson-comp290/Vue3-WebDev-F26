@@ -1,53 +1,35 @@
 const Flashword = {
   data() {
     return {
+      wordA: 'hola',
+      wordB: 'hello',
+      answer: '',
+      correct: null,
+      showFeedback: false,
+
+      // Array example
+      spanishWords: ['hola', 'adios', 'uno', 'dos'],
+
+      // Object example
+      word: { a: 'hola', b: 'hello' },
+
+      // Array of objects example
       words: [
-        {
-          word_a: 'hola',
-          word_b: 'hello',
-          hint: 'greeting',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'uno',
-          word_b: 'one',
-          hint: 'number',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'gris',
-          word_b: 'grey',
-          hint: 'color',
-          answer: '',
-          correct: false,
-        },
+        { wordA: 'hola', wordB: 'hello' },
+        { wordA: 'adios', wordB: 'goodbye' },
+        { wordA: 'uno', wordB: 'one' },
+        { wordA: 'dos', wordB: 'two' },
       ],
-      correctCount: 0,
-      completed: false,
     }
   },
-  computed: {
-    shuffledWords() {
-      return this.words.sort(() => 0.5 - Math.random())
-    },
-    wordCount() {
-      return this.words.length
-    },
-  },
-  watch: {
-    correctCount() {
-      this.completed = this.correctCount == this.wordCount
-    },
-  },
   methods: {
-    checkAnswer(word) {
-      word.correct = word.word_b == word.answer
-
-      if (word.correct) {
-        this.correctCount++
-      }
+    checkAnswer() {
+      this.correct = this.wordB == this.answer
+      this.showFeedback = true
+    },
+    reset() {
+      this.answer = ''
+      this.showFeedback = false
     },
   },
 }
