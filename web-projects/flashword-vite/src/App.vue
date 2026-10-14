@@ -9,21 +9,21 @@ export default {
     return {
       words: [
         {
-          word_a: 'hola',
+          word_to_translate: 'hola',
           word_b: 'hello',
           hint: 'greeting',
           // answer: '',
           // correct: false,
         },
         {
-          word_a: 'uno',
+          word_to_translate: 'uno',
           word_b: 'one',
           hint: 'number',
           // answer: '',
           // correct: false,
         },
         {
-          word_a: 'gris',
+          word_to_translate: 'gris',
           word_b: 'grey',
           hint: 'color',
           // answer: '',
