@@ -52,4 +52,33 @@ describe('FlashWord Tests', () => {
       .should('be.visible')
       .should('have.value', '');
   });
+
+  it('shows an error message when the words request has a network error', () => {
+    cy.intercept('GET', 'http://localhost:8100/words', {
+      forceNetworkError: true,
+    });
+
+    cy.visit('http://localhost:5173/');
+
+    cy.get('[data-cy="words-error"]')
+      .should('be.visible')
+      .and('contain', 'Something went wrong. Please try again later.');
+    cy.get('[data-cy="answer-count"]').should('not.exist');
+    cy.get('#cards').should('not.exist');
+  });
+
+  it('shows an error message when the words request returns an HTTP error', () => {
+    cy.intercept('GET', 'http://localhost:8100/words', {
+      statusCode: 500,
+      body: { message: 'Internal server error' },
+    });
+
+    cy.visit('http://localhost:5173/');
+
+    cy.get('[data-cy="words-error"]')
+      .should('be.visible')
+      .and('contain', 'Something went wrong. Please try again later.');
+    cy.get('[data-cy="answer-count"]').should('not.exist');
+    cy.get('#cards').should('not.exist');
+  });
 });

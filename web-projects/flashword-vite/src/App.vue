@@ -7,32 +7,28 @@ export default {
   },
   data() {
     return {
-      words: [
-        {
-          word_a: 'hola',
-          word_b: 'hello',
-          hint: 'greeting',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'uno',
-          word_b: 'one',
-          hint: 'number',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'gris',
-          word_b: 'grey',
-          hint: 'color',
-          answer: '',
-          correct: false,
-        },
-      ],
+      words: [],
       correctCount: 0,
       completed: false,
+      loadingWords: true,
+      wordsError: false,
     };
+  },
+  async mounted() {
+    try {
+      const response = await fetch('http://localhost:8100/words');
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch words: HTTP ${response.status}`);
+      }
+
+      this.words = await response.json();
+    } catch (error) {
+      console.error('Unable to fetch words:', error);
+      this.wordsError = true;
+    } finally {
+      this.loadingWords = false;
+    }
   },
   computed: {
     shuffledWords() {
@@ -59,23 +55,29 @@ export default {
   <div id="app" v-cloak>
     <h1 data-cy="app-header">FlashWord</h1>
 
-    <p v-if="completed" id="completed">
-      Great work, you have completed all the words!
-    </p>
-    <p v-else id="correctCount" data-cy="answer-count">
-      You have answered {{ correctCount }} out of {{ wordCount }}
+    <p v-if="wordsError" role="alert" data-cy="words-error">
+      Something went wrong. Please try again later.
     </p>
 
-    <div id="cards">
-      <WordCard
-        v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
-        v-bind:word="word"
-        v-bind:data-cy="word.word_a + '-card'"
-        v-on:incrementCorrectCount="incrementCorrectCount"
-      >
-      </WordCard>
-    </div>
+    <template v-else-if="!loadingWords">
+      <p v-if="completed" id="completed">
+        Great work, you have completed all the words!
+      </p>
+      <p v-else id="correctCount" data-cy="answer-count">
+        You have answered {{ correctCount }} out of {{ wordCount }}
+      </p>
+
+      <div id="cards">
+        <WordCard
+          v-for="word in shuffledWords"
+          v-bind:key="word.word_a"
+          v-bind:word="word"
+          v-bind:data-cy="word.word_a + '-card'"
+          v-on:incrementCorrectCount="incrementCorrectCount"
+        >
+        </WordCard>
+      </div>
+    </template>
   </div>
 </template>
 
