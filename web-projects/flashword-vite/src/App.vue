@@ -1,10 +1,5 @@
 <script>
-import WordCard from './components/WordCard.vue';
-
 export default {
-  components: {
-    WordCard,
-  },
   data() {
     return {
       words: [
@@ -48,8 +43,12 @@ export default {
     },
   },
   methods: {
-    incrementCorrectCount() {
-      this.correctCount++;
+    checkAnswer(word) {
+      word.correct = word.word_b == word.answer;
+
+      if (word.correct) {
+        this.correctCount++;
+      }
     },
   },
 };
@@ -57,24 +56,31 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h2 data-cy="app-header">FlashWord</h2>
+    <h1>FlashWord</h1>
 
     <p v-if="completed" id="completed">
-      Great work, you have completed all the words!
+      Good work, you completed all the words!
     </p>
-    <p v-else data-cy="correct-count" id="correctCount">
+    <p v-else id="correctCount">
       You have answered {{ correctCount }} out of {{ wordCount }}
     </p>
 
     <div id="cards">
-      <WordCard
+      <div
+        class="card"
         v-for="word in shuffledWords"
-        v-bind:data-cy="word.word_a + '-card'"
-        v-bind:key="word.word_a"
-        v-bind:word="word"
-        v-on:incrementCorrectCount="incrementCorrectCount"
+        v-bind:class="{ correct: word.correct }"
       >
-      </WordCard>
+        <p class="word">{{ word.word_a }}</p>
+
+        <input
+          v-if="!word.correct"
+          type="text"
+          v-model="word.answer"
+          v-on:keyup.enter="checkAnswer(word)"
+        />
+        <p v-else class="correctAnswer">{{ word.answer }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -98,6 +104,38 @@ export default {
   display: grid;
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
+}
+
+.card {
+  background-color: #e8f0ff;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 25px;
+}
+
+input[type='text'] {
+  border: 0;
+  font-size: 25px;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: center;
+  padding: 5px;
+}
+
+.word {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.correctAnswer {
+  padding: 0;
+  margin: 0;
+}
+
+.correct {
+  color: #0f5132;
+  background-color: #d1e7dd;
 }
 
 #correctCount {
