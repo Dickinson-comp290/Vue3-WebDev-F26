@@ -3,27 +3,38 @@
     {
       "word_a": "hola",
       "word_b": "hello",
-      "hint": "greeting"
+      "hint": "greeting",
+      "id": "tcHGXZS8_pg"
     },
     {
       "word_a": "uno",
       "word_b": "one",
-      "hint": "number"
+      "hint": "number",
+      "id": "to1Lyxovd20"
     },
     {
       "word_a": "gris",
       "word_b": "grey",
-      "hint": "color"
+      "hint": "color",
+      "id": "2kkY7_duWEw"
     }
   ],
   "times": [
     {
       "name": "Susan",
-      "time": 35
+      "time": 35,
+      "id": "1AodyUJPiso"
     },
     {
       "name": "Nam",
-      "time": 28
+      "time": 28,
+      "id": "GK7SIJrDM38"
+    },
+    {
+      "name": "Carlos",
+      "time": "86",
+      "id": "hC-GHoeLlB0"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
