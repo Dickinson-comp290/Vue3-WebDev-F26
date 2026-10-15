@@ -27,5 +27,11 @@ describe('FlashWord Tests', () => {
       'contain',
       'You have answered 0 out of 3'
     );
+    cy.get('[data-cy="completed"]').should('not.exist');
+  });
+  it('Check initial page state', () => {
+    cy.visit('http://localhost:5173/');
+
+    cy.get('[type="text"]').should('be.visible');
   });
 });
