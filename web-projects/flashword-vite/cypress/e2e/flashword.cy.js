@@ -2,7 +2,14 @@ describe('FlashWord Tests', () => {
   it('Check initial page state', () => {
     cy.visit('http://localhost:5173/');
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
-    cy.contains('You have answered 0 out of 3').should('be.visible');
+    // use data-cy to check the total instead of depending on the text only (avoid brittle test)
+    cy.get('[data-cy="correct-count"]').should('have.text', '0');
+    cy.get('[data-cy="total-count"]').should('have.text', '3');
+
+    // check that the "great work,...." notification will not appear when we start
+    cy.contains('Great work, you have completed all the words!').should(
+      'not.exist'
+    );
   });
 
   it('Check word cards', () => {
@@ -57,5 +64,13 @@ describe('FlashWord Tests', () => {
 
     // Verify that the score message updates to '1 out of 3'
     cy.contains('You have answered 1 out of 3').should('be.visible');
+  });
+
+  it('Allows typing a word into a WordCard text field', () => {
+    cy.visit('http://localhost:5173/');
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello')
+      .should('have.value', 'hello');
   });
 });
