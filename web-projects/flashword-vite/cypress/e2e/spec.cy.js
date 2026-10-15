@@ -56,10 +56,13 @@ describe('FlashWord Tests', () => {
   it('shows an error message when the words request has a network error', () => {
     cy.intercept('GET', 'http://localhost:8100/words', {
       forceNetworkError: true,
-    });
+    }).as('getWordsNetworkError');
 
     cy.visit('http://localhost:5173/');
 
+    cy.wait('@getWordsNetworkError')
+      .its('error.message')
+      .should('include', 'forceNetworkError called');
     cy.get('[data-cy="words-error"]')
       .should('be.visible')
       .and('contain', 'Something went wrong. Please try again later.');
@@ -71,10 +74,30 @@ describe('FlashWord Tests', () => {
     cy.intercept('GET', 'http://localhost:8100/words', {
       statusCode: 500,
       body: { message: 'Internal server error' },
-    });
+    }).as('getWords');
 
     cy.visit('http://localhost:5173/');
 
+    cy.wait('@getWords').its('response.statusCode').should('eq', 500);
+    cy.get('[data-cy="words-error"]')
+      .should('be.visible')
+      .and('contain', 'Something went wrong. Please try again later.');
+    cy.get('[data-cy="answer-count"]').should('not.exist');
+    cy.get('#cards').should('not.exist');
+  });
+
+  it('shows an error message when the words response contains invalid JSON', () => {
+    cy.intercept('GET', 'http://localhost:8100/words', {
+      statusCode: 200,
+      headers: { 'content-type': 'application/json' },
+      body: '{ invalid json',
+    }).as('getWordsInvalidJson');
+
+    cy.visit('http://localhost:5173/');
+
+    cy.wait('@getWordsInvalidJson')
+      .its('response.statusCode')
+      .should('eq', 200);
     cy.get('[data-cy="words-error"]')
       .should('be.visible')
       .and('contain', 'Something went wrong. Please try again later.');
