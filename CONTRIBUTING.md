@@ -457,7 +457,7 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
    git status
    git stage .
    git commit -m "-m "descriptive commit message" \
-       --trailer "Assisted-by: GPT-3.3-Codex"
+       --trailer "Assisted-by: GPT-5.6 Luna"
    git status
    ```
 
@@ -479,6 +479,7 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
 
 <p/>
 
+<!--
 5. <a id="log-copilot-chat"></a>
    <details>
    <summary>Log your Copilot chat (if you used AI).</summary>
@@ -493,8 +494,9 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
    </details>
 
 <p/>
+-->
 
-6. <a id="push-feature-branch"></a>
+5. <a id="push-feature-branch"></a>
    <details>
    <summary>Push your feature branch to your fork (i.e. your origin).</summary>
 
@@ -505,6 +507,14 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
    ```
 
    Pushing your feature branch to GitHub **automatically updates your pull request for the branch.**
+
+   </details>
+
+6. <a id="check-pull-request-changes"></a>
+   <details>
+   <summary>Verify that your pull request contains the desired changes.</summary>
+
+   Visit this page for instructions on how to [view the changes in your pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests).
 
    </details>
 
@@ -520,7 +530,7 @@ Working on the extension tasks is very similar to working on the tutorial tasks.
 
    </details>
 
-<p/>
+   Visit this page for instructions on how to [mark a pull request as ready for review](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request#marking-a-pull-request-as-ready-for-review).
 
 2. <a id="mark-pull-request-ready"></a>
    <details>
