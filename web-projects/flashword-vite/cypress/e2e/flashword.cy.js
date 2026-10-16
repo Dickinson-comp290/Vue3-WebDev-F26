@@ -23,10 +23,14 @@ describe('FlashWord Tests', () => {
 
     // Get the header and check its contents.
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
-    cy.get('[data-cy="app-countdisplay"]').should(
-      'contain',
-      'You have answered 0 out of 3'
-    );
+    cy.get('[data-cy="app-countdisplay"]')
+      .find('span')
+      .eq(0)
+      .should('contain', '0');
+    cy.get('[data-cy="app-countdisplay"]')
+      .find('span')
+      .eq(1)
+      .should('contain', '3');
     cy.get('[data-cy="completed"]').should('not.exist');
   });
   it('Check initial page state', () => {

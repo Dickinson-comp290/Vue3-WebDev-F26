@@ -63,7 +63,8 @@ export default {
       Great work, you have completed all the words!
     </p>
     <p v-else id="correctCount" data-cy="app-countdisplay">
-      You have answered {{ correctCount }} out of {{ wordCount }}
+      <!-- You have answered {{ correctCount }} out of {{ wordCount }} -->
+      You have answered <span>{{ correctCount }}</span>/<span>{{ wordCount }}</span>
     </p>
 
     <div id="cards">
