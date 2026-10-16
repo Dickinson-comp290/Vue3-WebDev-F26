@@ -52,6 +52,9 @@ export default {
       this.correctCount++;
     },
   },
+  created() {
+    console.log('Flashword created');
+  },
 };
 </script>
 
