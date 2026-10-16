@@ -16,9 +16,11 @@ export default {
   },
   methods: {
     checkAnswer() {
-      this.correct = this.word.word_b === this.answer;
+      // When referencing props, prefix with the `this` keyword
+      this.correct = this.word.word_b == this.answer;
 
       if (this.correct) {
+        // Emit the custom event `incrementCorrectCount` to the parent component that is utilizing this component
         this.$emit('incrementCorrectCount');
       }
     },
@@ -28,19 +30,21 @@ export default {
 
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
-    <p data-cy="word" class="word">{{ word.word_a }}</p>
+    <p class="word">{{ word.word_a }}</p>
     <input
-      type="text"
-      data-cy="translation"
       v-if="!correct"
+      type="text"
       v-model="answer"
       v-on:keyup.enter="checkAnswer()"
     />
+
     <p v-else class="correctAnswer">{{ answer }}</p>
   </div>
 </template>
 
 <style scoped>
+/* The scoped attribute means that these styles will only apply to elements in this component */
+
 .card {
   background-color: #e8f0ff;
   border-radius: 5px;
