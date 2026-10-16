@@ -51,26 +51,46 @@ describe('FlashWord Tests', () => {
       .should('be.visible')
       .and('have.value', '');
   });
-  it('Allows typing an answer and checking it', () => {
-    cy.visit('http://localhost:5173/');
-
-    // type the correct translation of "hola" and press enter
-    cy.get('[data-cy="hola-card"]')
-      .find('[data-cy="translation"]')
-      .type('hello{enter}');
-
-    // Verify that the card's state updates to 'correct'
-    cy.get('[data-cy="hola-card"]').should('have.class', 'correct');
-
-    // Verify that the score message updates to '1 out of 3'
-    cy.contains('You have answered 1 out of 3').should('be.visible');
-  });
-
+  // Check UI updates when a single word is answered correctly
   it('Allows typing a word into a WordCard text field', () => {
     cy.visit('http://localhost:5173/');
     cy.get('[data-cy="hola-card"]')
       .find('[data-cy="translation"]')
       .type('hello')
       .should('have.value', 'hello');
+  });
+  // check UI updates when a single word is answered correctly
+  it('Update when a correct word is entered', () => {
+    cy.visit('http://localhost:5173/');
+
+    // type the correct answer for "hola" and press enter
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello{enter}');
+
+    // check the card's state when it's correct
+    cy.get('[data-cy="hola-card"]').should('have.class', 'correct');
+
+    // check the state
+    cy.get('[data-cy="correct-count"]').should('have.text', '1');
+  });
+
+  //  Check reset button functionality
+  it('Resets the game state when the reset button is clicked', () => {
+    cy.visit('http://localhost:5173/');
+
+    // Make progress by answering a word correctly first
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello{enter}');
+    cy.get('[data-cy="correct-count"]').should('have.text', '1');
+    cy.get('[data-cy="hola-card"]').should('have.class', 'correct');
+
+    // Click the reset button
+    cy.get('[data-cy="reset-button"]').click();
+
+    // Verify that the game state returns to initial state (score back to 0, card loses 'correct' class)
+    cy.get('[data-cy="correct-count"]').should('have.text', '0');
+    cy.get('[data-cy="hola-card"]').should('not.have.class', 'correct');
   });
 });

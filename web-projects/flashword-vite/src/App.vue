@@ -51,6 +51,9 @@ export default {
     incrementCorrectCount() {
       this.correctCount++;
     },
+    resetGame() {
+      window.location.reload();
+    },
   },
 };
 </script>
@@ -65,7 +68,7 @@ export default {
     <p v-else id="correctCount">
       You have answered <span data-cy="correct-count">{{ correctCount }}</span>/<span data-cy="total-count">{{ wordCount }}</span> correctly.
     </p>
-
+    <button data-cy="reset-button" v-on:click="resetGame">Reset</button>
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
