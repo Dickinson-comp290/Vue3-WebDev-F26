@@ -12,6 +12,7 @@ export default {
           word_a: 'hola',
           word_b: 'hello',
           hint: 'greeting',
+          hintVisible: false,
           answer: '',
           correct: false,
         },
@@ -19,6 +20,7 @@ export default {
           word_a: 'uno',
           word_b: 'one',
           hint: 'number',
+          hintVisible: false,
           answer: '',
           correct: false,
         },
@@ -26,12 +28,11 @@ export default {
           word_a: 'gris',
           word_b: 'grey',
           hint: 'color',
+          hintVisible: false,
           answer: '',
           correct: false,
         },
       ],
-      correctCount: 0,
-      completed: false,
     };
   },
   computed: {
@@ -41,13 +42,27 @@ export default {
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
     correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+      return this.words.filter((word) => word.correct).length;
+    },
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
   methods: {
+    checkAnswer(word) {
+      word.correct = word.word_b == word.answer;
+    },
+    showHint() {
+      var checkBox = document.getElementById('checkbox');
+      var text = document.getElementById('hint');
+
+      if (checkBox.checked == true) {
+        text.style.display = 'hint';
+      } else {
+        text.style.display = 'none';
+      }
+    },
     incrementCorrectCount() {
       this.correctCount++;
     },
@@ -57,24 +72,44 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h2 data-cy="app-header">FlashWord</h2>
+    <h1>FlashWord</h1>
 
     <p v-if="completed" id="completed">
-      Great work, you have completed all the words!
+      Good work, you completed all the words!
     </p>
-    <p v-else data-cy="correct-count" id="correctCount">
+    <p v-else id="correctCount">
       You have answered {{ correctCount }} out of {{ wordCount }}
     </p>
 
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:data-cy="word.word_a + '-card'"
         v-bind:key="word.word_a"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
       </WordCard>
+    </div>
+
+    <div id="cards">
+      <div
+        class="card"
+        v-for="word in shuffledWords"
+        v-bind:class="{ correct: word.correct }"
+      >
+        <p class="word">{{ word.word_a }}</p>
+
+        <input
+          v-if="!word.correct"
+          type="text"
+          v-model="word.answer"
+          v-on:keyup.enter="checkAnswer(word)"
+        />
+        <p v-else class="correctAnswer">{{ word.answer }}</p>
+        <input type="checkbox" v-model="word.hintVisible" />Show hint
+
+        <p v-if="word.hintVisible">{{ word.hint }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -98,6 +133,38 @@ export default {
   display: grid;
   grid-template-columns: 300px 300px 300px;
   grid-gap: 30px;
+}
+
+.card {
+  background-color: #e8f0ff;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 25px;
+}
+
+input[type='text'] {
+  border: 0;
+  font-size: 25px;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: center;
+  padding: 5px;
+}
+
+.word {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.correctAnswer {
+  padding: 0;
+  margin: 0;
+}
+
+.correct {
+  color: #0f5132;
+  background-color: #d1e7dd;
 }
 
 #correctCount {
