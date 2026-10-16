@@ -5,11 +5,23 @@ describe('FlashWord Tests', () => {
     // Get the app-header element and check its contents.
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
 
-    // Get the correct-count element and check its contents.
-    cy.get('[data-cy="correct-count"]').should(
-      'contain',
-      'You have answered 0 out of 3'
+    // Check the correct and total counts without depending on the message wording.
+    cy.get('[data-cy="correct-count"] span').eq(0).should('have.text', '0');
+    cy.get('[data-cy="correct-count"] span').eq(1).should('have.text', '3');
+
+    // The completion message should not be displayed before all words are answered.
+    cy.contains('Great work, you have completed all the words!').should(
+      'not.exist'
     );
+  });
+
+  it('Check that a word card accepts an answer', () => {
+    cy.visit('http://localhost:5173/');
+
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello')
+      .should('have.value', 'hello');
   });
 
   it('Check word cards', () => {
