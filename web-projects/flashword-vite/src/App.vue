@@ -72,6 +72,7 @@ export default {
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
+        v-bind:data-cy="word.word_a + '-card'"
         v-bind:key="word.word_a"
         v-bind:word="word"
         v-bind:data-cy="word.word_a + '-card'"
