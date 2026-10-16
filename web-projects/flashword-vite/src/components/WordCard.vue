@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div class="card" v-bind:class="{ correct: correct }">
-    <p data-cy="word" class="word">{{ word.word_a }}</p>
+    <p class="word" data-cy="word">{{ word.word_a }}</p>
     <input
       type="text"
       data-cy="translation"
