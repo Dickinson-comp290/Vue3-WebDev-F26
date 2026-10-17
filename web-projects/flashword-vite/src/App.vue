@@ -52,6 +52,10 @@ export default {
       this.correctCount++;
     },
   },
+  async created() {
+    let response = await fetch('/api/words');
+    console.log(response);
+  },
 };
 </script>
 
