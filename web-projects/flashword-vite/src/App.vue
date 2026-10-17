@@ -52,8 +52,9 @@ export default {
       this.correctCount++;
     },
   },
-  created() {
-    console.log('Flashword created');
+  async created() {
+    let response = await fetch('/api/words');
+    console.log(response);
   },
 };
 </script>
