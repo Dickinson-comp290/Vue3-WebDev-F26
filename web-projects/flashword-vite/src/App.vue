@@ -31,14 +31,20 @@ export default {
     },
   },
   async created() {
-    let response = await fetch('/words');
-    if (response.ok) {
-      console.log(response);
-      let json = await response.json();
-      console.log(json);
-      this.words = json;
-    } else {
-      console.error('Error: Unable to fetch words. Status: ' + response.status);
+    try {
+      let response = await fetch('/words');
+      if (response.ok) {
+        console.log(response);
+        let json = await response.json();
+        console.log(json);
+        this.words = json;
+      } else {
+        console.error(
+          'Error: Unable to fetch words. Status: ' + response.status
+        );
+      }
+    } catch (error) {
+      console.error('Error: Unable to fetch words.', error);
     }
   },
 };
