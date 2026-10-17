@@ -7,29 +7,7 @@ export default {
   },
   data() {
     return {
-      words: [
-        {
-          word_a: 'hola',
-          word_b: 'hello',
-          hint: 'greeting',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'uno',
-          word_b: 'one',
-          hint: 'number',
-          answer: '',
-          correct: false,
-        },
-        {
-          word_a: 'gris',
-          word_b: 'grey',
-          hint: 'color',
-          answer: '',
-          correct: false,
-        },
-      ],
+      words: [],
       correctCount: 0,
       completed: false,
     };
@@ -53,8 +31,11 @@ export default {
     },
   },
   async created() {
-    let response = await fetch('/api/words');
+    let response = await fetch('/words');
     console.log(response);
+    let json = await response.json();
+    console.log(json);
+    this.words = json;
   },
 };
 </script>
