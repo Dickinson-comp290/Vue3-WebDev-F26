@@ -5,6 +5,15 @@ export default {
   components: {
     WordCard,
   },
+  // created() {
+  //   console.log('Flashword created');
+  // },
+
+  async created() {
+    let response = await fetch('/api/words');
+    console.log(response);
+  },
+
   data() {
     return {
       words: [
@@ -30,6 +39,7 @@ export default {
           correct: false,
         },
       ],
+
       correctCount: 0,
       completed: false,
     };
