@@ -32,6 +32,7 @@ export default {
       ],
       correctCount: 0,
       completed: false,
+      resetCount: 0,
     };
   },
   computed: {
@@ -51,6 +52,11 @@ export default {
     incrementCorrectCount() {
       this.correctCount++;
     },
+    resetGame() {
+      this.correctCount = 0;
+      this.completed = false;
+      this.resetCount++;
+    },
   },
 };
 </script>
@@ -58,6 +64,9 @@ export default {
 <template>
   <div id="app" v-cloak>
     <h1 data-cy="app-header">FlashWord</h1>
+    <button type="button" data-cy="reset-game" v-on:click="resetGame">
+      Reset Game
+    </button>
 
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
@@ -70,7 +79,7 @@ export default {
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_a + resetCount"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
         v-bind:data-cy="word.word_a + '-card'"
