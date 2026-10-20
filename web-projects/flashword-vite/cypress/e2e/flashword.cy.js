@@ -8,7 +8,7 @@ describe('FlashWord Tests', () => {
     // cy.get('h1').should('contain', 'FlashWord');
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
 
-    cy.get('');
+    cy.get('#completed').should('not.exist');
   });
   it('Check word cards', () => {
     cy.visit('http://localhost:5173/');
