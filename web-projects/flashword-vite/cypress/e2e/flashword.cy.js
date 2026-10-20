@@ -10,6 +10,7 @@ describe('FlashWord Tests', () => {
 
     cy.get('#completed').should('not.exist');
   });
+
   it('Check word cards', () => {
     cy.visit('http://localhost:5173/');
 
@@ -51,5 +52,13 @@ describe('FlashWord Tests', () => {
       .find('[data-cy="translation"]')
       .should('be.visible')
       .should('have.value', '');
+  });
+
+  it('Types word into wordcard and checks if the word was typed', () => {
+    cy.visit('http://localhost:5173/');
+    cy.get('[data-cy="gris-card"]')
+      .find('[data-cy="translation"]')
+      .type('grey')
+      .should('have.value', 'grey');
   });
 });
