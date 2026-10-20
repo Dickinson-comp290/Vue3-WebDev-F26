@@ -12,6 +12,10 @@ export default {
   async created() {
     let response = await fetch('/api/words');
     console.log(response);
+
+    let json = await response.json();
+    console.log(json);
+    this.words = json;
   },
 
   data() {
