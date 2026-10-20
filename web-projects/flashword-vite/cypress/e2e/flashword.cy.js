@@ -72,4 +72,26 @@ describe('FlashWord Tests', () => {
       .should('be.visible')
       .and('contain', 'Great work, you have completed all the words!');
   });
+  it('clears entered answers and correct cards when restarted', () => {
+    cy.visit('http://localhost:5173/');
+
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello{enter}');
+    cy.get('[data-cy="uno-card"]')
+      .find('[data-cy="translation"]')
+      .type('not answered');
+
+    cy.get('#restart input').click();
+
+    cy.get('[data-cy="app-countdisplay"]').should('contain', '0');
+    cy.get('#completed').should('not.exist');
+    ['hola', 'uno', 'gris'].forEach((word) => {
+      cy.get(`[data-cy="${word}-card"]`)
+        .should('not.have.class', 'correct')
+        .find('[data-cy="translation"]')
+        .should('be.visible')
+        .and('have.value', '');
+    });
+  });
 });
