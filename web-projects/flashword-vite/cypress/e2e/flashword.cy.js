@@ -3,7 +3,8 @@ describe('FlashWord Tests', () => {
     // Open the FlashWord app running on the dev server.
     cy.visit('http://localhost:5173/');
 
-    cy.get('#correctCount').should('contain', ' You have answered 0 out of 3');
+    cy.get('#correctCount').should('contain', '0');
+    cy.get('#totalCount').should('contain', '3');
     // Get the header and check its contents.
     // cy.get('h1').should('contain', 'FlashWord');
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
@@ -54,7 +55,7 @@ describe('FlashWord Tests', () => {
       .should('have.value', '');
   });
 
-  it('Types word into wordcard and checks if the word was typed', () => {
+  it('Types word into word card and checks if the word was typed', () => {
     cy.visit('http://localhost:5173/');
     cy.get('[data-cy="gris-card"]')
       .find('[data-cy="translation"]')

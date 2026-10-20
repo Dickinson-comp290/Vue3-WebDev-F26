@@ -62,8 +62,9 @@ export default {
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
     </p>
-    <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
+    <p v-else>
+      You have answered <span id="correctCount">{{ correctCount }}</span> /
+      <span id="totalCount"> {{ wordCount }} </span>
     </p>
 
     <div id="cards">
