@@ -32,6 +32,7 @@ export default {
       ],
       correctCount: 0,
       completed: false,
+      gameRound: 0,
     };
   },
   computed: {
@@ -51,6 +52,12 @@ export default {
     incrementCorrectCount() {
       this.correctCount++;
     },
+    resetGame() {
+      this.correctCount = 0;
+      this.completed = false;
+      this.gameRound++;
+      this.words = [...this.words];
+    },
   },
 };
 </script>
@@ -66,11 +73,14 @@ export default {
       You have answered <span>{{ correctCount }}</span> /
       <span> {{ wordCount }} </span> correctly.
     </p>
+    <button type="button" data-cy="reset-button" v-on:click="resetGame">
+      Reset Game
+    </button>
 
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_a + '-' + gameRound"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
         v-bind:data-cy="word.word_a + '-card'"
@@ -114,5 +124,12 @@ export default {
   color: #0f5132;
   padding: 10px;
   margin: 10px;
+}
+
+[data-cy='reset-button'] {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
 }
 </style>
