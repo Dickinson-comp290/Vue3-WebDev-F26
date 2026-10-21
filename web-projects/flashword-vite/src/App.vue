@@ -57,14 +57,14 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h1>FlashWord</h1>
     <h1 data-cy="app-header">FlashWord</h1>
 
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
     </p>
     <p v-else id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
+      You have answered <span>{{ correctCount }}</span> /
+      <span> {{ wordCount }} </span> correctly.
     </p>
 
     <div id="cards">

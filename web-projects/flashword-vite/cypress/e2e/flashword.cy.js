@@ -2,7 +2,9 @@ describe('FlashWord Tests', () => {
   it('Check initial page state', () => {
     // Open the FlashWord app running on the dev server.
     cy.visit('http://localhost:5173/');
-    cy.get('p').should('contain', 'You have answered 0 out of 3');
+
+    cy.get('p').should('contain', `0`);
+    cy.get('p').should('contain', `3`);
     // Get the header and check its contents.
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
 
@@ -45,5 +47,18 @@ describe('FlashWord Tests', () => {
       .find('[data-cy="translation"]')
       .should('be.visible')
       .should('have.value', '');
+
+    cy.get('[data-cy="app-header"]').should(
+      'not.contain',
+      'Great work, you have completed all the words!'
+    );
+  });
+
+  it('Check answer', () => {
+    cy.visit('http://localhost:5173/');
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .type('hello')
+      .should('have.value', 'hello');
   });
 });
