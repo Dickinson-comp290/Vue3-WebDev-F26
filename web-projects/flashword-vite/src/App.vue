@@ -12,26 +12,21 @@ export default {
           word_a: 'hola',
           word_b: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
         },
         {
           word_a: 'uno',
           word_b: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
         },
         {
           word_a: 'gris',
           word_b: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
         },
       ],
       correctCount: 0,
       completed: false,
+      resetKey: 0,
     };
   },
   computed: {
@@ -51,6 +46,11 @@ export default {
     incrementCorrectCount() {
       this.correctCount++;
     },
+    resetGame() {
+      this.correctCount = 0;
+      this.completed = false;
+      this.resetKey++;
+    },
   },
 };
 </script>
@@ -59,18 +59,22 @@ export default {
   <div id="app" v-cloak>
     <h2 data-cy="app-header">FlashWord</h2>
 
-    <p v-if="completed" id="completed">
+    <p v-if="completed" data-cy="completed" id="completed">
       Great work, you have completed all the words!
     </p>
     <p v-else data-cy="correct-count" id="correctCount">
-      You have answered {{ correctCount }} out of {{ wordCount }}
+      You have answered <span data-cy="num-correct">{{ correctCount }}</span> /
+      <span data-cy="total-words">{{ wordCount }}</span>
     </p>
+    <button data-cy="reset" type="button" v-on:click="resetGame">
+      Reset game
+    </button>
 
     <div id="cards">
       <WordCard
         v-for="word in shuffledWords"
         v-bind:data-cy="word.word_a + '-card'"
-        v-bind:key="word.word_a"
+        v-bind:key="word.word_a + resetKey"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >
