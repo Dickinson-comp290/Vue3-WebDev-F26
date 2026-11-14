@@ -12,22 +12,16 @@ export default {
           word_a: 'hola',
           word_b: 'hello',
           hint: 'greeting',
-          answer: '',
-          correct: false,
         },
         {
           word_a: 'uno',
           word_b: 'one',
           hint: 'number',
-          answer: '',
-          correct: false,
         },
         {
           word_a: 'gris',
           word_b: 'grey',
           hint: 'color',
-          answer: '',
-          correct: false,
         },
       ],
       correctCount: 0,
@@ -61,7 +55,7 @@ export default {
   <div id="app" v-cloak>
     <h2 data-cy="app-header">FlashWord</h2>
 
-    <p v-if="completed" id="completed">
+    <p v-if="completed" data-cy="completed" id="completed">
       Great work, you have completed all the words!
     </p>
     <p v-else data-cy="correct-count" id="correctCount">
@@ -71,6 +65,9 @@ export default {
       <span data-cy="word-count-value">{{ wordCount }}</span>
       correctly.
     </p>
+    <button data-cy="reset" type="button" v-on:click="resetGame">
+      Reset game
+    </button>
 
     <button data-cy="reset" type="button" v-on:click="resetGame">
       Reset game
