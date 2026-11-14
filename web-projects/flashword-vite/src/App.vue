@@ -25,7 +25,6 @@ export default {
         },
       ],
       correctCount: 0,
-      completed: false,
       resetKey: 0,
     };
   },
@@ -36,10 +35,8 @@ export default {
     wordCount() {
       return this.words.length;
     },
-  },
-  watch: {
-    correctCount() {
-      this.completed = this.correctCount == this.wordCount;
+    completed() {
+      return this.correctCount === this.wordCount;
     },
   },
   methods: {
@@ -48,7 +45,6 @@ export default {
     },
     resetGame() {
       this.correctCount = 0;
-      this.completed = false;
       this.resetKey++;
     },
   },
@@ -63,9 +59,16 @@ export default {
       Great work, you have completed all the words!
     </p>
     <p v-else data-cy="correct-count" id="correctCount">
-      You have answered <span data-cy="num-correct">{{ correctCount }}</span> /
-      <span data-cy="total-words">{{ wordCount }}</span>
+      You have answered
+      <span data-cy="correct-count-value">{{ correctCount }}</span>
+      out of
+      <span data-cy="word-count-value">{{ wordCount }}</span>
+      correctly.
     </p>
+    <button data-cy="reset" type="button" v-on:click="resetGame">
+      Reset game
+    </button>
+
     <button data-cy="reset" type="button" v-on:click="resetGame">
       Reset game
     </button>
@@ -74,7 +77,7 @@ export default {
       <WordCard
         v-for="word in shuffledWords"
         v-bind:data-cy="word.word_a + '-card'"
-        v-bind:key="word.word_a + resetKey"
+        v-bind:key="`${word.word_a}-${resetKey}`"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
       >

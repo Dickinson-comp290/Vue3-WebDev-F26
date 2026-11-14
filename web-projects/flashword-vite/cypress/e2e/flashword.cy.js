@@ -5,11 +5,8 @@ describe('FlashWord Tests', () => {
     // Get the app-header element and check its contents.
     cy.get('[data-cy="app-header"]').should('contain', 'FlashWord');
 
-    // Get the correct-count element and check its contents.
-    cy.get('[data-cy="num-correct"]').should('have.text', '0');
-    cy.get('[data-cy="total-words"]').should('have.text', '3');
-
-    cy.get('[data-cy="completed"]').should('not.exist');
+    cy.get('[data-cy="correct-count-value"]').should('have.text', '0');
+    cy.get('[data-cy="word-count-value"]').should('have.text', '3');
   });
 
   it('Check word cards', () => {
@@ -53,19 +50,27 @@ describe('FlashWord Tests', () => {
       .should('have.value', '');
   });
 
-  it('Type in hola-word input', () => {
+  it('Types a word into a WordCard text field', () => {
     cy.visit('http://localhost:5173/');
 
     cy.get('[data-cy="hola-card"]')
       .find('[data-cy="translation"]')
-      .type('hello');
+      .type('hola answer')
+      .should('have.value', 'hola answer');
+  });
+
+  it('Updates the correct count after a correct answer', () => {
+    cy.visit('http://localhost:5173/');
 
     cy.get('[data-cy="hola-card"]')
       .find('[data-cy="translation"]')
-      .should('have.value', 'hello');
+      .type('hello{enter}');
+
+    cy.get('[data-cy="correct-count-value"]').should('have.text', '1');
+    cy.get('[data-cy="word-count-value"]').should('have.text', '3');
   });
 
-  it('Checks correct translation of hola', () => {
+  it('Marks a card correct after the correct translation is entered', () => {
     cy.visit('http://localhost:5173/');
 
     cy.get('[data-cy="hola-card"]')
@@ -74,13 +79,14 @@ describe('FlashWord Tests', () => {
 
     cy.get('[data-cy="hola-card"]')
       .should('have.class', 'correct')
-      .find('[data-cy="correct-answer"]')
+      .find('.correctAnswer')
       .should('have.text', 'hello');
-
-    cy.get('[data-cy="num-correct"]').should('have.text', '1');
+    cy.get('[data-cy="hola-card"]')
+      .find('[data-cy="translation"]')
+      .should('not.exist');
   });
 
-  it('Completes the game', () => {
+  it('Shows the completion message when all words are answered correctly', () => {
     cy.visit('http://localhost:5173/');
 
     cy.get('[data-cy="hola-card"]')
@@ -93,27 +99,28 @@ describe('FlashWord Tests', () => {
       .find('[data-cy="translation"]')
       .type('grey{enter}');
 
-    cy.get('[data-cy="correct-count"]').should('not.exist');
-    cy.get('[data-cy="completed"]')
+    cy.get('#completed')
       .should('be.visible')
-      .and('contain.text', 'Great work, you have completed all the words!');
+      .and('contain', 'Great work, you have completed all the words!');
+    cy.get('[data-cy="correct-count"]').should('not.exist');
   });
 
-  it('Resets the game', () => {
+  it('Resets the score and all cards to their initial state', () => {
     cy.visit('http://localhost:5173/');
 
     cy.get('[data-cy="hola-card"]')
       .find('[data-cy="translation"]')
       .type('hello{enter}');
-    cy.get('[data-cy="num-correct"]').should('have.text', '1');
+    cy.get('[data-cy="correct-count-value"]').should('have.text', '1');
 
     cy.get('[data-cy="reset"]').click();
 
-    cy.get('[data-cy="num-correct"]').should('have.text', '0');
-    cy.get('[data-cy="completed"]').should('not.exist');
+    cy.get('[data-cy="correct-count-value"]').should('have.text', '0');
+    cy.get('[data-cy="word-count-value"]').should('have.text', '3');
     cy.get('[data-cy="hola-card"]')
       .should('not.have.class', 'correct')
       .find('[data-cy="translation"]')
-      .should('have.value', '');
+      .should('be.visible')
+      .and('have.value', '');
   });
 });
