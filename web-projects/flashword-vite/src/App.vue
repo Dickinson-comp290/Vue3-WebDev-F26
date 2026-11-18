@@ -57,7 +57,7 @@ export default {
 
 <template>
   <div id="app" v-cloak>
-    <h1>FlashWord</h1>
+    <h1 data-cy="app-header">FlashWord</h1>
 
     <p v-if="completed" id="completed">
       Great work, you have completed all the words!
@@ -72,6 +72,7 @@ export default {
         v-bind:key="word.word_a"
         v-bind:word="word"
         v-on:incrementCorrectCount="incrementCorrectCount"
+        v-bind:data-cy="word.word_a + '-card'"
       >
       </WordCard>
     </div>
